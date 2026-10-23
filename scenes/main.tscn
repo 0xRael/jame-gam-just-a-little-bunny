@@ -1,0 +1,1350 @@
+[gd_scene format=3 uid="uid://3thpk5dppomt"]
+
+[ext_resource type="Script" uid="uid://bx41801v2ciu2" path="res://scripts/game_manager.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://cf1xa3m0bbuxe" path="res://scripts/view_container.gd" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://c1koywudw8rl5" path="res://images/ui/bars/empty-bar.png" id="3_og1vs"]
+[ext_resource type="Texture2D" uid="uid://cfxpf7iv4lfo6" path="res://images/background.png" id="3_pm3ni"]
+[ext_resource type="Texture2D" uid="uid://d3vvs1nmhnw3s" path="res://images/ui/bars/sanity-bar.png" id="4_2wyq8"]
+[ext_resource type="Texture2D" uid="uid://bktpgpfhcdjbj" path="res://images/drafts/tv.png" id="4_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://iy0lwqymg775" path="res://images/drafts/pantry.png" id="5_tefeu"]
+[ext_resource type="FontFile" uid="uid://dsxjmlfec87bk" path="res://fonts/mintsoda-lime-green-font/MintsodaLimeGreen13X16Regular-KVvzA.ttf" id="6_o6xl0"]
+[ext_resource type="Script" uid="uid://cfeauibb0bk02" path="res://scripts/hud.gd" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://cje2xep6xlv87" path="res://scripts/minigames/pantry_minigame.gd" id="6_tipki"]
+[ext_resource type="Texture2D" uid="uid://d1tbmrwcxsyt5" path="res://images/pet/shadow.png" id="7_2f3dj"]
+[ext_resource type="Texture2D" uid="uid://bxifbbabep65k" path="res://images/minigames/pantry/panel.png" id="7_85g3d"]
+[ext_resource type="Texture2D" uid="uid://ds4e2u56qj7lh" path="res://images/pet/base-bunny.png" id="7_vxglm"]
+[ext_resource type="Texture2D" uid="uid://cs5y316xid30h" path="res://images/minigames/pantry/up_unpressed.png" id="8_choun"]
+[ext_resource type="Script" uid="uid://b56rndpog3u08" path="res://scripts/minigames/pantry/button.gd" id="9_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://cktvyrpxtsa6g" path="res://images/minigames/pantry/up_pressed.png" id="10_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://b0hq5iiq1781c" path="res://images/minigames/pantry/down_unpressed.png" id="11_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://c20gqsk57i8gv" path="res://images/minigames/pantry/down_pressed.png" id="12_0ld40"]
+[ext_resource type="Texture2D" uid="uid://brjak5s457euj" path="res://images/minigames/pantry/right_unpressed.png" id="13_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://o8drvbochfwl" path="res://images/minigames/pantry/right_pressed.png" id="14_yc10j"]
+[ext_resource type="Texture2D" uid="uid://b52x0hsripnxv" path="res://images/minigames/pantry/left_unpressed.png" id="15_jscy8"]
+[ext_resource type="Texture2D" uid="uid://cagpme34tvurg" path="res://images/minigames/pantry/left_pressed.png" id="16_pm3ni"]
+[ext_resource type="Texture2D" uid="uid://bahnhv1ggstdi" path="res://images/minigames/pantry/left_task.png" id="17_0ld40"]
+[ext_resource type="Script" uid="uid://ch7x8f2illab6" path="res://scripts/minigames/pantry/task_icon.gd" id="18_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://dielnme44u47p" path="res://images/minigames/pantry/up_task.png" id="19_pm3ni"]
+[ext_resource type="Texture2D" uid="uid://wocx2d1qq8k3" path="res://images/minigames/pantry/down_task.png" id="20_y6deb"]
+[ext_resource type="Texture2D" uid="uid://bl32biexnaup8" path="res://images/minigames/pantry/right_task.png" id="21_og1vs"]
+[ext_resource type="Texture2D" uid="uid://c4im2ae88skny" path="res://images/ui/bars/patience-bar.png" id="26_2wyq8"]
+[ext_resource type="Texture2D" uid="uid://vwotbmt3u44q" path="res://images/ui/side-arrow.png" id="27_yq6so"]
+[ext_resource type="Script" uid="uid://bb0xyx3f5qdho" path="res://scripts/camera_arrow.gd" id="28_fv21b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
+bg_color = Color(0.8627451, 0.6862745, 0.5686275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1764706, 0.15294118, 0.19607843, 1)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t5sld"]
+texture = ExtResource("3_og1vs")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cthgk"]
+texture = ExtResource("4_2wyq8")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+
+[sub_resource type="Theme" id="Theme_tefeu"]
+Label/colors/font_color = Color(0.1764706, 0.15294118, 0.19607843, 1)
+Label/font_sizes/font_size = 13
+Label/fonts/font = ExtResource("6_o6xl0")
+Panel/styles/panel = SubResource("StyleBoxFlat_o6xl0")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_t5sld")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_cthgk")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tbgi4"]
+animation = &"LivingRoom"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_85g3d"]
+animation = &"LivingRoom2Pantry"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tefeu"]
+animation = &"LivingRoom2TV"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_choun"]
+animation = &"Pantry"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ya4ey"]
+animation = &"Pantry2LivingRoom"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eb6dy"]
+animation = &"Pantry2PantryMinigame"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_trceg"]
+animation = &"PantryMinigame"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a8y0u"]
+animation = &"PantryMinigame2Pantry"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o6xl0"]
+animation = &"TV"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tipki"]
+animation = &"TV2LivingRoom"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_85g3d"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_choun"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ya4ey"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eb6dy"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_trceg"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a8y0u"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jkv2x"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jbj1t"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_muem4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dp3eg"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ld40"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gqmmt"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yc10j"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tbgi4"]
+states/End/position = Vector2(468, 100)
+states/LivingRoom/node = SubResource("AnimationNodeAnimation_tbgi4")
+states/LivingRoom/position = Vector2(360, 100)
+states/LivingRoom2Pantry/node = SubResource("AnimationNodeAnimation_85g3d")
+states/LivingRoom2Pantry/position = Vector2(205, 39)
+states/LivingRoom2TV/node = SubResource("AnimationNodeAnimation_tefeu")
+states/LivingRoom2TV/position = Vector2(468, 39)
+states/Pantry/node = SubResource("AnimationNodeAnimation_choun")
+states/Pantry/position = Vector2(70.88873, 100)
+states/Pantry2LivingRoom/node = SubResource("AnimationNodeAnimation_ya4ey")
+states/Pantry2LivingRoom/position = Vector2(205, 169)
+states/Pantry2PantryMinigame/node = SubResource("AnimationNodeAnimation_eb6dy")
+states/Pantry2PantryMinigame/position = Vector2(-61.995117, 39)
+states/PantryMinigame/node = SubResource("AnimationNodeAnimation_trceg")
+states/PantryMinigame/position = Vector2(-220.63681, 100)
+states/PantryMinigame2Pantry/node = SubResource("AnimationNodeAnimation_a8y0u")
+states/PantryMinigame2Pantry/position = Vector2(-61.995117, 169)
+states/Start/position = Vector2(205, 100)
+states/TV/node = SubResource("AnimationNodeAnimation_o6xl0")
+states/TV/position = Vector2(566, 100)
+states/TV2LivingRoom/node = SubResource("AnimationNodeAnimation_tipki")
+states/TV2LivingRoom/position = Vector2(468, 169)
+transitions = ["Start", "LivingRoom", SubResource("AnimationNodeStateMachineTransition_85g3d"), "LivingRoom", "LivingRoom2TV", SubResource("AnimationNodeStateMachineTransition_choun"), "TV", "TV2LivingRoom", SubResource("AnimationNodeStateMachineTransition_ya4ey"), "LivingRoom2TV", "TV", SubResource("AnimationNodeStateMachineTransition_eb6dy"), "TV2LivingRoom", "LivingRoom", SubResource("AnimationNodeStateMachineTransition_trceg"), "LivingRoom2Pantry", "Pantry", SubResource("AnimationNodeStateMachineTransition_a8y0u"), "Pantry2LivingRoom", "LivingRoom", SubResource("AnimationNodeStateMachineTransition_jkv2x"), "LivingRoom", "LivingRoom2Pantry", SubResource("AnimationNodeStateMachineTransition_jbj1t"), "Pantry", "Pantry2LivingRoom", SubResource("AnimationNodeStateMachineTransition_muem4"), "Pantry", "Pantry2PantryMinigame", SubResource("AnimationNodeStateMachineTransition_dp3eg"), "PantryMinigame", "PantryMinigame2Pantry", SubResource("AnimationNodeStateMachineTransition_0ld40"), "PantryMinigame2Pantry", "Pantry", SubResource("AnimationNodeStateMachineTransition_gqmmt"), "Pantry2PantryMinigame", "PantryMinigame", SubResource("AnimationNodeStateMachineTransition_yc10j")]
+graph_offset = Vector2(-455.99512, 0)
+
+[sub_resource type="Animation" id="Animation_tbgi4"]
+resource_name = "LivingRoom"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LivingRoomView:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVView:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PantryView:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LivingRoomView:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("TVView:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_choun"]
+resource_name = "LivingRoom2Pantry"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LivingRoomView:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVView:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PantryView:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LivingRoomView:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-256, 49)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("TVView:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PantryView:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(256, 35), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tefeu"]
+resource_name = "LivingRoom2TV"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LivingRoomView:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVView:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PantryView:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LivingRoomView:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(256, 26)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TVView:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-256, 44), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ya4ey"]
+resource_name = "Pantry"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LivingRoomView:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVView:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PantryView:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LivingRoomView:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("TVView:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PantryView:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MinigameView:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_eb6dy"]
+resource_name = "Pantry2LivingRoom"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LivingRoomView:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVView:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PantryView:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LivingRoomView:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-256, 49), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("TVView:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PantryView:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(256, 35)]
+}
+
+[sub_resource type="Animation" id="Animation_trceg"]
+resource_name = "Pantry2PantryMinigame"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LivingRoomView:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVView:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PantryView:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LivingRoomView:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("TVView:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PantryView:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MinigameView:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MinigameView:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 192), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jkv2x"]
+resource_name = "PantryMinigame"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LivingRoomView:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVView:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PantryView:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LivingRoomView:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("TVView:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PantryView:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MinigameView:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MinigameView:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a8y0u"]
+resource_name = "PantryMinigame2Pantry"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LivingRoomView:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVView:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PantryView:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LivingRoomView:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("TVView:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PantryView:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MinigameView:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MinigameView:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 192)]
+}
+
+[sub_resource type="Animation" id="Animation_o6xl0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LivingRoomView:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVView:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PantryView:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LivingRoomView:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TVView:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PantryView:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(256, 35)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MinigameView:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MinigameView:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tipki"]
+resource_name = "TV"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LivingRoomView:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVView:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PantryView:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LivingRoomView:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TVView:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_85g3d"]
+resource_name = "TV2LivingRoom"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LivingRoomView:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVView:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PantryView:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LivingRoomView:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(256, 26), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TVView:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-256, 44)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tipki"]
+_data = {
+&"LivingRoom": SubResource("Animation_tbgi4"),
+&"LivingRoom2Pantry": SubResource("Animation_choun"),
+&"LivingRoom2TV": SubResource("Animation_tefeu"),
+&"Pantry": SubResource("Animation_ya4ey"),
+&"Pantry2LivingRoom": SubResource("Animation_eb6dy"),
+&"Pantry2PantryMinigame": SubResource("Animation_trceg"),
+&"PantryMinigame": SubResource("Animation_jkv2x"),
+&"PantryMinigame2Pantry": SubResource("Animation_a8y0u"),
+&"RESET": SubResource("Animation_o6xl0"),
+&"TV": SubResource("Animation_tipki"),
+&"TV2LivingRoom": SubResource("Animation_85g3d")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vxglm"]
+texture = ExtResource("26_2wyq8")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+
+[node name="Main" type="Control" unique_id=2115642893]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o5qli")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1782031937]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.31764707, 0.3019608, 0.2901961, 1)
+
+[node name="ViewContainer" type="Control" parent="." unique_id=1558101316 node_paths=PackedStringArray("game_manager")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_tefeu")
+script = ExtResource("2_0wfyh")
+game_manager = NodePath("..")
+
+[node name="LivingRoomView" type="Control" parent="ViewContainer" unique_id=1557923225]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -0.00018310547
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Sprite2D" parent="ViewContainer/LivingRoomView" unique_id=1643056953]
+texture = ExtResource("3_pm3ni")
+centered = false
+
+[node name="Shadow" type="Sprite2D" parent="ViewContainer/LivingRoomView" unique_id=652422399]
+position = Vector2(127, 96)
+texture = ExtResource("7_2f3dj")
+
+[node name="BaseBunny" type="Sprite2D" parent="ViewContainer/LivingRoomView" unique_id=471417272]
+position = Vector2(128, 96)
+texture = ExtResource("7_vxglm")
+
+[node name="TVView" type="Control" parent="ViewContainer" unique_id=1149355692]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tv" type="Sprite2D" parent="ViewContainer/TVView" unique_id=622531219]
+texture = ExtResource("4_tbgi4")
+centered = false
+
+[node name="PantryView" type="Control" parent="ViewContainer" unique_id=830500934]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 35.0
+offset_right = 255.99908
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pantry" type="Sprite2D" parent="ViewContainer/PantryView" unique_id=1384005728]
+texture = ExtResource("5_tefeu")
+centered = false
+
+[node name="MinigameView" type="Control" parent="ViewContainer" unique_id=360360733]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -0.0002746582
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_tipki")
+
+[node name="Panel" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=1664411983]
+position = Vector2(128, 96)
+texture = ExtResource("7_85g3d")
+
+[node name="Up" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=1883623249]
+position = Vector2(128, 88)
+texture = ExtResource("8_choun")
+script = ExtResource("9_ya4ey")
+unpressed_texture = ExtResource("8_choun")
+pressed_texture = ExtResource("10_eb6dy")
+
+[node name="Down" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=2034296626]
+position = Vector2(128, 117)
+texture = ExtResource("11_dp3eg")
+script = ExtResource("9_ya4ey")
+action_to_listen = "ui_down"
+unpressed_texture = ExtResource("11_dp3eg")
+pressed_texture = ExtResource("12_0ld40")
+
+[node name="Right" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=861527594]
+position = Vector2(147, 102)
+texture = ExtResource("13_gqmmt")
+script = ExtResource("9_ya4ey")
+action_to_listen = "ui_right"
+unpressed_texture = ExtResource("13_gqmmt")
+pressed_texture = ExtResource("14_yc10j")
+
+[node name="Left" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=80697722]
+position = Vector2(108, 102)
+texture = ExtResource("15_jscy8")
+script = ExtResource("9_ya4ey")
+action_to_listen = "ui_left"
+unpressed_texture = ExtResource("15_jscy8")
+pressed_texture = ExtResource("16_pm3ni")
+
+[node name="LeftTask" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=1033843125]
+position = Vector2(106, 62)
+texture = ExtResource("17_0ld40")
+script = ExtResource("18_gqmmt")
+up_texture = ExtResource("19_pm3ni")
+down_texture = ExtResource("20_y6deb")
+left_texture = ExtResource("17_0ld40")
+right_texture = ExtResource("21_og1vs")
+
+[node name="LeftTask2" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=27487720]
+position = Vector2(121, 62)
+texture = ExtResource("17_0ld40")
+script = ExtResource("18_gqmmt")
+array_position = 1
+up_texture = ExtResource("19_pm3ni")
+down_texture = ExtResource("20_y6deb")
+left_texture = ExtResource("17_0ld40")
+right_texture = ExtResource("21_og1vs")
+
+[node name="LeftTask3" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=508339324]
+position = Vector2(136, 62)
+texture = ExtResource("17_0ld40")
+script = ExtResource("18_gqmmt")
+array_position = 2
+up_texture = ExtResource("19_pm3ni")
+down_texture = ExtResource("20_y6deb")
+left_texture = ExtResource("17_0ld40")
+right_texture = ExtResource("21_og1vs")
+
+[node name="LeftTask4" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=1595056157]
+position = Vector2(151, 62)
+texture = ExtResource("17_0ld40")
+script = ExtResource("18_gqmmt")
+array_position = 3
+up_texture = ExtResource("19_pm3ni")
+down_texture = ExtResource("20_y6deb")
+left_texture = ExtResource("17_0ld40")
+right_texture = ExtResource("21_og1vs")
+
+[node name="RightArrow" type="Sprite2D" parent="ViewContainer" unique_id=1279666866 node_paths=PackedStringArray("game_manager")]
+self_modulate = Color(0, 0, 0, 0)
+position = Vector2(248, 96)
+texture = ExtResource("27_yq6so")
+script = ExtResource("28_fv21b")
+game_manager = NodePath("../..")
+
+[node name="LeftArrow" type="Sprite2D" parent="ViewContainer" unique_id=111215730 node_paths=PackedStringArray("game_manager")]
+position = Vector2(8, 96)
+texture = ExtResource("27_yq6so")
+flip_h = true
+script = ExtResource("28_fv21b")
+game_manager = NodePath("../..")
+
+[node name="GameOver" type="Panel" parent="ViewContainer" unique_id=335022119]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -62.0
+offset_right = 86.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="ViewContainer/GameOver" unique_id=1238187061]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Game Over!"
+horizontal_alignment = 1
+
+[node name="Reason" type="Label" parent="ViewContainer/GameOver" unique_id=514138973]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 29.0
+offset_right = -7.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "Your pet's patience depleted and it killed you."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationTree" type="AnimationTree" parent="ViewContainer" unique_id=1189316474]
+active = false
+tree_root = SubResource("AnimationNodeStateMachine_tbgi4")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ViewContainer" unique_id=438435448]
+libraries/ = SubResource("AnimationLibrary_tipki")
+
+[node name="HUD" type="Control" parent="." unique_id=1553748121 node_paths=PackedStringArray("game_manager")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_tefeu")
+script = ExtResource("6_tefeu")
+game_manager = NodePath("..")
+metadata/_edit_lock_ = true
+
+[node name="PatienceBar" type="ProgressBar" parent="HUD" unique_id=1970345347]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 42.0
+offset_top = 4.0
+offset_right = -37.0
+offset_bottom = 24.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxTexture_vxglm")
+value = 100.0
+show_percentage = false
+
+[node name="HungerBar" type="ProgressBar" parent="HUD" unique_id=1021281692]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 42.0
+offset_top = 26.0
+offset_right = -37.0
+offset_bottom = 46.0
+grow_horizontal = 2
+value = 100.0
+show_percentage = false
+
+[node name="SanityBar" type="ProgressBar" parent="HUD" unique_id=968425556]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = -23.0
+offset_right = -40.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+show_percentage = false
+
+[node name="EmptyBar" type="Sprite2D" parent="." unique_id=886115779]
+visible = false
+texture = ExtResource("3_og1vs")
+centered = false
