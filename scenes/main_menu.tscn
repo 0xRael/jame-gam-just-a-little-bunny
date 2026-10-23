@@ -457,7 +457,9 @@ text = "Master Volume"
 [node name="MasterVol" type="HSlider" parent="Options" unique_id=294121985]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-value = 100.0
+max_value = 1.0
+step = 0.01
+value = 1.0
 
 [node name="Label2" type="Label" parent="Options" unique_id=1794662080]
 layout_mode = 2
@@ -466,7 +468,9 @@ text = "Music Volume"
 [node name="MusicVol" type="HSlider" parent="Options" unique_id=961476749]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-value = 100.0
+max_value = 1.0
+step = 0.01
+value = 1.0
 
 [node name="Label3" type="Label" parent="Options" unique_id=268684548]
 layout_mode = 2
@@ -475,7 +479,9 @@ text = "SFX Volume"
 [node name="SFXVol" type="HSlider" parent="Options" unique_id=1673760753]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-value = 100.0
+max_value = 1.0
+step = 0.01
+value = 1.0
 
 [node name="Label4" type="Label" parent="Options" unique_id=152825168]
 layout_mode = 2
@@ -514,5 +520,10 @@ grow_vertical = 2
 [connection signal="pressed" from="MainButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainButtons/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainButtons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="value_changed" from="Options/MasterVol" to="Options" method="_on_master_vol_value_changed"]
+[connection signal="value_changed" from="Options/MusicVol" to="Options" method="_on_music_vol_value_changed"]
+[connection signal="value_changed" from="Options/SFXVol" to="Options" method="_on_sfx_vol_value_changed"]
+[connection signal="toggled" from="Options/Fullscreen" to="Options" method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="Options/ScreenShake" to="Options" method="_on_screen_shake_toggled"]
 [connection signal="pressed" from="Options/Back" to="." method="_on_back_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

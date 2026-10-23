@@ -13,19 +13,11 @@ func _ready() -> void:
 	sfx_slider.value = saved["sfx"]
 	fullscreen_check.button_pressed = saved["fullscreen"]
 
-func _on_master_slider_value_changed(value: float) -> void:
-	SettingsManager.set_bus_volume("Master", value)
-	_save_all()
-
-func _on_music_slider_value_changed(value: float) -> void:
-	SettingsManager.set_bus_volume("Music", value)
-	_save_all()
-
-func _on_sfx_slider_value_changed(value: float) -> void:
+func _on_sfx_vol_value_changed(value: float) -> void:
 	SettingsManager.set_bus_volume("SFX", value)
 	_save_all()
 
-func _on_fullscreen_check_toggled(toggled_on: bool) -> void:
+func _on_fullscreen_toggled(toggled_on: bool) -> void:
 	var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if toggled_on else DisplayServer.WINDOW_MODE_WINDOWED
 	DisplayServer.window_set_mode(mode)
 	_save_all()
@@ -38,3 +30,17 @@ func _save_all() -> void:
 		fullscreen_check.button_pressed
 	)
 	SettingsManager.load_settings()
+
+
+func _on_master_vol_value_changed(value: float) -> void:
+	SettingsManager.set_bus_volume("Master", value)
+	_save_all()
+
+
+func _on_music_vol_value_changed(value: float) -> void:
+	SettingsManager.set_bus_volume("Music", value)
+	_save_all()
+
+
+func _on_screen_shake_toggled(toggled_on: bool) -> void:
+	pass # Replace with function body.
