@@ -4,6 +4,7 @@ extends Control
 
 @onready var sanity_bar := $SanityBar
 @export var hunger_bar : ProgressBar
+@export var alt_hunger_bar : TextureProgressBar
 @onready var patience_bar := $PatienceBar
 
 func _ready() -> void:
@@ -24,3 +25,4 @@ func _on_pet_patience_changed(value: float) -> void:
 
 func _on_pet_hunger_changed(value: float) -> void:
 	hunger_bar.value = value
+	alt_hunger_bar.value = value

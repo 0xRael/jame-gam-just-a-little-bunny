@@ -18,8 +18,8 @@ var hunger := 100.0:
 
 # Drain Rates per second
 var hunger_drain_rate := 1.5
-var normal_patience_drain := 1.0
-var tv_patience_drain := 3.0 # Watching TV drains patience faster
+var normal_patience_drain := 0.5
+var tv_patience_drain := 1.5 # Watching TV drains patience faster
 var starving_patience_drain := 10.0 # Rapid drain when hunger hits 0
 
 # Feeding diminishment system
