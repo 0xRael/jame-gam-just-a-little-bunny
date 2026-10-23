@@ -3,7 +3,7 @@ extends Control
 @export var game_manager: Node
 
 @onready var sanity_bar := $SanityBar
-@onready var hunger_bar := $HungerBar
+@export var hunger_bar : ProgressBar
 @onready var patience_bar := $PatienceBar
 
 func _ready() -> void:

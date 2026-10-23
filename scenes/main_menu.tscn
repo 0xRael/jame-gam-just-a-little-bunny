@@ -1,0 +1,518 @@
+[gd_scene format=3 uid="uid://qav4ljgxuitw"]
+
+[ext_resource type="FontFile" uid="uid://dsxjmlfec87bk" path="res://fonts/mintsoda-lime-green-font/MintsodaLimeGreen13X16Regular-KVvzA.ttf" id="1_bqqt6"]
+[ext_resource type="AudioStream" uid="uid://mwlkdsbahxp5" path="res://sounds/Main Theme.wav" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://rd0cqjrj3h8y" path="res://scripts/audio_manager.gd" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://d3vvs1nmhnw3s" path="res://images/ui/bars/sanity-bar.png" id="2_wu84c"]
+[ext_resource type="Script" uid="uid://cuxgrwec1s33x" path="res://scripts/title_screen/main_menu.gd" id="3_rtw2f"]
+[ext_resource type="Script" uid="uid://b4bnbs5nyl4iv" path="res://scripts/title_screen/options.gd" id="5_8ln24"]
+[ext_resource type="Shader" uid="uid://bdfyudij10jra" path="res://shaders/diamond_transition.gdshader" id="7_oa1go"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 2
+border_color = Color(0.8627451, 0.6862745, 0.5686275, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
+texture = ExtResource("2_wu84c")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rtw2f"]
+load_path = "res://.godot/imported/patience-bar.png-86b1141460aaa69b497a8c9f9fc8888c.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oa1go"]
+texture = SubResource("CompressedTexture2D_rtw2f")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ln24"]
+load_path = "res://.godot/imported/empty-bar.png-178eb9b642513cd5946a223ecb835894.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rtw2f"]
+texture = SubResource("CompressedTexture2D_8ln24")
+texture_margin_left = 10.0
+texture_margin_right = 8.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="Theme" id="Theme_sbekf"]
+Button/colors/font_color = Color(0.1764706, 0.15294118, 0.1882353, 1)
+Button/colors/font_hover_color = Color(0.8627451, 0.6862745, 0.56078434, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 4
+Button/font_sizes/font_size = 13
+Button/fonts/font = ExtResource("1_bqqt6")
+Button/styles/focus = SubResource("StyleBoxFlat_wu84c")
+Button/styles/hover = SubResource("StyleBoxFlat_bqqt6")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_wu84c")
+Button/styles/normal = SubResource("StyleBoxFlat_wu84c")
+Button/styles/pressed = SubResource("StyleBoxFlat_wu84c")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_wu84c")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_oa1go")
+HSlider/styles/slider = SubResource("StyleBoxTexture_rtw2f")
+Label/font_sizes/font_size = 13
+Label/fonts/font = ExtResource("1_bqqt6")
+
+[sub_resource type="Animation" id="Animation_5dd4i"]
+resource_name = "End"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Options:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainButtons:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DiamondTransition:material:shader_parameter/height")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainButtons:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 88), Vector2(100, 198)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DiamondTransition:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rtw2f"]
+resource_name = "MainMenu2Options"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainButtons:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 88), Vector2(100, 198)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Options:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(32, -131), Vector2(32, 37), Vector2(32, 37)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainButtons:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Options:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_tbmy8"]
+resource_name = "Options2MainMenu"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainButtons:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(100, 198), Vector2(100, 88), Vector2(100, 88)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Options:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, 37), Vector2(32, -133)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainButtons:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Options:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_oa1go"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainButtons:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 88)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Options:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, -131)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainButtons:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Options:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DiamondTransition:material:shader_parameter/height")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DiamondTransition:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jk1qb"]
+resource_name = "Start"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Options:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainButtons:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DiamondTransition:material:shader_parameter/height")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, -1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainButtons:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(100, 198), Vector2(100, 88), Vector2(100, 88)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DiamondTransition:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbmy8"]
+_data = {
+&"End": SubResource("Animation_5dd4i"),
+&"MainMenu2Options": SubResource("Animation_rtw2f"),
+&"Options2MainMenu": SubResource("Animation_tbmy8"),
+&"RESET": SubResource("Animation_oa1go"),
+&"Start": SubResource("Animation_jk1qb")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbmy8"]
+shader = ExtResource("7_oa1go")
+shader_parameter/AspectRatio = 1.5
+shader_parameter/Diamonds = 10.0
+shader_parameter/pixel_size = 0.08
+shader_parameter/height = -1.0
+shader_parameter/disable_pixel = false
+
+[node name="MainMenu" type="Control" unique_id=1138051323]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_sbekf")
+script = ExtResource("3_rtw2f")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1423615160 node_paths=PackedStringArray("game_manager")]
+stream = ExtResource("1_ekxnf")
+autoplay = true
+bus = &"Music"
+script = ExtResource("2_bqqt6")
+game_manager = NodePath("")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=674975238]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.24705882, 0.36862746, 0.60784316, 1)
+
+[node name="MainButtons" type="VBoxContainer" parent="." unique_id=1533668260]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -104.0
+offset_right = 28.0
+offset_bottom = 9.1552734e-05
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Play" type="Button" parent="MainButtons" unique_id=94013879]
+layout_mode = 2
+text = "Play"
+
+[node name="Options" type="Button" parent="MainButtons" unique_id=1813259500]
+layout_mode = 2
+text = "Options"
+
+[node name="Exit" type="Button" parent="MainButtons" unique_id=1140909440]
+layout_mode = 2
+text = "Exit"
+
+[node name="Options" type="GridContainer" parent="." unique_id=1549700607]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -227.0
+offset_right = 96.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+script = ExtResource("5_8ln24")
+
+[node name="Label" type="Label" parent="Options" unique_id=535091604]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterVol" type="HSlider" parent="Options" unique_id=294121985]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+value = 100.0
+
+[node name="Label2" type="Label" parent="Options" unique_id=1794662080]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicVol" type="HSlider" parent="Options" unique_id=961476749]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+value = 100.0
+
+[node name="Label3" type="Label" parent="Options" unique_id=268684548]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFXVol" type="HSlider" parent="Options" unique_id=1673760753]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+value = 100.0
+
+[node name="Label4" type="Label" parent="Options" unique_id=152825168]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="Fullscreen" type="CheckButton" parent="Options" unique_id=415205384]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="Options" unique_id=762262422]
+layout_mode = 2
+text = "ScreenShake"
+
+[node name="ScreenShake" type="CheckButton" parent="Options" unique_id=1873346716]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Options" unique_id=1832634900]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="Options" unique_id=561439132]
+layout_mode = 2
+text = "Go Back >"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1251008609]
+libraries/ = SubResource("AnimationLibrary_tbmy8")
+autoplay = &"Start"
+
+[node name="DiamondTransition" type="ColorRect" parent="." unique_id=1219920590]
+material = SubResource("ShaderMaterial_tbmy8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="MainButtons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainButtons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MainButtons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Options/Back" to="." method="_on_back_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

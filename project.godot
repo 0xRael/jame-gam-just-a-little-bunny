@@ -14,6 +14,14 @@ config/name="jame gam"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://dph3x0obs3ryu"
+
+[autoload]
+
+SettingsManager="*uid://cko8nv1q4xgee"
+
 [display]
 
 window/size/viewport_width=256

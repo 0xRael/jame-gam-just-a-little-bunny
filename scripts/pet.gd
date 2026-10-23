@@ -17,10 +17,10 @@ var hunger := 100.0:
 		emit_signal("hunger_changed", hunger)
 
 # Drain Rates per second
-var hunger_drain_rate := 3.0
+var hunger_drain_rate := 1.5
 var normal_patience_drain := 1.0
-var tv_patience_drain := 5.0 # Watching TV drains patience faster
-var starving_patience_drain := 15.0 # Rapid drain when hunger hits 0
+var tv_patience_drain := 3.0 # Watching TV drains patience faster
+var starving_patience_drain := 10.0 # Rapid drain when hunger hits 0
 
 # Feeding diminishment system
 var base_patience_refill := 30.0

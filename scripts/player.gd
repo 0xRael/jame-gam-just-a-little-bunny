@@ -14,8 +14,8 @@ var sanity := 100.0:
 		emit_signal("sanity_changed", sanity)
 
 # Rates per second
-var stare_drain_rate := 5.0
-var tv_refill_rate := 10.0
+var stare_drain_rate := 2.0
+var tv_refill_rate := 5.0
 
 func stare(delta: float) -> void:
 	sanity -= stare_drain_rate * delta

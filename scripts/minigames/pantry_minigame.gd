@@ -38,8 +38,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if input_dir != -1:
 		if input_dir == target_sequence[current_step]:
 			current_step += 1
+			$Press.play()
 			if current_step >= target_sequence.size():
 				end_minigame(true) # Success!
 		else:
 			current_step = 0
 			emit_signal("minigame_attempt_failed")
+			$Error.play()

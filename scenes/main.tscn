@@ -28,8 +28,15 @@
 [ext_resource type="Texture2D" uid="uid://wocx2d1qq8k3" path="res://images/minigames/pantry/down_task.png" id="20_y6deb"]
 [ext_resource type="Texture2D" uid="uid://bl32biexnaup8" path="res://images/minigames/pantry/right_task.png" id="21_og1vs"]
 [ext_resource type="Texture2D" uid="uid://c4im2ae88skny" path="res://images/ui/bars/patience-bar.png" id="26_2wyq8"]
+[ext_resource type="AudioStream" uid="uid://ctvln0qjjh7an" path="res://sounds/ui/error.wav" id="27_j8jky"]
 [ext_resource type="Texture2D" uid="uid://vwotbmt3u44q" path="res://images/ui/side-arrow.png" id="27_yq6so"]
 [ext_resource type="Script" uid="uid://bb0xyx3f5qdho" path="res://scripts/camera_arrow.gd" id="28_fv21b"]
+[ext_resource type="AudioStream" uid="uid://b3f14gkk6n7du" path="res://sounds/ui/cursor.wav" id="28_kmb1v"]
+[ext_resource type="Script" uid="uid://3jpdl15tq8q4" path="res://scripts/analog_clock.gd" id="31_tel4y"]
+[ext_resource type="AudioStream" uid="uid://mwlkdsbahxp5" path="res://sounds/Main Theme.wav" id="32_qkpxi"]
+[ext_resource type="Script" uid="uid://rd0cqjrj3h8y" path="res://scripts/audio_manager.gd" id="33_5q0nq"]
+[ext_resource type="Texture2D" uid="uid://caa4nog6bxthm" path="res://images/ui/bars/vertical-bar.png" id="34_fuf3a"]
+[ext_resource type="Texture2D" uid="uid://dg4djox2ak6tv" path="res://images/ui/bars/hunger-bar.png" id="35_pibwh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
 bg_color = Color(0.8627451, 0.6862745, 0.5686275, 1)
@@ -55,6 +62,14 @@ Label/fonts/font = ExtResource("6_o6xl0")
 Panel/styles/panel = SubResource("StyleBoxFlat_o6xl0")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_t5sld")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_cthgk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j8jky"]
+texture = ExtResource("34_fuf3a")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kmb1v"]
+texture = ExtResource("35_pibwh")
+texture_margin_top = 10.0
+texture_margin_bottom = 11.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tbgi4"]
 animation = &"LivingRoom"
@@ -1060,10 +1075,51 @@ _data = {
 &"TV2LivingRoom": SubResource("Animation_85g3d")
 }
 
+[sub_resource type="Animation" id="Animation_kmb1v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j8jky"]
+resource_name = "Stand"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 3), Vector2(0, -3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kmb1v"]
+_data = {
+&"RESET": SubResource("Animation_kmb1v"),
+&"Stand": SubResource("Animation_j8jky")
+}
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vxglm"]
 texture = ExtResource("26_2wyq8")
 texture_margin_left = 10.0
 texture_margin_right = 10.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sbekf"]
+viewport_path = NodePath("HUD/SubViewport")
 
 [node name="Main" type="Control" unique_id=2115642893]
 layout_mode = 3
@@ -1081,7 +1137,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.31764707, 0.3019608, 0.2901961, 1)
+color = Color(0.8627451, 0.6862745, 0.5686275, 1)
 
 [node name="ViewContainer" type="Control" parent="." unique_id=1558101316 node_paths=PackedStringArray("game_manager")]
 layout_mode = 1
@@ -1114,6 +1170,21 @@ texture = ExtResource("7_2f3dj")
 [node name="BaseBunny" type="Sprite2D" parent="ViewContainer/LivingRoomView" unique_id=471417272]
 position = Vector2(128, 96)
 texture = ExtResource("7_vxglm")
+
+[node name="HungerBar" type="ProgressBar" parent="ViewContainer/LivingRoomView" unique_id=1021281692]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 163.0
+offset_top = 59.0
+offset_right = -73.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_j8jky")
+theme_override_styles/fill = SubResource("StyleBoxTexture_kmb1v")
+value = 100.0
+fill_mode = 3
+show_percentage = false
 
 [node name="TVView" type="Control" parent="ViewContainer" unique_id=1149355692]
 visible = false
@@ -1230,19 +1301,13 @@ down_texture = ExtResource("20_y6deb")
 left_texture = ExtResource("17_0ld40")
 right_texture = ExtResource("21_og1vs")
 
-[node name="RightArrow" type="Sprite2D" parent="ViewContainer" unique_id=1279666866 node_paths=PackedStringArray("game_manager")]
-self_modulate = Color(0, 0, 0, 0)
-position = Vector2(248, 96)
-texture = ExtResource("27_yq6so")
-script = ExtResource("28_fv21b")
-game_manager = NodePath("../..")
+[node name="Error" type="AudioStreamPlayer" parent="ViewContainer/MinigameView" unique_id=1448710324]
+stream = ExtResource("27_j8jky")
+bus = &"SFX"
 
-[node name="LeftArrow" type="Sprite2D" parent="ViewContainer" unique_id=111215730 node_paths=PackedStringArray("game_manager")]
-position = Vector2(8, 96)
-texture = ExtResource("27_yq6so")
-flip_h = true
-script = ExtResource("28_fv21b")
-game_manager = NodePath("../..")
+[node name="Press" type="AudioStreamPlayer" parent="ViewContainer/MinigameView" unique_id=476830663]
+stream = ExtResource("28_kmb1v")
+bus = &"SFX"
 
 [node name="GameOver" type="Panel" parent="ViewContainer" unique_id=335022119]
 visible = false
@@ -1292,7 +1357,7 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ViewContainer" unique_id=438435448]
 libraries/ = SubResource("AnimationLibrary_tipki")
 
-[node name="HUD" type="Control" parent="." unique_id=1553748121 node_paths=PackedStringArray("game_manager")]
+[node name="HUD" type="Control" parent="." unique_id=1553748121 node_paths=PackedStringArray("game_manager", "hunger_bar")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1302,7 +1367,43 @@ grow_vertical = 2
 theme = SubResource("Theme_tefeu")
 script = ExtResource("6_tefeu")
 game_manager = NodePath("..")
+hunger_bar = NodePath("../ViewContainer/LivingRoomView/HungerBar")
 metadata/_edit_lock_ = true
+
+[node name="Arrows" type="Node2D" parent="HUD" unique_id=1346064718]
+
+[node name="RightArrow" type="Sprite2D" parent="HUD/Arrows" unique_id=1279666866 node_paths=PackedStringArray("game_manager")]
+position = Vector2(248, 96)
+texture = ExtResource("27_yq6so")
+script = ExtResource("28_fv21b")
+game_manager = NodePath("../../..")
+
+[node name="LeftArrow" type="Sprite2D" parent="HUD/Arrows" unique_id=111215730 node_paths=PackedStringArray("game_manager")]
+position = Vector2(8, 96)
+texture = ExtResource("27_yq6so")
+flip_h = true
+script = ExtResource("28_fv21b")
+game_manager = NodePath("../../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Arrows" unique_id=1316409941]
+libraries/ = SubResource("AnimationLibrary_kmb1v")
+autoplay = &"Stand"
+
+[node name="SubViewport" type="SubViewport" parent="HUD" unique_id=1723841618]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+gui_disable_input = true
+oversampling = false
+size = Vector2i(32, 32)
+
+[node name="AnalogClock" type="Control" parent="HUD/SubViewport" unique_id=893416785 node_paths=PackedStringArray("game_manager")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("31_tel4y")
+game_manager = NodePath("../../..")
 
 [node name="PatienceBar" type="ProgressBar" parent="HUD" unique_id=1970345347]
 layout_mode = 1
@@ -1314,18 +1415,6 @@ offset_right = -37.0
 offset_bottom = 24.0
 grow_horizontal = 2
 theme_override_styles/fill = SubResource("StyleBoxTexture_vxglm")
-value = 100.0
-show_percentage = false
-
-[node name="HungerBar" type="ProgressBar" parent="HUD" unique_id=1021281692]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 42.0
-offset_top = 26.0
-offset_right = -37.0
-offset_bottom = 46.0
-grow_horizontal = 2
 value = 100.0
 show_percentage = false
 
@@ -1344,7 +1433,20 @@ grow_vertical = 0
 value = 100.0
 show_percentage = false
 
+[node name="TextureRect" type="TextureRect" parent="HUD" unique_id=1761054122]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("ViewportTexture_sbekf")
+
 [node name="EmptyBar" type="Sprite2D" parent="." unique_id=886115779]
 visible = false
 texture = ExtResource("3_og1vs")
 centered = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=354750652 node_paths=PackedStringArray("game_manager")]
+stream = ExtResource("32_qkpxi")
+autoplay = true
+bus = &"Music"
+script = ExtResource("33_5q0nq")
+game_manager = NodePath("..")

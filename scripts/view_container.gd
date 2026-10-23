@@ -1,7 +1,7 @@
 class_name ViewContainer
 extends Control
 
-@export var game_manager: Node
+@export var game_manager: GameManager
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var minigames: Array[MinigameBase] = [$MinigameView]
 
