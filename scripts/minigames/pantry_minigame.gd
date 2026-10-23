@@ -41,6 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			$Press.play()
 			if current_step >= target_sequence.size():
 				end_minigame(true) # Success!
+				$Completed.play()
 		else:
 			current_step = 0
 			emit_signal("minigame_attempt_failed")

@@ -1,13 +1,13 @@
 extends Sprite2D
 
 @export var action_to_listen : String = "ui_up"
+@export var shape : Shape2D
 @export var unpressed_texture : Texture
 @export var pressed_texture : Texture
 
 func _ready():
 	var touch := TouchScreenButton.new()
-	touch.shape = RectangleShape2D.new()
-	touch.shape.size = Vector2(16.0, 22.0)
+	touch.shape = shape
 	touch.action = action_to_listen
 	add_child(touch)
 

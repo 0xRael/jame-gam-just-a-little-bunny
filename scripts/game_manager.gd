@@ -1,9 +1,12 @@
 class_name GameManager
 extends Node
 
-enum GameState { LIVING_ROOM, TV, PANTRY, PANTRY_MINIGAME, GAMEOVER }
+enum GameState { LIVING_ROOM, TV, PANTRY, PANTRY_MINIGAME, SINK_MINIGAME, GAMEOVER }
 signal game_state_changed(new_state: GameState)
 signal game_over(reason: String)
+signal pantry_lock_changed(can_use_pantry: bool)
+signal sink_lock_changed(can_use_sink: bool)
+signal day_changed(new_day: int)
 
 var current_state := GameState.LIVING_ROOM:
 	set(val):
@@ -15,20 +18,35 @@ var current_state := GameState.LIVING_ROOM:
 var input_cooldown: float = 0.0
 const COOLDOWN_TIME: float = 0.5 # seconds
 
-var current_day := 1
+var current_day := 1:
+	set(val):
+		current_day = val
+		emit_signal("day_changed", current_day)
 var day_duration_seconds := 240.0 # ~4 minutes per day
-var day_timer := 0.0
+var day_timer := 230.0
 
 var player: Player
 var pet: Pet
 
 @onready var pantry_minigame : PantryMinigame = $ViewContainer/MinigameView
+@onready var sink_minigame : SinkMinigame = $ViewContainer/SinkMinigameView
+
+var can_use_pantry := true:
+	set(val):
+		can_use_pantry = val
+		emit_signal("pantry_lock_changed", val)
+var can_use_sink := true:
+	set(val):
+		can_use_sink = val
+		emit_signal("sink_lock_changed", val)
+
 
 func _ready() -> void:
 	player = Player.new()
 	pet = Pet.new()
 	
 	pantry_minigame.minigame_completed.connect(_on_pantry_minigame_completed)
+	sink_minigame.minigame_completed.connect(_on_sink_minigame_completed)
 
 func _process(delta: float) -> void:
 	if current_state == GameState.GAMEOVER:
@@ -70,6 +88,9 @@ func trigger_game_over(reason: String) -> void:
 	emit_signal("game_over", reason)
 
 func handle_input() -> void:
+	if not get_window().has_focus():
+		return
+	
 	var viewport_size := Vector2(256, 192) # Yes idk how to get it dinamically just don't tell anyone
 	var mouse_pos := get_viewport().get_mouse_position()
 	
@@ -89,25 +110,41 @@ func handle_input() -> void:
 				input_cooldown = COOLDOWN_TIME
 				
 		GameState.TV:
-			if triggered_right or Input.is_action_pressed("ui_cancel"):
+			if triggered_right:
 				current_state = GameState.LIVING_ROOM
 				input_cooldown = COOLDOWN_TIME
 				
 		GameState.PANTRY:
-			if triggered_left or Input.is_action_pressed("ui_cancel"):
+			if triggered_left:
 				current_state = GameState.LIVING_ROOM
 				input_cooldown = COOLDOWN_TIME
-			elif Input.is_action_pressed("ui_accept"):
+			elif can_use_pantry and (Input.is_action_pressed("ui_accept") or Input.is_action_pressed("minigame1")):
 				current_state = GameState.PANTRY_MINIGAME
 				pantry_minigame.start_minigame()
+			elif can_use_sink and pet.enable_thirst and Input.is_action_pressed("minigame2"):
+				current_state = GameState.SINK_MINIGAME
+				sink_minigame.start_minigame()
 
 func advance_day() -> void:
 	current_day += 1
 	day_timer = 0.0
 	print("Advanced to day: ", current_day)
+	if current_day == 2:
+		# Enable thirst mechanics on day 2
+		pet.enable_thirst = true
 
 func _on_pantry_minigame_completed(success: bool) -> void:
 	current_state = GameState.PANTRY
 	if success:
 		pet.feed()
-		print("GG!")
+		can_use_pantry = false
+		await get_tree().create_timer(10.0).timeout 
+		can_use_pantry = true
+
+func _on_sink_minigame_completed(success: bool) -> void:
+	current_state = GameState.PANTRY
+	if success:
+		pet.drink()
+		can_use_sink = false
+		await get_tree().create_timer(10.0).timeout
+		can_use_sink = true

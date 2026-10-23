@@ -4,9 +4,11 @@ extends Control
 @export var game_manager: GameManager
 
 const COLOR_MAIN := Color("#514d4a")
+const COLOR_SHADOW := Color("#5d7298")
 const COLOR_BG := Color("#92b5db")
 const BORDER_WIDTH: float = 2.0
 const HAND_WIDTH: float = 3.0
+const SHADOW_DISTANCE: float = 2.0
 
 func _process(_delta: float) -> void:
 	queue_redraw()
@@ -29,6 +31,9 @@ func _draw() -> void:
 	# Clock hand
 	var hand_length := radius * 0.65
 	var hand_end := center + Vector2(cos(angle), sin(angle)) * hand_length
+	draw_line(Vector2(center.x, center.y+SHADOW_DISTANCE),\
+		Vector2(hand_end.x, hand_end.y+SHADOW_DISTANCE), \
+		COLOR_SHADOW, HAND_WIDTH, false)
 	draw_line(center, hand_end, COLOR_MAIN, HAND_WIDTH, false)
 	
 	# Draw center pin

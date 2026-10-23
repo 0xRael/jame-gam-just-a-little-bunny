@@ -42,6 +42,8 @@ func load_settings() -> Dictionary:
 	set_bus_volume("SFX", settings["sfx"])
 	
 	var mode := DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN if settings["fullscreen"] else DisplayServer.WindowMode.WINDOW_MODE_WINDOWED
-	DisplayServer.window_set_mode(mode)
+	if DisplayServer.window_get_mode() != mode and not \
+	(DisplayServer.window_get_mode() == DisplayServer.WindowMode.WINDOW_MODE_MAXIMIZED and mode == DisplayServer.WindowMode.WINDOW_MODE_WINDOWED):
+		DisplayServer.window_set_mode(mode)
 	
 	return settings

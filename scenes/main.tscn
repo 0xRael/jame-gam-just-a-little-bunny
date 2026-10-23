@@ -2,74 +2,45 @@
 
 [ext_resource type="Script" uid="uid://bx41801v2ciu2" path="res://scripts/game_manager.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cf1xa3m0bbuxe" path="res://scripts/view_container.gd" id="2_0wfyh"]
+[ext_resource type="Theme" uid="uid://nmiqr8hipiy6" path="res://base_theme.tres" id="2_dgi5k"]
 [ext_resource type="Texture2D" uid="uid://c1koywudw8rl5" path="res://images/ui/bars/empty-bar.png" id="3_og1vs"]
 [ext_resource type="Texture2D" uid="uid://cfxpf7iv4lfo6" path="res://images/background.png" id="3_pm3ni"]
-[ext_resource type="Texture2D" uid="uid://d3vvs1nmhnw3s" path="res://images/ui/bars/sanity-bar.png" id="4_2wyq8"]
-[ext_resource type="Texture2D" uid="uid://bktpgpfhcdjbj" path="res://images/drafts/tv.png" id="4_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://iy0lwqymg775" path="res://images/drafts/pantry.png" id="5_tefeu"]
-[ext_resource type="FontFile" uid="uid://dsxjmlfec87bk" path="res://fonts/mintsoda-lime-green-font/MintsodaLimeGreen13X16Regular-KVvzA.ttf" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://cfeauibb0bk02" path="res://scripts/hud.gd" id="6_tefeu"]
-[ext_resource type="Script" uid="uid://cje2xep6xlv87" path="res://scripts/minigames/pantry_minigame.gd" id="6_tipki"]
+[ext_resource type="AudioStream" uid="uid://dtogamh8wpu84" path="res://sounds/ambient/bunny.mp3" id="6_tel4y"]
 [ext_resource type="Texture2D" uid="uid://d1tbmrwcxsyt5" path="res://images/pet/shadow.png" id="7_2f3dj"]
-[ext_resource type="Texture2D" uid="uid://bxifbbabep65k" path="res://images/minigames/pantry/panel.png" id="7_85g3d"]
 [ext_resource type="Texture2D" uid="uid://dnp8xep4e0cdw" path="res://images/pet/bunny/body.png" id="8_chjal"]
-[ext_resource type="Texture2D" uid="uid://cs5y316xid30h" path="res://images/minigames/pantry/up_unpressed.png" id="8_choun"]
 [ext_resource type="Texture2D" uid="uid://d2adlcbusce8s" path="res://images/pet/bunny/earl.png" id="9_cjqg0"]
-[ext_resource type="Script" uid="uid://b56rndpog3u08" path="res://scripts/minigames/pantry/button.gd" id="9_ya4ey"]
-[ext_resource type="Texture2D" uid="uid://cktvyrpxtsa6g" path="res://images/minigames/pantry/up_pressed.png" id="10_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://cg1qfxbpi1yn" path="res://images/pet/bunny/earr.png" id="10_vchkt"]
-[ext_resource type="Texture2D" uid="uid://b0hq5iiq1781c" path="res://images/minigames/pantry/down_unpressed.png" id="11_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://xp8pol7l6p8i" path="res://images/pet/bunny/face.png" id="11_txyw0"]
-[ext_resource type="Texture2D" uid="uid://c20gqsk57i8gv" path="res://images/minigames/pantry/down_pressed.png" id="12_0ld40"]
 [ext_resource type="Texture2D" uid="uid://c24lpn8ebbwha" path="res://images/pet/bunny/legl.png" id="12_vc5cj"]
-[ext_resource type="Texture2D" uid="uid://brjak5s457euj" path="res://images/minigames/pantry/right_unpressed.png" id="13_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://blf2ipt47hl0" path="res://images/pet/bunny/legr.png" id="13_nvyfr"]
+[ext_resource type="Texture2D" uid="uid://biu2t4paubs1q" path="res://images/pet/bunny/blink1.png" id="14_dgi5k"]
 [ext_resource type="Texture2D" uid="uid://ddbuj8x6bey17" path="res://images/pet/bunny/tail.png" id="14_ty1g6"]
-[ext_resource type="Texture2D" uid="uid://o8drvbochfwl" path="res://images/minigames/pantry/right_pressed.png" id="14_yc10j"]
-[ext_resource type="Texture2D" uid="uid://b52x0hsripnxv" path="res://images/minigames/pantry/left_unpressed.png" id="15_jscy8"]
-[ext_resource type="Texture2D" uid="uid://cagpme34tvurg" path="res://images/minigames/pantry/left_pressed.png" id="16_pm3ni"]
-[ext_resource type="Texture2D" uid="uid://bahnhv1ggstdi" path="res://images/minigames/pantry/left_task.png" id="17_0ld40"]
+[ext_resource type="Texture2D" uid="uid://cay65f0jcfny1" path="res://images/pet/bunny/blink2.png" id="15_j8jky"]
 [ext_resource type="Texture2D" uid="uid://csw3a576u7kty" path="res://images/pet/bowl/empty.png" id="17_vchkt"]
-[ext_resource type="Script" uid="uid://ch7x8f2illab6" path="res://scripts/minigames/pantry/task_icon.gd" id="18_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://buny4xx0pxy21" path="res://images/ui/bars/thirst-bar.png" id="18_c6pm6"]
 [ext_resource type="Texture2D" uid="uid://drbcs7iyb5eje" path="res://images/pet/bowl/full.png" id="18_txyw0"]
-[ext_resource type="Texture2D" uid="uid://dielnme44u47p" path="res://images/minigames/pantry/up_task.png" id="19_pm3ni"]
-[ext_resource type="Texture2D" uid="uid://wocx2d1qq8k3" path="res://images/minigames/pantry/down_task.png" id="20_y6deb"]
-[ext_resource type="Texture2D" uid="uid://bl32biexnaup8" path="res://images/minigames/pantry/right_task.png" id="21_og1vs"]
+[ext_resource type="Texture2D" uid="uid://d02dv6u1khaic" path="res://images/tv_room.png" id="19_2f3dj"]
+[ext_resource type="Texture2D" uid="uid://bqof5n7yva5hi" path="res://images/tv/tv1.png" id="19_fv21b"]
+[ext_resource type="AudioStream" uid="uid://due5eeubskovr" path="res://sounds/ambient/tv.mp3" id="20_qkpxi"]
+[ext_resource type="Texture2D" uid="uid://bcf5kmocudchw" path="res://images/tv/tv2.png" id="20_tel4y"]
+[ext_resource type="PackedScene" uid="uid://bc573iho7tcp3" path="res://scenes/pantry_minigame.tscn" id="21_2f3dj"]
+[ext_resource type="Texture2D" uid="uid://f2sj6hqu0du7" path="res://images/pet/water-bowl/empty.png" id="21_5poiv"]
+[ext_resource type="Texture2D" uid="uid://c0pwp3r73ab6r" path="res://images/pet/water-bowl/full.png" id="22_2cjbq"]
+[ext_resource type="Texture2D" uid="uid://yw4dwex6h4tc" path="res://images/room.png" id="24_5q0nq"]
+[ext_resource type="Texture2D" uid="uid://wppvo5cdrxfi" path="res://images/clouds.png" id="24_dgi5k"]
 [ext_resource type="Texture2D" uid="uid://c4im2ae88skny" path="res://images/ui/bars/patience-bar.png" id="26_2wyq8"]
-[ext_resource type="AudioStream" uid="uid://ctvln0qjjh7an" path="res://sounds/ui/error.wav" id="27_j8jky"]
+[ext_resource type="Texture2D" uid="uid://bd00wnm1vgghw" path="res://images/pauntry-room/open-pauntry.png" id="26_j8jky"]
+[ext_resource type="Texture2D" uid="uid://dopom6d0srvkv" path="res://images/pauntry-room/sink-water1.png" id="27_pibwh"]
 [ext_resource type="Texture2D" uid="uid://vwotbmt3u44q" path="res://images/ui/side-arrow.png" id="27_yq6so"]
+[ext_resource type="Texture2D" uid="uid://buekh7paj10fi" path="res://images/pauntry-room/sink-water2.png" id="28_c6pm6"]
 [ext_resource type="Script" uid="uid://bb0xyx3f5qdho" path="res://scripts/camera_arrow.gd" id="28_fv21b"]
-[ext_resource type="AudioStream" uid="uid://b3f14gkk6n7du" path="res://sounds/ui/cursor.wav" id="28_kmb1v"]
+[ext_resource type="PackedScene" uid="uid://drm8psn42suv" path="res://scenes/sink_minigame_view.tscn" id="30_pibwh"]
 [ext_resource type="Script" uid="uid://3jpdl15tq8q4" path="res://scripts/analog_clock.gd" id="31_tel4y"]
 [ext_resource type="AudioStream" uid="uid://mwlkdsbahxp5" path="res://sounds/Main Theme.wav" id="32_qkpxi"]
 [ext_resource type="Script" uid="uid://rd0cqjrj3h8y" path="res://scripts/audio_manager.gd" id="33_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://caa4nog6bxthm" path="res://images/ui/bars/vertical-bar.png" id="34_fuf3a"]
 [ext_resource type="Texture2D" uid="uid://dg4djox2ak6tv" path="res://images/ui/bars/hunger-bar.png" id="35_pibwh"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
-bg_color = Color(0.8627451, 0.6862745, 0.5686275, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.1764706, 0.15294118, 0.19607843, 1)
-shadow_offset = Vector2(5, 5)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t5sld"]
-texture = ExtResource("3_og1vs")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cthgk"]
-texture = ExtResource("4_2wyq8")
-texture_margin_left = 10.0
-texture_margin_right = 10.0
-
-[sub_resource type="Theme" id="Theme_tefeu"]
-Label/colors/font_color = Color(0.1764706, 0.15294118, 0.19607843, 1)
-Label/font_sizes/font_size = 13
-Label/fonts/font = ExtResource("6_o6xl0")
-Panel/styles/panel = SubResource("StyleBoxFlat_o6xl0")
-ProgressBar/styles/background = SubResource("StyleBoxTexture_t5sld")
-ProgressBar/styles/fill = SubResource("StyleBoxTexture_cthgk")
 
 [sub_resource type="Animation" id="Animation_chjal"]
 length = 0.001
@@ -240,6 +211,30 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Body/Face/Blink1:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Body/Face/Blink2:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_cjqg0"]
@@ -414,6 +409,30 @@ tracks/13/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Body/Face/Blink1:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Body/Face/Blink2:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 1.5333333, 1.5666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vchkt"]
 _data = {
@@ -428,6 +447,104 @@ texture = ExtResource("34_fuf3a")
 texture = ExtResource("35_pibwh")
 texture_margin_top = 10.0
 texture_margin_bottom = 11.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5he1u"]
+texture = ExtResource("18_c6pm6")
+texture_margin_top = 10.0
+texture_margin_bottom = 11.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sbekf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_fv21b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_tel4y")
+}],
+"loop": 1,
+"name": &"day1",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1aae0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_pibwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_c6pm6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbekf"]
+size = Vector2(60, 80)
+
+[sub_resource type="Animation" id="Animation_fuf3a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clouds:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(251, 59)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Clouds:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pibwh"]
+resource_name = "clouds"
+length = 20.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clouds:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20, 20.066668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(251, 59), Vector2(184, 59), Vector2(184, 59)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Clouds:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c6pm6"]
+_data = {
+&"RESET": SubResource("Animation_fuf3a"),
+&"clouds": SubResource("Animation_pibwh")
+}
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tbgi4"]
 animation = &"LivingRoom"
@@ -636,7 +753,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-256, 49)]
+"values": [Vector2(0, 0), Vector2(-256, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -660,7 +777,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(256, 35), Vector2(0, 0)]
+"values": [Vector2(256, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_tefeu"]
@@ -712,7 +829,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(256, 26)]
+"values": [Vector2(0, 0), Vector2(256, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -724,7 +841,21 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-256, 44), Vector2(0, 0)]
+"values": [Vector2(-256, 1), Vector2(0, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TVView/AudioStreamPlayer2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ya4ey"]
@@ -776,7 +907,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-256, 49)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -864,7 +995,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-256, 49), Vector2(0, 0)]
+"values": [Vector2(-256, 0), Vector2(0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -888,7 +1019,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(256, 35)]
+"values": [Vector2(0, 0), Vector2(256, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_trceg"]
@@ -940,7 +1071,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-256, 49)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1028,7 +1159,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1040,7 +1171,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-256, 49)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1140,7 +1271,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-256, 49)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1339,7 +1470,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(256, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1403,7 +1534,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(256, 26), Vector2(0, 0)]
+"values": [Vector2(256, 0), Vector2(0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1415,7 +1546,21 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-256, 44)]
+"values": [Vector2(0, 0), Vector2(-256, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TVView/AudioStreamPlayer2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tipki"]
@@ -1504,7 +1649,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_tefeu")
+theme = ExtResource("2_dgi5k")
 script = ExtResource("2_0wfyh")
 game_manager = NodePath("..")
 metadata/_edit_lock_ = true
@@ -1514,9 +1659,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -0.00018310547
+offset_right = -0.00015258789
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="ViewContainer/LivingRoomView" unique_id=1376259426]
+position = Vector2(128, 96)
+stream = ExtResource("6_tel4y")
+autoplay = true
+max_distance = 500.0
+bus = &"SFX"
 
 [node name="Background" type="Sprite2D" parent="ViewContainer/LivingRoomView" unique_id=1643056953]
 texture = ExtResource("3_pm3ni")
@@ -1545,6 +1697,14 @@ texture = ExtResource("14_ty1g6")
 [node name="Face" type="Sprite2D" parent="ViewContainer/LivingRoomView/Bunny/Body" unique_id=783873674]
 texture = ExtResource("11_txyw0")
 
+[node name="Blink1" type="Sprite2D" parent="ViewContainer/LivingRoomView/Bunny/Body/Face" unique_id=1110518409]
+visible = false
+texture = ExtResource("14_dgi5k")
+
+[node name="Blink2" type="Sprite2D" parent="ViewContainer/LivingRoomView/Bunny/Body/Face" unique_id=800568089]
+visible = false
+texture = ExtResource("15_j8jky")
+
 [node name="Earl" type="Sprite2D" parent="ViewContainer/LivingRoomView/Bunny/Body/Face" unique_id=1606968213]
 texture = ExtResource("9_cjqg0")
 
@@ -1570,6 +1730,22 @@ value = 100.0
 fill_mode = 3
 show_percentage = false
 
+[node name="ThirstBar" type="ProgressBar" parent="ViewContainer/LivingRoomView" unique_id=2034851600]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 184.0
+offset_top = 59.0
+offset_right = -52.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_j8jky")
+theme_override_styles/fill = SubResource("StyleBoxTexture_5he1u")
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
 [node name="Bowl" type="TextureProgressBar" parent="ViewContainer/LivingRoomView" unique_id=863954246]
 layout_mode = 0
 offset_left = 48.0
@@ -1582,6 +1758,19 @@ fill_mode = 3
 texture_under = ExtResource("17_vchkt")
 texture_progress = ExtResource("18_txyw0")
 
+[node name="WaterBowl" type="TextureProgressBar" parent="ViewContainer/LivingRoomView" unique_id=547308638]
+visible = false
+layout_mode = 0
+offset_left = 77.0
+offset_top = 142.0
+offset_right = 118.0
+offset_bottom = 182.0
+min_value = 20.0
+value = 60.0
+fill_mode = 3
+texture_under = ExtResource("21_5poiv")
+texture_progress = ExtResource("22_2cjbq")
+
 [node name="TVView" type="Control" parent="ViewContainer" unique_id=1149355692]
 visible = false
 layout_mode = 1
@@ -1591,8 +1780,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="ViewContainer/TVView" unique_id=1354008796]
+position = Vector2(128, 96)
+stream = ExtResource("20_qkpxi")
+volume_db = 5.0
+max_distance = 250.0
+attenuation = 0.4204483
+bus = &"SFX"
+
+[node name="Content" type="AnimatedSprite2D" parent="ViewContainer/TVView" unique_id=1959102588]
+position = Vector2(39, 68)
+sprite_frames = SubResource("SpriteFrames_sbekf")
+animation = &"day1"
+autoplay = "day1"
+centered = false
+
 [node name="Tv" type="Sprite2D" parent="ViewContainer/TVView" unique_id=622531219]
-texture = ExtResource("4_tbgi4")
+texture = ExtResource("19_2f3dj")
 centered = false
 
 [node name="PantryView" type="Control" parent="ViewContainer" unique_id=830500934]
@@ -1603,107 +1807,53 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 256.0
 offset_top = 35.0
-offset_right = 255.99908
+offset_right = 255.99896
 offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Clouds" type="Sprite2D" parent="ViewContainer/PantryView" unique_id=687801193]
+position = Vector2(251, 59)
+texture = ExtResource("24_dgi5k")
+
 [node name="Pantry" type="Sprite2D" parent="ViewContainer/PantryView" unique_id=1384005728]
-texture = ExtResource("5_tefeu")
+texture = ExtResource("24_5q0nq")
 centered = false
 
-[node name="MinigameView" type="Control" parent="ViewContainer" unique_id=360360733]
+[node name="OpenPantry" type="Sprite2D" parent="ViewContainer/PantryView/Pantry" unique_id=370879824]
+visible = false
+texture = ExtResource("26_j8jky")
+centered = false
+
+[node name="SinkWater" type="AnimatedSprite2D" parent="ViewContainer/PantryView" unique_id=972301437]
+visible = false
+position = Vector2(219, 118)
+sprite_frames = SubResource("SpriteFrames_1aae0")
+autoplay = "default"
+frame_progress = 0.04053871
+
+[node name="Pantry2" type="TouchScreenButton" parent="ViewContainer/PantryView" unique_id=764642078]
+position = Vector2(144, 71)
+shape = SubResource("RectangleShape2D_sbekf")
+action = "minigame1"
+
+[node name="Sink" type="TouchScreenButton" parent="ViewContainer/PantryView" unique_id=1353591298]
+position = Vector2(219, 133)
+shape = SubResource("RectangleShape2D_sbekf")
+action = "minigame2"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ViewContainer/PantryView" unique_id=1849898159]
+libraries/ = SubResource("AnimationLibrary_c6pm6")
+autoplay = &"clouds"
+
+[node name="MinigameView" parent="ViewContainer" unique_id=1579586085 instance=ExtResource("21_2f3dj")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -0.0002746582
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_tipki")
+offset_bottom = -0.00021362305
 
-[node name="Panel" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=1664411983]
-position = Vector2(128, 96)
-texture = ExtResource("7_85g3d")
-
-[node name="Up" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=1883623249]
-position = Vector2(128, 88)
-texture = ExtResource("8_choun")
-script = ExtResource("9_ya4ey")
-unpressed_texture = ExtResource("8_choun")
-pressed_texture = ExtResource("10_eb6dy")
-
-[node name="Down" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=2034296626]
-position = Vector2(128, 117)
-texture = ExtResource("11_dp3eg")
-script = ExtResource("9_ya4ey")
-action_to_listen = "ui_down"
-unpressed_texture = ExtResource("11_dp3eg")
-pressed_texture = ExtResource("12_0ld40")
-
-[node name="Right" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=861527594]
-position = Vector2(147, 102)
-texture = ExtResource("13_gqmmt")
-script = ExtResource("9_ya4ey")
-action_to_listen = "ui_right"
-unpressed_texture = ExtResource("13_gqmmt")
-pressed_texture = ExtResource("14_yc10j")
-
-[node name="Left" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=80697722]
-position = Vector2(108, 102)
-texture = ExtResource("15_jscy8")
-script = ExtResource("9_ya4ey")
-action_to_listen = "ui_left"
-unpressed_texture = ExtResource("15_jscy8")
-pressed_texture = ExtResource("16_pm3ni")
-
-[node name="LeftTask" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=1033843125]
-position = Vector2(106, 62)
-texture = ExtResource("17_0ld40")
-script = ExtResource("18_gqmmt")
-up_texture = ExtResource("19_pm3ni")
-down_texture = ExtResource("20_y6deb")
-left_texture = ExtResource("17_0ld40")
-right_texture = ExtResource("21_og1vs")
-
-[node name="LeftTask2" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=27487720]
-position = Vector2(121, 62)
-texture = ExtResource("17_0ld40")
-script = ExtResource("18_gqmmt")
-array_position = 1
-up_texture = ExtResource("19_pm3ni")
-down_texture = ExtResource("20_y6deb")
-left_texture = ExtResource("17_0ld40")
-right_texture = ExtResource("21_og1vs")
-
-[node name="LeftTask3" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=508339324]
-position = Vector2(136, 62)
-texture = ExtResource("17_0ld40")
-script = ExtResource("18_gqmmt")
-array_position = 2
-up_texture = ExtResource("19_pm3ni")
-down_texture = ExtResource("20_y6deb")
-left_texture = ExtResource("17_0ld40")
-right_texture = ExtResource("21_og1vs")
-
-[node name="LeftTask4" type="Sprite2D" parent="ViewContainer/MinigameView" unique_id=1595056157]
-position = Vector2(151, 62)
-texture = ExtResource("17_0ld40")
-script = ExtResource("18_gqmmt")
-array_position = 3
-up_texture = ExtResource("19_pm3ni")
-down_texture = ExtResource("20_y6deb")
-left_texture = ExtResource("17_0ld40")
-right_texture = ExtResource("21_og1vs")
-
-[node name="Error" type="AudioStreamPlayer" parent="ViewContainer/MinigameView" unique_id=1448710324]
-stream = ExtResource("27_j8jky")
-bus = &"SFX"
-
-[node name="Press" type="AudioStreamPlayer" parent="ViewContainer/MinigameView" unique_id=476830663]
-stream = ExtResource("28_kmb1v")
-bus = &"SFX"
+[node name="SinkMinigameView" parent="ViewContainer" unique_id=1862096700 instance=ExtResource("30_pibwh")]
+visible = false
+layout_mode = 0
 
 [node name="GameOver" type="Panel" parent="ViewContainer" unique_id=335022119]
 visible = false
@@ -1745,6 +1895,14 @@ text = "Your pet's patience depleted and it killed you."
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="GoMenu" type="Button" parent="ViewContainer/GameOver" unique_id=1466067638]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 100.0
+offset_right = 107.0
+offset_bottom = 115.0
+text = "Ok"
+
 [node name="AnimationTree" type="AnimationTree" parent="ViewContainer" unique_id=1189316474]
 active = false
 tree_root = SubResource("AnimationNodeStateMachine_tbgi4")
@@ -1753,18 +1911,24 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ViewContainer" unique_id=438435448]
 libraries/ = SubResource("AnimationLibrary_tipki")
 
-[node name="HUD" type="Control" parent="." unique_id=1553748121 node_paths=PackedStringArray("game_manager", "hunger_bar", "alt_hunger_bar")]
+[node name="AudioListener2D" type="AudioListener2D" parent="ViewContainer" unique_id=2101033256]
+position = Vector2(128, 96)
+current = true
+
+[node name="HUD" type="Control" parent="." unique_id=1553748121 node_paths=PackedStringArray("game_manager", "hunger_bar", "alt_hunger_bar", "thirst_bar", "alt_thirst_bar")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_tefeu")
+theme = ExtResource("2_dgi5k")
 script = ExtResource("6_tefeu")
 game_manager = NodePath("..")
 hunger_bar = NodePath("../ViewContainer/LivingRoomView/HungerBar")
 alt_hunger_bar = NodePath("../ViewContainer/LivingRoomView/Bowl")
+thirst_bar = NodePath("../ViewContainer/LivingRoomView/ThirstBar")
+alt_thirst_bar = NodePath("../ViewContainer/LivingRoomView/WaterBowl")
 metadata/_edit_lock_ = true
 
 [node name="Arrows" type="Node2D" parent="HUD" unique_id=1346064718]
@@ -1836,6 +2000,54 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("ViewportTexture_sbekf")
 
+[node name="NewDay" type="Panel" parent="HUD" unique_id=2072913732]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -71.0
+offset_right = 86.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="HUD/NewDay" unique_id=1430673168]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Day #2!"
+horizontal_alignment = 1
+
+[node name="Reason" type="Label" parent="HUD/NewDay" unique_id=1824701093]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 29.0
+offset_right = -7.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "Your pet's patience depleted and it killed you."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Ok" type="Button" parent="HUD/NewDay" unique_id=1918025532]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 125.0
+offset_right = 107.0
+offset_bottom = 141.0
+text = "Ok"
+
 [node name="EmptyBar" type="Sprite2D" parent="." unique_id=886115779]
 visible = false
 texture = ExtResource("3_og1vs")
@@ -1847,3 +2059,5 @@ autoplay = true
 bus = &"Music"
 script = ExtResource("33_5q0nq")
 game_manager = NodePath("..")
+
+[connection signal="pressed" from="HUD/NewDay/Ok" to="HUD" method="_on_ok_pressed"]

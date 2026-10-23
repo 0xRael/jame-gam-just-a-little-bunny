@@ -1,65 +1,13 @@
 [gd_scene format=3 uid="uid://qav4ljgxuitw"]
 
-[ext_resource type="FontFile" uid="uid://dsxjmlfec87bk" path="res://fonts/mintsoda-lime-green-font/MintsodaLimeGreen13X16Regular-KVvzA.ttf" id="1_bqqt6"]
 [ext_resource type="AudioStream" uid="uid://mwlkdsbahxp5" path="res://sounds/Main Theme.wav" id="1_ekxnf"]
+[ext_resource type="Theme" uid="uid://nmiqr8hipiy6" path="res://base_theme.tres" id="1_tbmy8"]
 [ext_resource type="Script" uid="uid://rd0cqjrj3h8y" path="res://scripts/audio_manager.gd" id="2_bqqt6"]
-[ext_resource type="Texture2D" uid="uid://d3vvs1nmhnw3s" path="res://images/ui/bars/sanity-bar.png" id="2_wu84c"]
 [ext_resource type="Script" uid="uid://cuxgrwec1s33x" path="res://scripts/title_screen/main_menu.gd" id="3_rtw2f"]
 [ext_resource type="Script" uid="uid://b4bnbs5nyl4iv" path="res://scripts/title_screen/options.gd" id="5_8ln24"]
 [ext_resource type="Shader" uid="uid://bdfyudij10jra" path="res://shaders/diamond_transition.gdshader" id="7_oa1go"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_bottom = 2
-border_color = Color(0.8627451, 0.6862745, 0.5686275, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
-texture = ExtResource("2_wu84c")
-texture_margin_left = 10.0
-texture_margin_right = 10.0
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rtw2f"]
-load_path = "res://.godot/imported/patience-bar.png-86b1141460aaa69b497a8c9f9fc8888c.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oa1go"]
-texture = SubResource("CompressedTexture2D_rtw2f")
-texture_margin_left = 10.0
-texture_margin_right = 10.0
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ln24"]
-load_path = "res://.godot/imported/empty-bar.png-178eb9b642513cd5946a223ecb835894.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rtw2f"]
-texture = SubResource("CompressedTexture2D_8ln24")
-texture_margin_left = 10.0
-texture_margin_right = 8.0
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
-
-[sub_resource type="Theme" id="Theme_sbekf"]
-Button/colors/font_color = Color(0.1764706, 0.15294118, 0.1882353, 1)
-Button/colors/font_hover_color = Color(0.8627451, 0.6862745, 0.56078434, 1)
-Button/colors/font_outline_color = Color(1, 1, 1, 1)
-Button/constants/outline_size = 4
-Button/font_sizes/font_size = 13
-Button/fonts/font = ExtResource("1_bqqt6")
-Button/styles/focus = SubResource("StyleBoxFlat_wu84c")
-Button/styles/hover = SubResource("StyleBoxFlat_bqqt6")
-Button/styles/hover_pressed = SubResource("StyleBoxFlat_wu84c")
-Button/styles/normal = SubResource("StyleBoxFlat_wu84c")
-Button/styles/pressed = SubResource("StyleBoxFlat_wu84c")
-HSlider/styles/grabber_area = SubResource("StyleBoxTexture_wu84c")
-HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_oa1go")
-HSlider/styles/slider = SubResource("StyleBoxTexture_rtw2f")
-Label/font_sizes/font_size = 13
-Label/fonts/font = ExtResource("1_bqqt6")
+[ext_resource type="Script" uid="uid://cj7low86qsmo2" path="res://scripts/title_screen/button_sfx.gd" id="8_tbmy8"]
+[ext_resource type="AudioStream" uid="uid://b3f14gkk6n7du" path="res://sounds/ui/cursor.wav" id="9_jk1qb"]
 
 [sub_resource type="Animation" id="Animation_5dd4i"]
 resource_name = "End"
@@ -389,15 +337,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_sbekf")
+theme = ExtResource("1_tbmy8")
 script = ExtResource("3_rtw2f")
 
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1423615160 node_paths=PackedStringArray("game_manager")]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1423615160]
 stream = ExtResource("1_ekxnf")
 autoplay = true
 bus = &"Music"
 script = ExtResource("2_bqqt6")
-game_manager = NodePath("")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=674975238]
 layout_mode = 1
@@ -417,7 +364,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -28.0
 offset_top = -104.0
-offset_right = 28.0
+offset_right = 39.0
 offset_bottom = 9.1552734e-05
 grow_horizontal = 2
 grow_vertical = 0
@@ -443,8 +390,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -96.0
 offset_top = -227.0
-offset_right = 96.0
-offset_bottom = -96.0
+offset_right = 110.0
+offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
 columns = 2
@@ -487,14 +434,14 @@ value = 1.0
 layout_mode = 2
 text = "Fullscreen"
 
-[node name="Fullscreen" type="CheckButton" parent="Options" unique_id=415205384]
+[node name="Fullscreen" type="CheckBox" parent="Options" unique_id=1355296309]
 layout_mode = 2
 
 [node name="Label5" type="Label" parent="Options" unique_id=762262422]
 layout_mode = 2
 text = "ScreenShake"
 
-[node name="ScreenShake" type="CheckButton" parent="Options" unique_id=1873346716]
+[node name="ScreenShake" type="CheckBox" parent="Options" unique_id=1968644857]
 layout_mode = 2
 
 [node name="Control" type="Control" parent="Options" unique_id=1832634900]
@@ -516,6 +463,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Node" type="Node" parent="." unique_id=1274110562 node_paths=PackedStringArray("parent", "click_sfx")]
+script = ExtResource("8_tbmy8")
+parent = NodePath("..")
+click_sfx = NodePath("../ClickSFX")
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="." unique_id=1675263131]
+stream = ExtResource("9_jk1qb")
+bus = &"SFX"
 
 [connection signal="pressed" from="MainButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainButtons/Options" to="." method="_on_options_pressed"]

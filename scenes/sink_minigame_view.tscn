@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://drm8psn42suv"]
+
+[ext_resource type="Script" uid="uid://g4flndvvnb7" path="res://scripts/minigames/sink_minigame.gd" id="1_bk0q0"]
+[ext_resource type="Texture2D" uid="uid://d1apm4u23r3bw" path="res://images/minigames/sink/background.png" id="2_rkwp4"]
+[ext_resource type="Texture2D" uid="uid://b2p5ifnn8gmxu" path="res://images/minigames/sink/wheel.png" id="3_8b0kp"]
+[ext_resource type="Texture2D" uid="uid://bict8wtruoiys" path="res://images/minigames/sink/up_unpressed.png" id="4_q6qhy"]
+[ext_resource type="Texture2D" uid="uid://bi8s5w2q71o80" path="res://images/minigames/sink/down_unpressed.png" id="5_608rf"]
+[ext_resource type="Script" uid="uid://b56rndpog3u08" path="res://scripts/minigames/pantry/button.gd" id="5_nt02b"]
+[ext_resource type="Texture2D" uid="uid://d3i1peygqaigs" path="res://images/minigames/sink/up_pressed.png" id="6_0iocu"]
+[ext_resource type="Texture2D" uid="uid://bc782g26ppyfw" path="res://images/minigames/sink/down_pressed.png" id="8_3r3y7"]
+[ext_resource type="Texture2D" uid="uid://cphgu1jej3dsi" path="res://images/minigames/sink/outer_wheel.png" id="9_0iocu"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sbekf"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt02b"]
+size = Vector2(36, 18)
+
+[node name="SinkMinigameView" type="Control" unique_id=1862096700]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_bk0q0")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2108848233]
+position = Vector2(127.5, 95.5)
+texture = ExtResource("2_rkwp4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=77316161]
+position = Vector2(103, 92)
+texture = SubResource("ViewportTexture_sbekf")
+
+[node name="UpUnpressed" type="Sprite2D" parent="." unique_id=384177130]
+position = Vector2(156, 85)
+texture = ExtResource("4_q6qhy")
+script = ExtResource("5_nt02b")
+shape = SubResource("RectangleShape2D_nt02b")
+unpressed_texture = ExtResource("4_q6qhy")
+pressed_texture = ExtResource("6_0iocu")
+
+[node name="DownUnpressed" type="Sprite2D" parent="." unique_id=1410207726]
+position = Vector2(156, 106)
+texture = ExtResource("5_608rf")
+script = ExtResource("5_nt02b")
+action_to_listen = "ui_down"
+shape = SubResource("RectangleShape2D_nt02b")
+unpressed_texture = ExtResource("5_608rf")
+pressed_texture = ExtResource("8_3r3y7")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1812500614]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(92, 92)
+
+[node name="Wheel" type="Sprite2D" parent="SubViewport" unique_id=1706240878]
+position = Vector2(46.5, 46.5)
+texture = ExtResource("3_8b0kp")
+
+[node name="OuterWheel" type="Sprite2D" parent="SubViewport" unique_id=1182038649]
+position = Vector2(46, 46)
+texture = ExtResource("9_0iocu")

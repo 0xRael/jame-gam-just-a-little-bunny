@@ -3,7 +3,7 @@ extends Control
 @onready var master_slider: HSlider = $MasterVol
 @onready var music_slider: HSlider = $MusicVol
 @onready var sfx_slider: HSlider = $SFXVol
-@onready var fullscreen_check: CheckButton = $Fullscreen
+@onready var fullscreen_check: CheckBox = $Fullscreen
 
 func _ready() -> void:
 	# Load saved settings and set UI initial values

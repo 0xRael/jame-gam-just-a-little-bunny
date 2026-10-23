@@ -1,0 +1,91 @@
+[gd_resource type="Theme" format=3 uid="uid://nmiqr8hipiy6"]
+
+[ext_resource type="Texture2D" uid="uid://d3vvs1nmhnw3s" path="res://images/ui/bars/sanity-bar.png" id="2_11awm"]
+[ext_resource type="Texture2D" uid="uid://b5sc06krr8tk6" path="res://images/ui/bars/checkbox_on.png" id="2_ugfru"]
+[ext_resource type="Texture2D" uid="uid://c1koywudw8rl5" path="res://images/ui/bars/empty-bar.png" id="3_4luo7"]
+[ext_resource type="Texture2D" uid="uid://2fh2sjpfhnfk" path="res://images/ui/bars/checkbox_empty.png" id="3_qe7yt"]
+[ext_resource type="Texture2D" uid="uid://wsrqxc8lp06x" path="res://images/ui/bars/scroll.png" id="4_ugfru"]
+[ext_resource type="FontFile" uid="uid://7joj7akwtakh" path="res://fonts/Peaberry-Font-v2.0/Peaberry Font Family/Peaberry Base/Peaberry-Base.otf" id="6_qe7yt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 2
+border_color = Color(0.8627451, 0.6862745, 0.5686275, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ugfru"]
+texture = ExtResource("2_11awm")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 8.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rtw2f"]
+load_path = "res://.godot/imported/patience-bar.png-86b1141460aaa69b497a8c9f9fc8888c.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qe7yt"]
+texture = SubResource("CompressedTexture2D_rtw2f")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 8.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ln24"]
+load_path = "res://.godot/imported/empty-bar.png-178eb9b642513cd5946a223ecb835894.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1bwxx"]
+texture = SubResource("CompressedTexture2D_8ln24")
+texture_margin_left = 10.0
+texture_margin_right = 8.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dd4i"]
+bg_color = Color(0.24705882, 0.36862746, 0.60784316, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1764706, 0.15294118, 0.19607843, 1)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgwnu"]
+texture = ExtResource("3_4luo7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_flqon"]
+texture = ExtResource("2_11awm")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+
+[resource]
+Button/colors/font_color = Color(0.1764706, 0.15294118, 0.1882353, 1)
+Button/colors/font_hover_color = Color(0.8627451, 0.6862745, 0.56078434, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 4
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("6_qe7yt")
+Button/styles/focus = SubResource("StyleBoxFlat_wu84c")
+Button/styles/hover = SubResource("StyleBoxFlat_bqqt6")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_wu84c")
+Button/styles/normal = SubResource("StyleBoxFlat_wu84c")
+Button/styles/pressed = SubResource("StyleBoxFlat_wu84c")
+CheckBox/icons/checked = ExtResource("2_ugfru")
+CheckBox/icons/unchecked = ExtResource("3_qe7yt")
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_tbmy8")
+HSlider/constants/grabber_offset = -1
+HSlider/icons/grabber = ExtResource("4_ugfru")
+HSlider/icons/grabber_highlight = ExtResource("4_ugfru")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_ugfru")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_qe7yt")
+HSlider/styles/slider = SubResource("StyleBoxTexture_1bwxx")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("6_qe7yt")
+Panel/styles/panel = SubResource("StyleBoxFlat_5dd4i")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_lgwnu")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_flqon")

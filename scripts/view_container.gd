@@ -16,6 +16,8 @@ func _ready() -> void:
 		_on_game_state_changed(game_manager.current_state)
 		
 		game_manager.game_over.connect(_on_game_over)
+		game_manager.pantry_lock_changed.connect(_on_pantry_lock_changed)
+		game_manager.sink_lock_changed.connect(_on_sink_lock_changed)
 	for minigame in minigames:
 		minigame.minigame_attempt_failed.connect(_minigame_attempt_failed)
 
@@ -29,6 +31,12 @@ func _on_game_state_changed(new_state: int) -> void:
 			playback.travel("Pantry")
 		GameManager.GameState.PANTRY_MINIGAME:
 			playback.travel("PantryMinigame")
+
+func _on_pantry_lock_changed(can_use_pantry: bool) -> void:
+	$PantryView/Pantry/OpenPantry.visible = not can_use_pantry
+
+func _on_sink_lock_changed(can_use_sink: bool) -> void:
+	$PantryView/SinkWater.visible = not can_use_sink
 
 func _on_game_over(reason: String):
 	$GameOver.visible = true
