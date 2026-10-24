@@ -36,6 +36,7 @@
 [ext_resource type="Script" uid="uid://rd0cqjrj3h8y" path="res://scripts/audio_manager.gd" id="33_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://caa4nog6bxthm" path="res://images/ui/bars/vertical-bar.png" id="34_fuf3a"]
 [ext_resource type="PackedScene" uid="uid://dmi26artn4fbt" path="res://scenes/hud.tscn" id="34_pibwh"]
+[ext_resource type="PackedScene" uid="uid://dy80153msbscr" path="res://scenes/search_minigame.tscn" id="35_5he1u"]
 [ext_resource type="Texture2D" uid="uid://dg4djox2ak6tv" path="res://images/ui/bars/hunger-bar.png" id="35_pibwh"]
 [ext_resource type="AudioStream" uid="uid://c53j0ti3vx41o" path="res://sounds/Cozy Days.wav" id="40_2cjbq"]
 [ext_resource type="Shader" uid="uid://bdfyudij10jra" path="res://shaders/diamond_transition.gdshader" id="42_2cjbq"]
@@ -1887,6 +1888,10 @@ offset_bottom = -0.00021362305
 visible = false
 layout_mode = 0
 
+[node name="SearchMinigameView" parent="ViewContainer" unique_id=1368354179 instance=ExtResource("35_5he1u")]
+visible = false
+layout_mode = 1
+
 [node name="GameOver" type="Panel" parent="ViewContainer" unique_id=335022119]
 visible = false
 layout_mode = 1
@@ -1949,6 +1954,7 @@ current = true
 
 [node name="HUD" parent="." unique_id=1969027675 node_paths=PackedStringArray("game_manager", "hunger_bar", "alt_hunger_bar", "thirst_bar", "alt_thirst_bar") instance=ExtResource("34_pibwh")]
 layout_mode = 1
+mouse_filter = 2
 game_manager = NodePath("..")
 hunger_bar = NodePath("../ViewContainer/LivingRoomView/HungerBar")
 alt_hunger_bar = NodePath("../ViewContainer/LivingRoomView/Bowl")

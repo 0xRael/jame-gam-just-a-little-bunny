@@ -36,7 +36,10 @@ func _on_game_state_changed(state: int) -> void:
 			# Muffle low for TV speaker effect
 			filter_tween.tween_property(lowpass, "cutoff_hz", DEFAULT_LOWPASS_CUTOFF, 0.5)
 			filter_tween.tween_property(highpass, "cutoff_hz", ALT_HIGHPASS_CUTOFF, 0.5)
-			
+		
+		GameManager.GameState.SEARCH_MINIGAME:
+			pass
+		
 		_:
 			filter_tween.tween_property(lowpass, "cutoff_hz", DEFAULT_LOWPASS_CUTOFF, 0.5)
 			filter_tween.tween_property(highpass, "cutoff_hz", DEFAULT_HIGHPASS_CUTOFF, 0.5)

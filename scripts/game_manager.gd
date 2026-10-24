@@ -1,7 +1,7 @@
 class_name GameManager
 extends Node
 
-enum GameState { LIVING_ROOM, TV, PANTRY, PANTRY_MINIGAME, SINK_MINIGAME, GAMEOVER }
+enum GameState { LIVING_ROOM, TV, PANTRY, PANTRY_MINIGAME, SINK_MINIGAME, SEARCH_MINIGAME, GAMEOVER }
 signal game_state_changed(new_state: GameState)
 signal game_over(reason: String)
 signal pantry_lock_changed(can_use_pantry: bool)
@@ -37,6 +37,7 @@ var is_game_paused := false:
 
 @onready var pantry_minigame : PantryMinigame = $ViewContainer/MinigameView
 @onready var sink_minigame : SinkMinigame = $ViewContainer/SinkMinigameView
+@onready var search_minigame : SearchMinigame = $ViewContainer/SearchMinigameView
 
 var can_use_pantry := true:
 	set(val):
@@ -54,13 +55,16 @@ func _ready() -> void:
 	
 	pantry_minigame.minigame_completed.connect(_on_pantry_minigame_completed)
 	sink_minigame.minigame_completed.connect(_on_sink_minigame_completed)
+	search_minigame.minigame_completed.connect(_on_search_minigame_completed)
+	pet.has_escaped.connect(_on_pet_escaped)
 	
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	is_game_paused = true
+	check_day_mechanics()
 	emit_signal("day_changed", current_day)
 
 func _process(delta: float) -> void:
-	if current_state == GameState.GAMEOVER or is_game_paused:
+	if current_state == GameState.GAMEOVER or is_game_paused or current_state == GameState.SEARCH_MINIGAME:
 		return
 		
 	day_timer += delta
@@ -145,9 +149,14 @@ func advance_day() -> void:
 	current_day += 1
 	day_timer = 0.0
 	print("Advanced to day: ", current_day)
-	if current_day == 2:
+	check_day_mechanics()
+
+func check_day_mechanics() -> void:
+	if current_day >= 2:
 		# Enable thirst mechanics on day 2
 		pet.enable_thirst = true
+	if current_day >= 3:
+		pet.enable_escape = true
 
 func _on_pantry_minigame_completed(success: bool) -> void:
 	current_state = GameState.PANTRY
@@ -164,6 +173,19 @@ func _on_sink_minigame_completed(success: bool) -> void:
 		can_use_sink = false
 		await get_tree().create_timer(10.0).timeout
 		can_use_sink = true
+
+func _on_pet_escaped() -> void:
+	current_state = GameState.SEARCH_MINIGAME
+	search_minigame.start_minigame()
+
+func _on_search_minigame_completed(success: bool) -> void:
+	current_state = GameState.LIVING_ROOM
+	if not success:
+		pet.patience = pet.patience/2
+		player.sanity = player.sanity/2
+	else:
+		pet.patience += 20.0
+		player.sanity += 20.0
 
 func unpause() -> void:
 	is_game_paused = false

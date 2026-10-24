@@ -12,7 +12,7 @@ extends Control
 @onready var clock := $SubViewport/AnalogClock
 
 var current_note := 0
-const MAX_NOTES = [-1, 6, 8, 6]
+const MAX_NOTES = [-1, 6, 8, 10]
 
 func _ready() -> void:
 	if game_manager:
@@ -43,7 +43,7 @@ func _on_pet_hunger_changed(value: float) -> void:
 func _on_day_changed(new_day: int) -> void:
 	current_note = MAX_NOTES[new_day-1] +1
 	_on_read_notes_pressed()
-	if new_day == 2:
+	if new_day >= 2:
 		thirst_bar.show()
 		alt_thirst_bar.show()
 

@@ -4,6 +4,7 @@ extends RefCounted
 signal patience_changed(new_patience: float)
 signal hunger_changed(new_hunger: float)
 signal thirst_changed(new_hunger: float)
+signal has_escaped()
 
 var max_stat := 100.0
 
@@ -27,7 +28,7 @@ var hunger_drain_rate := 3.5
 var thirst_drain_rate := 1.5
 var normal_patience_drain := 0.5
 var tv_patience_drain := 1.5 # Watching TV drains patience faster
-var starving_patience_drain := 5.0 # Rapid drain when hunger hits 0
+var starving_patience_drain := 10.0 # Rapid drain when hunger hits 0
 var stare_patience_refill := 1.0
 
 # Feeding diminishment system
@@ -36,6 +37,13 @@ var times_fed := 0
 
 var enable_thirst := false
 var stare_timer := 0.0
+
+var enable_escape := false
+const BASE_ESCAPE_CHANCE := 20.0
+var escape_chance := 20.0
+var escape_chance_growth := 0.5
+const ESCAPE_TIMER := 30.0
+var timer_to_check := 30.0
 
 func stare(delta: float) -> void:
 	_tick_hunger(delta)
@@ -77,3 +85,16 @@ func _tick_hunger(delta: float) -> void:
 	hunger -= hunger_drain_rate * delta
 	if enable_thirst:
 		thirst -= thirst_drain_rate * delta
+	if not enable_escape:
+		return
+	
+	escape_chance += escape_chance_growth * delta
+	timer_to_check -= delta
+	if timer_to_check <= 0:
+		timer_to_check = ESCAPE_TIMER
+		
+		print("Escape chance when rolling: ", escape_chance)
+		randomize()
+		if randf_range(0.0, 100.0) < escape_chance:
+			emit_signal("has_escaped")
+			escape_chance = BASE_ESCAPE_CHANCE

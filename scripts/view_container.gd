@@ -31,6 +31,8 @@ func _on_game_state_changed(new_state: int) -> void:
 			playback.travel("Pantry")
 		GameManager.GameState.PANTRY_MINIGAME:
 			playback.travel("PantryMinigame")
+		GameManager.GameState.SEARCH_MINIGAME:
+			$SearchMinigameView.visible = true
 
 func _on_pantry_lock_changed(can_use_pantry: bool) -> void:
 	$PantryView/Pantry/OpenPantry.visible = not can_use_pantry

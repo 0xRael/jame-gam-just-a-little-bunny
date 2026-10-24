@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://dy80153msbscr"]
+
+[ext_resource type="Script" uid="uid://m4yq83nia5os" path="res://scripts/minigames/search_minigame.gd" id="1_hadb7"]
+[ext_resource type="Theme" uid="uid://nmiqr8hipiy6" path="res://base_theme.tres" id="2_nsjf7"]
+[ext_resource type="AudioStream" uid="uid://b3f14gkk6n7du" path="res://sounds/ui/cursor.wav" id="3_ar4ng"]
+[ext_resource type="AudioStream" uid="uid://ctvln0qjjh7an" path="res://sounds/ui/error.wav" id="4_j7y8h"]
+
+[node name="SearchMinigameView" type="Control" unique_id=1368354179]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_nsjf7")
+script = ExtResource("1_hadb7")
+
+[node name="Panel" type="Panel" parent="." unique_id=841823843]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -72.0
+offset_right = 86.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel" unique_id=763923433]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+show_percentage = false
+
+[node name="Control" type="Control" parent="Panel" unique_id=766376300]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Grid" type="GridContainer" parent="Panel/Control" unique_id=108833224]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+
+[node name="Message" type="Panel" parent="." unique_id=397212161]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -50.5
+offset_right = 67.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Message" unique_id=1151895915]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 9.5
+offset_right = 123.0
+offset_bottom = 44.5
+text = "The Bunny has
+escaped!!!"
+
+[node name="Start" type="Button" parent="Message" unique_id=1998848232]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -23.5
+offset_right = -4.0
+offset_bottom = -7.5
+grow_horizontal = 0
+grow_vertical = 0
+text = "Search >"
+
+[node name="Press" type="AudioStreamPlayer" parent="." unique_id=1699175309]
+stream = ExtResource("3_ar4ng")
+
+[node name="Error" type="AudioStreamPlayer" parent="." unique_id=90317538]
+stream = ExtResource("4_j7y8h")
+
+[connection signal="pressed" from="Message/Start" to="." method="_on_start_pressed"]
