@@ -10,6 +10,7 @@ extends Control
 @export var alt_thirst_bar : TextureProgressBar
 
 @onready var clock := $SubViewport/AnalogClock
+var day_just_started := true
 
 var current_note := 0
 const MAX_NOTES = [-1, 6, 8, 10]
@@ -20,6 +21,8 @@ func _ready() -> void:
 		clock.game_manager = game_manager
 		$Arrows/RightArrow.game_manager = game_manager
 		$Arrows/LeftArrow.game_manager = game_manager
+		$Arrows/RightArrow._ready()
+		$Arrows/LeftArrow._ready()
 
 func _set_up() -> void:
 	if game_manager:
@@ -41,6 +44,7 @@ func _on_pet_hunger_changed(value: float) -> void:
 	alt_hunger_bar.value = value
 
 func _on_day_changed(new_day: int) -> void:
+	day_just_started = true
 	current_note = MAX_NOTES[new_day-1] +1
 	_on_read_notes_pressed()
 	if new_day >= 2:
@@ -53,10 +57,12 @@ func _on_pet_thirst_changed(value: float) -> void:
 
 func _on_game_paused() -> void:
 	$PauseMenu.show()
+	$Background.show()
 
 func _on_continue_pressed() -> void:
 	game_manager.unpause()
 	$PauseMenu.hide()
+	$Background.hide()
 
 func _on_exit_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
@@ -66,22 +72,34 @@ func _on_read_notes_pressed() -> void:
 	for i in $Notes.get_children():
 		i.hide()
 	$Notes.get_child(current_note).show()
+	$Background.show()
 	$Notes.show()
 	$NoteButtons.show()
 
 func _on_next_note_pressed() -> void:
 	$Notes.get_child(current_note).hide()
 	if current_note == MAX_NOTES[game_manager.current_day]:
-		$Notes.hide()
-		$NoteButtons.hide()
-		$PauseMenu.show()
+		_exit_notes()
 		return
 	
 	current_note += 1
 	$Notes.get_child(current_note).show()
 
+func _exit_notes() -> void:
+	$Notes.hide()
+	$NoteButtons.hide()
+	if not day_just_started:
+		$PauseMenu.show()
+		return
+	day_just_started = false
+	$DayStart/Anim.play("default")
+	await $DayStart/Anim.animation_finished
+	$Background.hide()
+	game_manager.unpause()
+
 func _on_prev_note_pressed() -> void:
 	if current_note == 0:
+		_exit_notes()
 		return
 	$Notes.get_child(current_note).hide()
 	current_note -= 1
@@ -98,8 +116,6 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if $Notes.visible:
-		$Notes.hide()
-		$NoteButtons.hide()
-		$PauseMenu.show()
+		_exit_notes()
 	elif game_manager.is_game_paused:
 		_on_continue_pressed()

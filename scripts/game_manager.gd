@@ -58,6 +58,7 @@ func _ready() -> void:
 	search_minigame.minigame_completed.connect(_on_search_minigame_completed)
 	pet.has_escaped.connect(_on_pet_escaped)
 	
+	current_day = Global.target_day
 	await get_tree().create_timer(0.5).timeout
 	is_game_paused = true
 	check_day_mechanics()
@@ -145,7 +146,7 @@ func handle_input() -> void:
 				sink_minigame.start_minigame()
 
 func advance_day() -> void:
-	is_game_paused = 1
+	is_game_paused = true
 	current_day += 1
 	day_timer = 0.0
 	print("Advanced to day: ", current_day)
@@ -175,6 +176,11 @@ func _on_sink_minigame_completed(success: bool) -> void:
 		can_use_sink = true
 
 func _on_pet_escaped() -> void:
+	if current_state == GameState.LIVING_ROOM:
+		print("Waiting for player to leave the bunny.")
+		await game_state_changed
+		if current_state == GameState.GAMEOVER:
+			return # He lost while waiting
 	current_state = GameState.SEARCH_MINIGAME
 	search_minigame.start_minigame()
 

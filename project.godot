@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="jame gam"
+config/name="It's Just a Small Bunny Right?"
 run/main_scene="uid://qav4ljgxuitw"
 config/features=PackedStringArray("4.7", "Mobile")
 boot_splash/show_image=false
@@ -25,6 +25,7 @@ general/2d_panning_strength=0.8
 [autoload]
 
 SettingsManager="*uid://cko8nv1q4xgee"
+Global="*uid://deoe17057jhlg"
 
 [display]
 
@@ -94,3 +95,4 @@ pointing/emulate_touch_from_mouse=true
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

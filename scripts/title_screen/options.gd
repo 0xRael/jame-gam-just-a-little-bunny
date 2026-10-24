@@ -4,6 +4,7 @@ extends Control
 @onready var music_slider: HSlider = $MusicVol
 @onready var sfx_slider: HSlider = $SFXVol
 @onready var fullscreen_check: CheckBox = $Fullscreen
+@onready var screenshake_check: CheckBox = $ScreenShake
 
 func _ready() -> void:
 	# Load saved settings and set UI initial values
@@ -12,14 +13,14 @@ func _ready() -> void:
 	music_slider.value = saved["music"]
 	sfx_slider.value = saved["sfx"]
 	fullscreen_check.button_pressed = saved["fullscreen"]
+	screenshake_check.button_pressed = saved["screenshake"]
 
 func _on_sfx_vol_value_changed(value: float) -> void:
 	SettingsManager.set_bus_volume("SFX", value)
 	_save_all()
 
 func _on_fullscreen_toggled(toggled_on: bool) -> void:
-	var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if toggled_on else DisplayServer.WINDOW_MODE_WINDOWED
-	DisplayServer.window_set_mode(mode)
+	SettingsManager.set_fullscreen_mode(toggled_on)
 	_save_all()
 
 func _save_all() -> void:
@@ -27,9 +28,10 @@ func _save_all() -> void:
 		master_slider.value,
 		music_slider.value,
 		sfx_slider.value,
-		fullscreen_check.button_pressed
+		fullscreen_check.button_pressed,
+		screenshake_check.button_pressed
 	)
-	SettingsManager.load_settings()
+	#SettingsManager.load_settings()
 
 
 func _on_master_vol_value_changed(value: float) -> void:
@@ -43,4 +45,5 @@ func _on_music_vol_value_changed(value: float) -> void:
 
 
 func _on_screen_shake_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.
+	Global.screenshake = toggled_on
+	_save_all()

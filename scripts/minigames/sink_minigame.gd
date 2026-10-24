@@ -17,11 +17,11 @@ const SPEED_THRESHOLD := 0.005
 const DIST_THRESHOLD := 0.15
 var speed := 0.0
 
-const max_speed_ref := 0.1
+const max_speed_ref := 0.08
 const min_pitch := 0.3
-const min_volume_db := -24.0
+const min_volume_db := -10.0
 const max_pitch := 1.0
-const max_volume_db := 0.0
+const max_volume_db := 8.0
 
 func start_minigame() -> void:
 	super.start_minigame()

@@ -15,8 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://dlaruatficaj7" path="res://images/tutorial/sink-panel.png" id="13_5n1hp"]
 [ext_resource type="Script" uid="uid://cj7low86qsmo2" path="res://scripts/title_screen/button_sfx.gd" id="14_eld54"]
 [ext_resource type="Texture2D" uid="uid://bm2tk20rpm6ww" path="res://images/minigames/search/red.png" id="14_uxdf7"]
-[ext_resource type="AudioStream" uid="uid://b3f14gkk6n7du" path="res://sounds/ui/cursor.wav" id="15_3swnk"]
+[ext_resource type="AudioStream" uid="uid://v4s11drnn04a" path="res://sounds/ui/cursor.wav" id="15_3swnk"]
 [ext_resource type="Texture2D" uid="uid://dj7l2lcygdtxj" path="res://images/minigames/search/green.png" id="15_5357l"]
+[ext_resource type="Texture2D" uid="uid://ctnlnayt0rgh8" path="res://images/intro/day_start.png" id="18_5357l"]
 
 [sub_resource type="Animation" id="Animation_kmb1v"]
 length = 0.001
@@ -63,6 +64,67 @@ texture_margin_right = 10.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_sbekf"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Animation" id="Animation_5357l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_iypfu"]
+resource_name = "default"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(250, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qpprf"]
+_data = {
+&"RESET": SubResource("Animation_5357l"),
+&"default": SubResource("Animation_iypfu")
+}
 
 [node name="HUD" type="Control" unique_id=1969027675]
 layout_mode = 3
@@ -144,6 +206,16 @@ offset_right = 46.0
 offset_bottom = 42.0
 texture = SubResource("ViewportTexture_sbekf")
 
+[node name="Background" type="ColorRect" parent="." unique_id=1544848654]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.60784316)
+
 [node name="PauseMenu" type="Panel" parent="." unique_id=1286981278]
 visible = false
 layout_mode = 1
@@ -197,6 +269,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Notes" type="Control" parent="." unique_id=668704303]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -649,9 +722,12 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
+offset_top = 4.0
 offset_right = -4.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Notes/8/VBoxContainer" unique_id=204247588]
 layout_mode = 2
@@ -669,10 +745,6 @@ autowrap_mode = 2
 layout_mode = 2
 texture = ExtResource("13_5n1hp")
 stretch_mode = 2
-
-[node name="Control" type="Control" parent="Notes/8/VBoxContainer" unique_id=1069587833]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Label2" type="RichTextLabel" parent="Notes/8/VBoxContainer" unique_id=928213660]
 layout_mode = 2
@@ -905,8 +977,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -47.0
-offset_top = -40.0
+offset_left = -52.0
+offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Next >"
@@ -916,8 +988,8 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 85.0
+offset_top = -20.0
+offset_right = 90.0
 grow_vertical = 0
 text = "< Previous"
 
@@ -929,6 +1001,14 @@ click_sfx = NodePath("../ClickSFX")
 [node name="ClickSFX" type="AudioStreamPlayer" parent="." unique_id=674971549]
 stream = ExtResource("15_3swnk")
 bus = &"SFX"
+
+[node name="DayStart" type="Sprite2D" parent="." unique_id=1639629384]
+visible = false
+texture = ExtResource("18_5357l")
+centered = false
+
+[node name="Anim" type="AnimationPlayer" parent="DayStart" unique_id=132082204]
+libraries/ = SubResource("AnimationLibrary_qpprf")
 
 [connection signal="mouse_entered" from="Clock" to="SubViewport/AnalogClock" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Clock" to="SubViewport/AnalogClock" method="_on_mouse_exited"]

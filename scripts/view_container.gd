@@ -45,6 +45,8 @@ func _on_game_over(reason: String):
 	$GameOver/Reason.text = reason
 
 func _minigame_attempt_failed() -> void:
+	if not Global.screenshake:
+		return
 	var shake_intensity: float = 4.0
 	var shake_duration: float = 0.2
 	var shake_steps: int = 6
@@ -63,3 +65,14 @@ func _minigame_attempt_failed() -> void:
 		tween.tween_property(self, "position", original_pos + random_offset, shake_duration / float(shake_steps))
 	
 	tween.tween_property(self, "position", original_pos, shake_duration / float(shake_steps))
+
+const CABINET_POS := Vector2(144, 75)
+const SINK_POS := Vector2(220, 132)
+const DIST_THRESHOLD := 40.0
+
+func _process(_delta: float) -> void:
+	if game_manager.current_state != game_manager.GameState.PANTRY:
+		return
+	var mouse_pos := get_viewport().get_mouse_position()
+	$PantryView/CabinetBorder.visible =  game_manager.can_use_pantry and mouse_pos.distance_to(CABINET_POS) < DIST_THRESHOLD
+	$PantryView/SinkBorder.visible =  game_manager.current_day >= 2 and game_manager.can_use_sink and mouse_pos.distance_to(SINK_POS) < DIST_THRESHOLD

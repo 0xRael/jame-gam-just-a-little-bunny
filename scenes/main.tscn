@@ -33,7 +33,9 @@
 [ext_resource type="Script" uid="uid://cx1oqg3rlktln" path="res://scripts/clouds.gd" id="28_5he1u"]
 [ext_resource type="Texture2D" uid="uid://buekh7paj10fi" path="res://images/pauntry-room/sink-water2.png" id="28_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://drm8psn42suv" path="res://scenes/sink_minigame_view.tscn" id="30_pibwh"]
+[ext_resource type="Texture2D" uid="uid://bsk7qa1m2vlu3" path="res://images/pauntry-room/cavinet-border.png" id="33_2cjbq"]
 [ext_resource type="Script" uid="uid://rd0cqjrj3h8y" path="res://scripts/audio_manager.gd" id="33_5q0nq"]
+[ext_resource type="Texture2D" uid="uid://uxpln5ootnba" path="res://images/pauntry-room/sink-border.png" id="34_chjal"]
 [ext_resource type="Texture2D" uid="uid://caa4nog6bxthm" path="res://images/ui/bars/vertical-bar.png" id="34_fuf3a"]
 [ext_resource type="PackedScene" uid="uid://dmi26artn4fbt" path="res://scenes/hud.tscn" id="34_pibwh"]
 [ext_resource type="PackedScene" uid="uid://dy80153msbscr" path="res://scenes/search_minigame.tscn" id="35_5he1u"]
@@ -1679,10 +1681,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("2_dgi5k")
 script = ExtResource("2_0wfyh")
 game_manager = NodePath("..")
 metadata/_edit_lock_ = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="ViewContainer" unique_id=2101033256]
+position = Vector2(128, 96)
+current = true
 
 [node name="LivingRoomView" type="Control" parent="ViewContainer" unique_id=1557923225]
 layout_mode = 1
@@ -1692,6 +1699,7 @@ anchor_bottom = 1.0
 offset_right = -0.00015258789
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="ViewContainer/LivingRoomView" unique_id=1376259426]
 position = Vector2(128, 96)
@@ -1809,6 +1817,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="ViewContainer/TVView" unique_id=1354008796]
 position = Vector2(128, 96)
@@ -1864,6 +1873,34 @@ position = Vector2(219, 118)
 sprite_frames = SubResource("SpriteFrames_1aae0")
 autoplay = "default"
 frame_progress = 0.04053871
+
+[node name="CabinetBorder" type="Sprite2D" parent="ViewContainer/PantryView" unique_id=1858054031]
+visible = false
+texture = ExtResource("33_2cjbq")
+centered = false
+
+[node name="Label2" type="Label" parent="ViewContainer/PantryView/CabinetBorder" unique_id=1497533153]
+offset_left = 80.0
+offset_top = 41.0
+offset_right = 207.0
+offset_bottom = 64.0
+theme = ExtResource("2_dgi5k")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+text = "Cabinet (Food)"
+
+[node name="SinkBorder" type="Sprite2D" parent="ViewContainer/PantryView" unique_id=2002698595]
+visible = false
+texture = ExtResource("34_chjal")
+centered = false
+
+[node name="Label" type="Label" parent="ViewContainer/PantryView/SinkBorder" unique_id=1024126626]
+offset_left = 119.0
+offset_top = 130.0
+offset_right = 227.0
+offset_bottom = 153.0
+theme = ExtResource("2_dgi5k")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+text = "Sink (Water)"
 
 [node name="Pantry2" type="TouchScreenButton" parent="ViewContainer/PantryView" unique_id=764642078]
 position = Vector2(144, 71)
@@ -1932,7 +1969,7 @@ text = "Your pet's patience depleted and it killed you."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="GoMenu" type="Button" parent="ViewContainer/GameOver" unique_id=1466067638]
+[node name="Exit" type="Button" parent="ViewContainer/GameOver" unique_id=1466067638]
 layout_mode = 0
 offset_left = 55.0
 offset_top = 100.0
@@ -1947,10 +1984,6 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ViewContainer" unique_id=438435448]
 libraries/ = SubResource("AnimationLibrary_tipki")
-
-[node name="AudioListener2D" type="AudioListener2D" parent="ViewContainer" unique_id=2101033256]
-position = Vector2(128, 96)
-current = true
 
 [node name="HUD" parent="." unique_id=1969027675 node_paths=PackedStringArray("game_manager", "hunger_bar", "alt_hunger_bar", "thirst_bar", "alt_thirst_bar") instance=ExtResource("34_pibwh")]
 layout_mode = 1
@@ -1982,7 +2015,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DiamondTransition" unique_id=107161578]
 libraries/ = SubResource("AnimationLibrary_vc5cj")
 autoplay = &"Start"
+
+[connection signal="pressed" from="ViewContainer/GameOver/Exit" to="HUD" method="_on_exit_pressed"]
