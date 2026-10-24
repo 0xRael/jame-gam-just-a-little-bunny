@@ -26,7 +26,7 @@ var thirst := 100.0:
 var hunger_drain_rate := 3.5
 var thirst_drain_rate := 1.5
 var normal_patience_drain := 0.5
-var tv_patience_drain := 1.0 # Watching TV drains patience faster
+var tv_patience_drain := 1.5 # Watching TV drains patience faster
 var starving_patience_drain := 5.0 # Rapid drain when hunger hits 0
 var stare_patience_refill := 1.0
 

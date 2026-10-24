@@ -6,6 +6,10 @@ signal minigame_completed(success: bool)
 signal minigame_attempt_failed
 var is_active: bool = false
 
+func _ready() -> void:
+	if owner == null or get_tree().current_scene == self:
+		start_minigame()
+
 # Overridden by child classes to initialize their unique puzzle
 func start_minigame() -> void:
 	is_active = true

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://wsrqxc8lp06x" path="res://images/ui/bars/scroll.png" id="4_ugfru"]
 [ext_resource type="Texture2D" uid="uid://b4ki5wymxyjm" path="res://images/ui/panel.png" id="6_1bwxx"]
 [ext_resource type="FontFile" uid="uid://7joj7akwtakh" path="res://fonts/Peaberry-Font-v2.0/Peaberry Font Family/Peaberry Base/Peaberry-Base.otf" id="6_qe7yt"]
+[ext_resource type="FontFile" uid="uid://nvclmx3vgd33" path="res://fonts/Peaberry-Font-v2.0/Peaberry Font Family/Peaberry Monospace/Peaberry-Mono.otf" id="8_1bwxx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -63,7 +64,8 @@ texture_margin_left = 10.0
 texture_margin_right = 10.0
 
 [resource]
-Button/colors/font_color = Color(0.1764706, 0.15294118, 0.1882353, 1)
+Button/colors/font_color = Color(0.31764707, 0.3019608, 0.2901961, 1)
+Button/colors/font_focus_color = Color(0.61960787, 0.4117647, 0.41960785, 1)
 Button/colors/font_hover_color = Color(0.8627451, 0.6862745, 0.56078434, 1)
 Button/colors/font_outline_color = Color(1, 1, 1, 1)
 Button/constants/outline_size = 4
@@ -83,7 +85,7 @@ HSlider/icons/grabber_highlight = ExtResource("4_ugfru")
 HSlider/styles/grabber_area = SubResource("StyleBoxTexture_ugfru")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_qe7yt")
 HSlider/styles/slider = SubResource("StyleBoxTexture_1bwxx")
-Label/colors/font_color = Color(0.1764706, 0.15294118, 0.1882353, 1)
+Label/colors/font_color = Color(0.31764707, 0.3019608, 0.2901961, 1)
 Label/colors/font_outline_color = Color(0.57254905, 0.70980394, 0.85882354, 1)
 Label/constants/outline_size = 4
 Label/font_sizes/font_size = 16
@@ -91,3 +93,9 @@ Label/fonts/font = ExtResource("6_qe7yt")
 Panel/styles/panel = SubResource("StyleBoxTexture_lgwnu")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_rohj4")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_flqon")
+RichTextLabel/colors/default_color = Color(0.31764707, 0.3019608, 0.2901961, 1)
+RichTextLabel/colors/font_outline_color = Color(0.57254905, 0.70980394, 0.85882354, 1)
+RichTextLabel/constants/outline_size = 4
+RichTextLabel/font_sizes/normal_font_size = 16
+RichTextLabel/fonts/mono_font = ExtResource("8_1bwxx")
+RichTextLabel/fonts/normal_font = ExtResource("6_qe7yt")

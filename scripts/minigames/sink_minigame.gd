@@ -14,8 +14,14 @@ var current_rotation : float:
 const ACCELERATION := 0.2
 const FRICTION := 0.05
 const SPEED_THRESHOLD := 0.005
-const DIST_THRESHOLD := 0.2
+const DIST_THRESHOLD := 0.15
 var speed := 0.0
+
+const max_speed_ref := 0.1
+const min_pitch := 0.3
+const min_volume_db := -24.0
+const max_pitch := 1.0
+const max_volume_db := 0.0
 
 func start_minigame() -> void:
 	super.start_minigame()
@@ -31,7 +37,6 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("ui_cancel"):
 		end_minigame(false) # Canceled out
-		speed = 0
 		return
 	
 	if Input.is_action_pressed("ui_down"):
@@ -43,7 +48,20 @@ func _process(delta: float) -> void:
 	elif speed < FRICTION * -delta:
 		speed += FRICTION * delta
 	else:
+		$WheelSFX.stop()
 		speed = 0
+	
+	var abs_speed : float = abs(speed)
+	if abs_speed > 0.0001:
+		if not $WheelSFX.playing:
+			$WheelSFX.play(0.2)
+		
+		var speed_ratio : float = clamp(abs_speed / max_speed_ref, 0.0, 1.0)
+		
+		$WheelSFX.pitch_scale = lerp(min_pitch, max_pitch, speed_ratio)
+		$WheelSFX.volume_db = lerp(min_volume_db, max_volume_db, speed_ratio)
+	else:
+		$WheelSFX.stop()
 	
 	if speed != 0:
 		current_rotation += speed
@@ -51,4 +69,11 @@ func _process(delta: float) -> void:
 	if abs(current_rotation-target_rotation) < DIST_THRESHOLD \
 		and abs(speed) < SPEED_THRESHOLD:
 			end_minigame(true) # Success!
-			speed = 0
+
+func end_minigame(success:bool) -> void:
+	super.end_minigame(success)
+	speed = 0
+	$WheelSFX.stop()
+	if success:
+		$Press.play()
+		$Completed.play()

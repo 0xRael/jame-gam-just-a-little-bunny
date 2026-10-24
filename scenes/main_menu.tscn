@@ -29,6 +29,44 @@ shader_parameter/far_color = Color(0.56759995, 0.7089266, 0.86, 0.3372549)
 shader_parameter/near_color = Color(1, 1, 1, 1)
 shader_parameter/particle_texture = ExtResource("6_5dd4i")
 
+[sub_resource type="Animation" id="Animation_lgwnu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_flqon"]
+resource_name = "hover"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.0333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, -5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rcqid"]
+_data = {
+&"RESET": SubResource("Animation_lgwnu"),
+&"hover": SubResource("Animation_flqon")
+}
+
 [sub_resource type="Animation" id="Animation_5dd4i"]
 resource_name = "End"
 tracks/0/type = "value"
@@ -481,9 +519,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Sprite2D" parent="." unique_id=2094163664]
+[node name="Title" type="Node2D" parent="." unique_id=602493218]
 position = Vector2(130, 47)
+
+[node name="Sprite2D" type="Sprite2D" parent="Title" unique_id=697729306]
 texture = ExtResource("7_lgwnu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Title" unique_id=596114157]
+libraries/ = SubResource("AnimationLibrary_rcqid")
+autoplay = &"hover"
 
 [node name="MainButtons" type="VBoxContainer" parent="." unique_id=1533668260]
 layout_mode = 1

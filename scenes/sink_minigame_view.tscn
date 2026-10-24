@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://d3i1peygqaigs" path="res://images/minigames/sink/up_pressed.png" id="6_0iocu"]
 [ext_resource type="Texture2D" uid="uid://bc782g26ppyfw" path="res://images/minigames/sink/down_pressed.png" id="8_3r3y7"]
 [ext_resource type="Texture2D" uid="uid://cphgu1jej3dsi" path="res://images/minigames/sink/outer_wheel.png" id="9_0iocu"]
+[ext_resource type="AudioStream" uid="uid://cnomem2ksqy5g" path="res://sounds/ambient/wheel.mp3" id="10_3r3y7"]
+[ext_resource type="AudioStream" uid="uid://b3f14gkk6n7du" path="res://sounds/ui/cursor.wav" id="11_ir0bc"]
+[ext_resource type="AudioStream" uid="uid://brh4eyflmq2sh" path="res://sounds/ambient/sink.mp3" id="12_elw43"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nt02b"]
 size = Vector2(36, 18)
@@ -48,3 +51,15 @@ texture = ExtResource("3_8b0kp")
 [node name="OuterWheel" type="Sprite2D" parent="." unique_id=1182038649]
 position = Vector2(103, 92)
 texture = ExtResource("9_0iocu")
+
+[node name="WheelSFX" type="AudioStreamPlayer" parent="." unique_id=2144017593]
+stream = ExtResource("10_3r3y7")
+bus = &"SFX"
+
+[node name="Press" type="AudioStreamPlayer" parent="." unique_id=1467248250]
+stream = ExtResource("11_ir0bc")
+bus = &"SFX"
+
+[node name="Completed" type="AudioStreamPlayer" parent="." unique_id=1177317459]
+stream = ExtResource("12_elw43")
+bus = &"SFX"

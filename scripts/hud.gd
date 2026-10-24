@@ -1,6 +1,6 @@
 extends Control
 
-@export var game_manager: Node
+@export var game_manager: GameManager
 
 @onready var sanity_bar := $SanityBar
 @export var hunger_bar : ProgressBar
@@ -9,16 +9,17 @@ extends Control
 @export var thirst_bar : ProgressBar
 @export var alt_thirst_bar : TextureProgressBar
 
-const DAY_TEXTS : Array[String] = [
-	"",
-	"Check the bunny's hunger bar, get food from the Pantry (right side) when needed.",
-	"Your bunny can now feel thirsty! Grab water from the Sink before the bar gets low.",
-	"Nothing implemented for this day yet!",
-]
+@onready var clock := $SubViewport/AnalogClock
+
+var current_note := 0
+const MAX_NOTES = [-1, 6, 8, 6]
 
 func _ready() -> void:
 	if game_manager:
 		game_manager.ready.connect(_set_up)
+		clock.game_manager = game_manager
+		$Arrows/RightArrow.game_manager = game_manager
+		$Arrows/LeftArrow.game_manager = game_manager
 
 func _set_up() -> void:
 	if game_manager:
@@ -27,6 +28,7 @@ func _set_up() -> void:
 		game_manager.pet.thirst_changed.connect(_on_pet_thirst_changed)
 		game_manager.pet.patience_changed.connect(_on_pet_patience_changed)
 		game_manager.day_changed.connect(_on_day_changed)
+		game_manager.game_paused.connect(_on_game_paused)
 
 func _on_player_sanity_changed(value: float) -> void:
 	sanity_bar.value = value
@@ -39,10 +41,8 @@ func _on_pet_hunger_changed(value: float) -> void:
 	alt_hunger_bar.value = value
 
 func _on_day_changed(new_day: int) -> void:
-	$NewDay/Title.text = "Day #" + str(new_day) + "!"
-	if new_day < len(DAY_TEXTS):
-		$NewDay/Reason.text = DAY_TEXTS[new_day]
-	$NewDay.show()
+	current_note = MAX_NOTES[new_day-1] +1
+	_on_read_notes_pressed()
 	if new_day == 2:
 		thirst_bar.show()
 		alt_thirst_bar.show()
@@ -51,5 +51,55 @@ func _on_pet_thirst_changed(value: float) -> void:
 	thirst_bar.value = value
 	alt_thirst_bar.value = value
 
-func _on_ok_pressed() -> void:
-	$NewDay.hide()
+func _on_game_paused() -> void:
+	$PauseMenu.show()
+
+func _on_continue_pressed() -> void:
+	game_manager.unpause()
+	$PauseMenu.hide()
+
+func _on_exit_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func _on_read_notes_pressed() -> void:
+	$PauseMenu.hide()
+	for i in $Notes.get_children():
+		i.hide()
+	$Notes.get_child(current_note).show()
+	$Notes.show()
+	$NoteButtons.show()
+
+func _on_next_note_pressed() -> void:
+	$Notes.get_child(current_note).hide()
+	if current_note == MAX_NOTES[game_manager.current_day]:
+		$Notes.hide()
+		$NoteButtons.hide()
+		$PauseMenu.show()
+		return
+	
+	current_note += 1
+	$Notes.get_child(current_note).show()
+
+func _on_prev_note_pressed() -> void:
+	if current_note == 0:
+		return
+	$Notes.get_child(current_note).hide()
+	current_note -= 1
+	$Notes.get_child(current_note).show()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_right") and $Notes.visible:
+		_on_next_note_pressed()
+		return
+	if event.is_action_pressed("ui_left") and $Notes.visible:
+		_on_prev_note_pressed()
+		return
+	if not event.is_action_pressed("ui_cancel"):
+		return
+	
+	if $Notes.visible:
+		$Notes.hide()
+		$NoteButtons.hide()
+		$PauseMenu.show()
+	elif game_manager.is_game_paused:
+		_on_continue_pressed()

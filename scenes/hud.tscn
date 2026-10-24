@@ -1,0 +1,733 @@
+[gd_scene format=3 uid="uid://dmi26artn4fbt"]
+
+[ext_resource type="Theme" uid="uid://nmiqr8hipiy6" path="res://base_theme.tres" id="1_hd3ao"]
+[ext_resource type="Script" uid="uid://cfeauibb0bk02" path="res://scripts/hud.gd" id="2_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://vwotbmt3u44q" path="res://images/ui/side-arrow.png" id="3_mphia"]
+[ext_resource type="Script" uid="uid://bb0xyx3f5qdho" path="res://scripts/camera_arrow.gd" id="4_0m4u7"]
+[ext_resource type="Texture2D" uid="uid://c1h2w2dlo5q7s" path="res://images/ui/clock/normal.png" id="5_apjy4"]
+[ext_resource type="Script" uid="uid://3jpdl15tq8q4" path="res://scripts/analog_clock.gd" id="6_5n1hp"]
+[ext_resource type="Texture2D" uid="uid://s3dri8uotos2" path="res://images/ui/clock/hover.png" id="7_eld54"]
+[ext_resource type="Texture2D" uid="uid://c4im2ae88skny" path="res://images/ui/bars/patience-bar.png" id="8_3swnk"]
+[ext_resource type="Texture2D" uid="uid://cm0vvfpf54tuv" path="res://images/tutorial/patience-bar.png" id="9_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://cwxvc6433b2r5" path="res://images/tutorial/sanity-bar.png" id="10_mphia"]
+[ext_resource type="Texture2D" uid="uid://1k55r6chpbrm" path="res://images/tutorial/hunger-bar.png" id="11_0m4u7"]
+[ext_resource type="Texture2D" uid="uid://cgpmcy25gncbl" path="res://images/tutorial/pantry-panel.png" id="12_apjy4"]
+[ext_resource type="Texture2D" uid="uid://dlaruatficaj7" path="res://images/tutorial/sink-panel.png" id="13_5n1hp"]
+[ext_resource type="Script" uid="uid://cj7low86qsmo2" path="res://scripts/title_screen/button_sfx.gd" id="14_eld54"]
+[ext_resource type="AudioStream" uid="uid://b3f14gkk6n7du" path="res://sounds/ui/cursor.wav" id="15_3swnk"]
+
+[sub_resource type="Animation" id="Animation_kmb1v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j8jky"]
+resource_name = "Stand"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 3), Vector2(0, -3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kmb1v"]
+_data = {
+&"RESET": SubResource("Animation_kmb1v"),
+&"Stand": SubResource("Animation_j8jky")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vxglm"]
+texture = ExtResource("8_3swnk")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sbekf"]
+viewport_path = NodePath("SubViewport")
+
+[node name="HUD" type="Control" unique_id=1969027675]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hd3ao")
+script = ExtResource("2_0i1j5")
+metadata/_edit_lock_ = true
+
+[node name="Arrows" type="Node2D" parent="." unique_id=216626717]
+
+[node name="RightArrow" type="Sprite2D" parent="Arrows" unique_id=1765202283]
+position = Vector2(248, 96)
+texture = ExtResource("3_mphia")
+script = ExtResource("4_0m4u7")
+
+[node name="LeftArrow" type="Sprite2D" parent="Arrows" unique_id=676680642]
+position = Vector2(8, 96)
+texture = ExtResource("3_mphia")
+flip_h = true
+script = ExtResource("4_0m4u7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Arrows" unique_id=1735584518]
+libraries/ = SubResource("AnimationLibrary_kmb1v")
+autoplay = &"Stand"
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=739569566]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+gui_disable_input = true
+oversampling = false
+size = Vector2i(34, 34)
+
+[node name="AnalogClock" type="TextureRect" parent="SubViewport" unique_id=2013569207]
+offset_right = 34.0
+offset_bottom = 34.0
+texture = ExtResource("5_apjy4")
+script = ExtResource("6_5n1hp")
+normal_texture = ExtResource("5_apjy4")
+hover_texture = ExtResource("7_eld54")
+
+[node name="PatienceBar" type="ProgressBar" parent="." unique_id=1266789861]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 72.0
+offset_top = 4.0
+offset_right = -7.0
+offset_bottom = 24.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxTexture_vxglm")
+value = 100.0
+show_percentage = false
+
+[node name="SanityBar" type="ProgressBar" parent="." unique_id=449907074]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -23.0
+offset_right = -71.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+show_percentage = false
+
+[node name="Clock" type="TextureRect" parent="." unique_id=78320071]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 42.0
+texture = SubResource("ViewportTexture_sbekf")
+
+[node name="PauseMenu" type="Panel" parent="." unique_id=1286981278]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -71.0
+offset_right = 86.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu" unique_id=1139206166]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_right = 55.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer" unique_id=993325833]
+layout_mode = 2
+text = "Game Paused!"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="PauseMenu/VBoxContainer" unique_id=580305588]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Continue" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1089462498]
+layout_mode = 2
+text = "Continue"
+
+[node name="ReadNotes" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1705010044]
+layout_mode = 2
+text = "Read Notes"
+
+[node name="Exit" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1797661796]
+layout_mode = 2
+text = "Exit"
+
+[node name="Control2" type="Control" parent="PauseMenu/VBoxContainer" unique_id=8603615]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Notes" type="Control" parent="." unique_id=668704303]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="0" type="Panel" parent="Notes" unique_id=743182124]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -89.0
+offset_right = 125.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Notes/0" unique_id=288452685]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Notes/0/VBoxContainer" unique_id=1575984578]
+layout_mode = 2
+text = "Day #1!"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Notes/0/VBoxContainer" unique_id=25440446]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="RichTextLabel" parent="Notes/0/VBoxContainer" unique_id=780250832]
+layout_mode = 2
+bbcode_enabled = true
+text = "This bunny is quite... [color=#2d2730]Special[/color]... So there are a lot of things to take into account!"
+fit_content = true
+autowrap_mode = 2
+
+[node name="Control2" type="Control" parent="Notes/0/VBoxContainer" unique_id=216228391]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="1" type="Panel" parent="Notes" unique_id=640403828]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -89.0
+offset_right = 125.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Notes/1" unique_id=1160951291]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Notes/1/VBoxContainer" unique_id=1563771059]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="RichTextLabel" parent="Notes/1/VBoxContainer" unique_id=741880437]
+layout_mode = 2
+bbcode_enabled = true
+text = "The bunny's [color=#915577]patience[/color]:"
+fit_content = true
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Notes/1/VBoxContainer" unique_id=694347915]
+layout_mode = 2
+texture = ExtResource("9_0i1j5")
+stretch_mode = 3
+
+[node name="Text" type="RichTextLabel" parent="Notes/1/VBoxContainer" unique_id=171235986]
+layout_mode = 2
+bbcode_enabled = true
+text = "will start going down when you're not looking at [color=#2d2732]him[/color], and trust me, you don't want that! If you look at him for some time his [color=#915577]patience[/color] will go up. "
+fit_content = true
+autowrap_mode = 2
+
+[node name="Control2" type="Control" parent="Notes/1/VBoxContainer" unique_id=2074547132]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="2" type="Panel" parent="Notes" unique_id=1500018457]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -89.0
+offset_right = 125.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Notes/2" unique_id=517061257]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Notes/2/VBoxContainer" unique_id=432262812]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="RichTextLabel" parent="Notes/2/VBoxContainer" unique_id=1714281355]
+layout_mode = 2
+bbcode_enabled = true
+text = "Your [color=#735fb1]sanity[/color]:"
+fit_content = true
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Notes/2/VBoxContainer" unique_id=1051269035]
+layout_mode = 2
+texture = ExtResource("10_mphia")
+stretch_mode = 3
+
+[node name="Text" type="RichTextLabel" parent="Notes/2/VBoxContainer" unique_id=1854516157]
+layout_mode = 2
+bbcode_enabled = true
+text = "be aware, if you look at him for long it will start going down from the things [color=#2d2732]he whispers[/color], and you don't want that either, so go look at the TV."
+fit_content = true
+autowrap_mode = 2
+
+[node name="Control2" type="Control" parent="Notes/2/VBoxContainer" unique_id=779133425]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="3" type="Panel" parent="Notes" unique_id=1417175992]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -89.0
+offset_right = 125.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Notes/3" unique_id=1400351823]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Notes/3/VBoxContainer" unique_id=1341113059]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Notes/3/VBoxContainer/HBoxContainer" unique_id=57547250]
+layout_mode = 2
+texture = ExtResource("3_mphia")
+flip_h = true
+
+[node name="Label" type="RichTextLabel" parent="Notes/3/VBoxContainer/HBoxContainer" unique_id=447242365]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "<- Hover your mouse here to look at the TV!"
+fit_content = true
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="Notes/3/VBoxContainer" unique_id=2114918945]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Text" type="RichTextLabel" parent="Notes/3/VBoxContainer" unique_id=229019942]
+layout_mode = 2
+bbcode_enabled = true
+text = "You can look at the TV to regain your [color=#735fb1]sanity[/color]. But don't do it for long or the bunny will lose its [color=#915577]patience[/color]."
+fit_content = true
+autowrap_mode = 2
+
+[node name="Control2" type="Control" parent="Notes/3/VBoxContainer" unique_id=632720665]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="4" type="Panel" parent="Notes" unique_id=347302481]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -89.0
+offset_right = 125.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Notes/4" unique_id=71162348]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Notes/4/VBoxContainer" unique_id=59672482]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Notes/4/VBoxContainer/HBoxContainer" unique_id=1315074073]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "The bunny's got quite an appetite, so you have to feed it when he get's [color=#9e696b]hungry[/color], when his [color=#9e696b]hunger[/color] reaches 0 his [color=#915577]patience[/color] will decrease faster."
+fit_content = true
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Notes/4/VBoxContainer/HBoxContainer" unique_id=421280514]
+layout_mode = 2
+texture = ExtResource("11_0m4u7")
+stretch_mode = 2
+
+[node name="Control" type="Control" parent="Notes/4/VBoxContainer" unique_id=1371317025]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Text" type="RichTextLabel" parent="Notes/4/VBoxContainer" unique_id=783438329]
+layout_mode = 2
+bbcode_enabled = true
+text = "So you have to move to the pantry to be able to feed him."
+fit_content = true
+autowrap_mode = 2
+
+[node name="Control2" type="Control" parent="Notes/4/VBoxContainer" unique_id=1497611457]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="5" type="Panel" parent="Notes" unique_id=577321771]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -89.0
+offset_right = 125.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Notes/5" unique_id=1018403301]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Notes/5/VBoxContainer" unique_id=1109055352]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Notes/5/VBoxContainer/HBoxContainer" unique_id=1588254379]
+layout_mode = 2
+texture = ExtResource("3_mphia")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Notes/5/VBoxContainer/HBoxContainer" unique_id=1184513832]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "<- Hover your mouse here to go to the pantry!"
+fit_content = true
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="Notes/5/VBoxContainer" unique_id=200799279]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Notes/5/VBoxContainer" unique_id=2036114799]
+layout_mode = 2
+
+[node name="Text" type="RichTextLabel" parent="Notes/5/VBoxContainer/HBoxContainer2" unique_id=1707673597]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "You'll have to solve a 4-digit passcode every time you need to open the cabinet:"
+fit_content = true
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Notes/5/VBoxContainer/HBoxContainer2" unique_id=2140182505]
+layout_mode = 2
+texture = ExtResource("12_apjy4")
+stretch_mode = 2
+
+[node name="Control2" type="Control" parent="Notes/5/VBoxContainer" unique_id=1413961417]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="6" type="Panel" parent="Notes" unique_id=1862171755]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -89.0
+offset_right = 125.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Notes/6" unique_id=819139989]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Notes/6/VBoxContainer" unique_id=1178522289]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Be quick, even if he gets [color=#915577]patience[/color] when he gets fed, he still loses it when you're not looking at [color=#2d2730]him[/color].
+There is a cooldown so you'll have to wait between feeds, and you can't feed him if he's full.
+[right][color=#2d2730]Good luck!"
+fit_content = true
+autowrap_mode = 2
+
+[node name="Control2" type="Control" parent="Notes/6/VBoxContainer" unique_id=196939215]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="7" type="Panel" parent="Notes" unique_id=2018548431]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -89.0
+offset_right = 125.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Notes/7" unique_id=428505506]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Notes/7/VBoxContainer" unique_id=165044143]
+layout_mode = 2
+text = "Day #2!"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Notes/7/VBoxContainer" unique_id=1232569017]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="RichTextLabel" parent="Notes/7/VBoxContainer" unique_id=620618432]
+layout_mode = 2
+bbcode_enabled = true
+text = "Hey I hope you didn't forget to also give [color=415e9b]water[/color] to the bunny...
+His [color=#415e9b]thirst[/color] will decrease just like his [color=#9e696b]hunger[/color], and just like it, his [color=#915577]patience[/color] will quickly decrease when it hits 0. "
+fit_content = true
+autowrap_mode = 2
+
+[node name="Control2" type="Control" parent="Notes/7/VBoxContainer" unique_id=684879436]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="8" type="Panel" parent="Notes" unique_id=652688673]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -89.0
+offset_right = 125.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Notes/8" unique_id=878481472]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Notes/8/VBoxContainer" unique_id=204247588]
+layout_mode = 2
+
+[node name="Label3" type="RichTextLabel" parent="Notes/8/VBoxContainer/HBoxContainer" unique_id=1164028098]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "To give him water you need to head to the sink.
+Your hangle is"
+fit_content = true
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Notes/8/VBoxContainer/HBoxContainer" unique_id=929875711]
+layout_mode = 2
+texture = ExtResource("13_5n1hp")
+stretch_mode = 2
+
+[node name="Control" type="Control" parent="Notes/8/VBoxContainer" unique_id=1069587833]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="RichTextLabel" parent="Notes/8/VBoxContainer" unique_id=928213660]
+layout_mode = 2
+bbcode_enabled = true
+text = "really loose and finicky, so you have to move it using the buttons to align both the red arrow with the arrow of the handle. "
+fit_content = true
+autowrap_mode = 2
+
+[node name="Control2" type="Control" parent="Notes/8/VBoxContainer" unique_id=767130696]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NoteButtons" type="Control" parent="." unique_id=1601033613]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NextNote" type="Button" parent="NoteButtons" unique_id=1130197412]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next >"
+
+[node name="PrevNote" type="Button" parent="NoteButtons" unique_id=1826740110]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 85.0
+grow_vertical = 0
+text = "< Previous"
+
+[node name="Node" type="Node" parent="." unique_id=973475633 node_paths=PackedStringArray("parent", "click_sfx")]
+script = ExtResource("14_eld54")
+parent = NodePath("..")
+click_sfx = NodePath("../ClickSFX")
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="." unique_id=674971549]
+stream = ExtResource("15_3swnk")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="Clock" to="SubViewport/AnalogClock" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Clock" to="SubViewport/AnalogClock" method="_on_mouse_exited"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ReadNotes" to="." method="_on_read_notes_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="NoteButtons/NextNote" to="." method="_on_next_note_pressed"]
+[connection signal="pressed" from="NoteButtons/PrevNote" to="." method="_on_prev_note_pressed"]

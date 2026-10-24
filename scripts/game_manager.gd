@@ -7,6 +7,7 @@ signal game_over(reason: String)
 signal pantry_lock_changed(can_use_pantry: bool)
 signal sink_lock_changed(can_use_sink: bool)
 signal day_changed(new_day: int)
+signal game_paused()
 
 var current_state := GameState.LIVING_ROOM:
 	set(val):
@@ -27,6 +28,12 @@ var day_timer := 0.0
 
 var player: Player
 var pet: Pet
+
+var is_game_paused := false:
+	set(val):
+		is_game_paused = val
+		if val:
+			emit_signal("game_paused")
 
 @onready var pantry_minigame : PantryMinigame = $ViewContainer/MinigameView
 @onready var sink_minigame : SinkMinigame = $ViewContainer/SinkMinigameView
@@ -49,10 +56,11 @@ func _ready() -> void:
 	sink_minigame.minigame_completed.connect(_on_sink_minigame_completed)
 	
 	await get_tree().create_timer(1.0).timeout
+	is_game_paused = true
 	emit_signal("day_changed", current_day)
 
 func _process(delta: float) -> void:
-	if current_state == GameState.GAMEOVER:
+	if current_state == GameState.GAMEOVER or is_game_paused:
 		return
 		
 	day_timer += delta
@@ -103,6 +111,10 @@ func handle_input() -> void:
 	var triggered_left: bool = Input.is_action_pressed("ui_left") or (is_mouse_inside and mouse_pos.x <= mouse_move_threshold)
 	var triggered_right: bool = Input.is_action_pressed("ui_right") or (is_mouse_inside and mouse_pos.x >= viewport_size.x - mouse_move_threshold)
 	
+	if Input.is_action_just_pressed("ui_cancel"):
+		is_game_paused = true
+		return
+	
 	match current_state:
 		GameState.LIVING_ROOM:
 			if triggered_left:
@@ -129,6 +141,7 @@ func handle_input() -> void:
 				sink_minigame.start_minigame()
 
 func advance_day() -> void:
+	is_game_paused = 1
 	current_day += 1
 	day_timer = 0.0
 	print("Advanced to day: ", current_day)
@@ -151,3 +164,6 @@ func _on_sink_minigame_completed(success: bool) -> void:
 		can_use_sink = false
 		await get_tree().create_timer(10.0).timeout
 		can_use_sink = true
+
+func unpause() -> void:
+	is_game_paused = false

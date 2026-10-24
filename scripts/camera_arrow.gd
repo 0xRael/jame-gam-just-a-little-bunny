@@ -59,7 +59,7 @@ func _process(_delta: float) -> void:
 			state = ArrowStates.VISIBLE
 
 func is_mouse_hovering() -> bool:
-	if not texture:
+	if not texture or not game_manager:
 		return false
 	if flip_h:
 		return get_global_mouse_position().x < game_manager.mouse_move_threshold \
