@@ -23,27 +23,35 @@ var thirst := 100.0:
 		emit_signal("thirst_changed", thirst)
 
 # Drain Rates per second
-var hunger_drain_rate := 1.5
-var thirst_drain_rate := 0.5
+var hunger_drain_rate := 3.5
+var thirst_drain_rate := 1.5
 var normal_patience_drain := 0.5
-var tv_patience_drain := 1.5 # Watching TV drains patience faster
-var starving_patience_drain := 10.0 # Rapid drain when hunger hits 0
+var tv_patience_drain := 1.0 # Watching TV drains patience faster
+var starving_patience_drain := 5.0 # Rapid drain when hunger hits 0
+var stare_patience_refill := 1.0
 
 # Feeding diminishment system
 var base_patience_refill := 30.0
 var times_fed := 0
 
 var enable_thirst := false
+var stare_timer := 0.0
 
 func stare(delta: float) -> void:
 	_tick_hunger(delta)
 	
+	stare_timer += delta
+	
 	# If hunger hits 0, patience drains rapidly even when looked at
 	if hunger <= 0.0:
 		patience -= starving_patience_drain * delta
+	elif stare_timer >= 5.0:
+		patience += stare_patience_refill * delta
 
 func unseen(delta: float) -> void:
 	_tick_hunger(delta)
+	
+	stare_timer = 0.0
 	
 	if hunger <= 0.0 or thirst <= 0.0:
 		patience -= starving_patience_drain * delta

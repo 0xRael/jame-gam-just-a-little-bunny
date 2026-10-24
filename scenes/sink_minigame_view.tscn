@@ -10,9 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bc782g26ppyfw" path="res://images/minigames/sink/down_pressed.png" id="8_3r3y7"]
 [ext_resource type="Texture2D" uid="uid://cphgu1jej3dsi" path="res://images/minigames/sink/outer_wheel.png" id="9_0iocu"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_sbekf"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nt02b"]
 size = Vector2(36, 18)
 
@@ -26,10 +23,6 @@ script = ExtResource("1_bk0q0")
 [node name="Background" type="Sprite2D" parent="." unique_id=2108848233]
 position = Vector2(127.5, 95.5)
 texture = ExtResource("2_rkwp4")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=77316161]
-position = Vector2(103, 92)
-texture = SubResource("ViewportTexture_sbekf")
 
 [node name="UpUnpressed" type="Sprite2D" parent="." unique_id=384177130]
 position = Vector2(156, 85)
@@ -48,16 +41,10 @@ shape = SubResource("RectangleShape2D_nt02b")
 unpressed_texture = ExtResource("5_608rf")
 pressed_texture = ExtResource("8_3r3y7")
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=1812500614]
-transparent_bg = true
-handle_input_locally = false
-canvas_item_default_texture_filter = 0
-size = Vector2i(92, 92)
-
-[node name="Wheel" type="Sprite2D" parent="SubViewport" unique_id=1706240878]
-position = Vector2(46.5, 46.5)
+[node name="Wheel" type="Sprite2D" parent="." unique_id=1706240878]
+position = Vector2(103.5, 92.5)
 texture = ExtResource("3_8b0kp")
 
-[node name="OuterWheel" type="Sprite2D" parent="SubViewport" unique_id=1182038649]
-position = Vector2(46, 46)
+[node name="OuterWheel" type="Sprite2D" parent="." unique_id=1182038649]
+position = Vector2(103, 92)
 texture = ExtResource("9_0iocu")

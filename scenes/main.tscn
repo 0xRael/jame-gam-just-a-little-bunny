@@ -37,10 +37,13 @@
 [ext_resource type="Script" uid="uid://bb0xyx3f5qdho" path="res://scripts/camera_arrow.gd" id="28_fv21b"]
 [ext_resource type="PackedScene" uid="uid://drm8psn42suv" path="res://scenes/sink_minigame_view.tscn" id="30_pibwh"]
 [ext_resource type="Script" uid="uid://3jpdl15tq8q4" path="res://scripts/analog_clock.gd" id="31_tel4y"]
-[ext_resource type="AudioStream" uid="uid://mwlkdsbahxp5" path="res://sounds/Main Theme.wav" id="32_qkpxi"]
 [ext_resource type="Script" uid="uid://rd0cqjrj3h8y" path="res://scripts/audio_manager.gd" id="33_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://caa4nog6bxthm" path="res://images/ui/bars/vertical-bar.png" id="34_fuf3a"]
 [ext_resource type="Texture2D" uid="uid://dg4djox2ak6tv" path="res://images/ui/bars/hunger-bar.png" id="35_pibwh"]
+[ext_resource type="Texture2D" uid="uid://c1h2w2dlo5q7s" path="res://images/ui/clock/normal.png" id="38_chjal"]
+[ext_resource type="Texture2D" uid="uid://s3dri8uotos2" path="res://images/ui/clock/hover.png" id="39_cjqg0"]
+[ext_resource type="AudioStream" uid="uid://c53j0ti3vx41o" path="res://sounds/Cozy Days.wav" id="40_2cjbq"]
+[ext_resource type="Shader" uid="uid://bdfyudij10jra" path="res://shaders/diamond_transition.gdshader" id="42_2cjbq"]
 
 [sub_resource type="Animation" id="Animation_chjal"]
 length = 0.001
@@ -1624,6 +1627,75 @@ texture_margin_right = 10.0
 [sub_resource type="ViewportTexture" id="ViewportTexture_sbekf"]
 viewport_path = NodePath("HUD/SubViewport")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chjal"]
+shader = ExtResource("42_2cjbq")
+shader_parameter/AspectRatio = 1.5
+shader_parameter/Diamonds = 10.0
+shader_parameter/pixel_size = 0.08
+shader_parameter/height = 1.0
+shader_parameter/disable_pixel = false
+
+[sub_resource type="Animation" id="Animation_vchkt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_txyw0"]
+resource_name = "new_animation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/height")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, -1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vc5cj"]
+_data = {
+&"RESET": SubResource("Animation_vchkt"),
+&"new_animation": SubResource("Animation_txyw0")
+}
+
 [node name="Main" type="Control" unique_id=2115642893]
 layout_mode = 3
 anchors_preset = 15
@@ -1956,15 +2028,16 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 gui_disable_input = true
 oversampling = false
-size = Vector2i(32, 32)
+size = Vector2i(34, 34)
 
-[node name="AnalogClock" type="Control" parent="HUD/SubViewport" unique_id=893416785 node_paths=PackedStringArray("game_manager")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 32.0
-offset_bottom = 32.0
+[node name="AnalogClock" type="TextureRect" parent="HUD/SubViewport" unique_id=309483276 node_paths=PackedStringArray("game_manager")]
+offset_right = 34.0
+offset_bottom = 34.0
+texture = ExtResource("38_chjal")
 script = ExtResource("31_tel4y")
 game_manager = NodePath("../../..")
+normal_texture = ExtResource("38_chjal")
+hover_texture = ExtResource("39_cjqg0")
 
 [node name="PatienceBar" type="ProgressBar" parent="HUD" unique_id=1970345347]
 layout_mode = 1
@@ -1994,10 +2067,12 @@ grow_vertical = 0
 value = 100.0
 show_percentage = false
 
-[node name="TextureRect" type="TextureRect" parent="HUD" unique_id=1761054122]
+[node name="Clock" type="TextureRect" parent="HUD" unique_id=1761054122]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 42.0
 texture = SubResource("ViewportTexture_sbekf")
 
 [node name="NewDay" type="Panel" parent="HUD" unique_id=2072913732]
@@ -2054,10 +2129,26 @@ texture = ExtResource("3_og1vs")
 centered = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=354750652 node_paths=PackedStringArray("game_manager")]
-stream = ExtResource("32_qkpxi")
+stream = ExtResource("40_2cjbq")
 autoplay = true
 bus = &"Music"
 script = ExtResource("33_5q0nq")
 game_manager = NodePath("..")
 
+[node name="DiamondTransition" type="ColorRect" parent="." unique_id=1489487514]
+visible = false
+material = SubResource("ShaderMaterial_chjal")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DiamondTransition" unique_id=107161578]
+libraries/ = SubResource("AnimationLibrary_vc5cj")
+autoplay = &"new_animation"
+
+[connection signal="mouse_entered" from="HUD/Clock" to="HUD/SubViewport/AnalogClock" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HUD/Clock" to="HUD/SubViewport/AnalogClock" method="_on_mouse_exited"]
 [connection signal="pressed" from="HUD/NewDay/Ok" to="HUD" method="_on_ok_pressed"]

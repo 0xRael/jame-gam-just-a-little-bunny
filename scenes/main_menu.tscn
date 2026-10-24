@@ -5,9 +5,29 @@
 [ext_resource type="Script" uid="uid://rd0cqjrj3h8y" path="res://scripts/audio_manager.gd" id="2_bqqt6"]
 [ext_resource type="Script" uid="uid://cuxgrwec1s33x" path="res://scripts/title_screen/main_menu.gd" id="3_rtw2f"]
 [ext_resource type="Script" uid="uid://b4bnbs5nyl4iv" path="res://scripts/title_screen/options.gd" id="5_8ln24"]
+[ext_resource type="Shader" uid="uid://cyjsgdd8qm4hx" path="res://shaders/waving_particles.gdshader" id="5_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://ota5u8glfxb2" path="res://images/ui/carrot.png" id="6_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://b80c1dbrvk4k6" path="res://images/ui/title.png" id="7_lgwnu"]
 [ext_resource type="Shader" uid="uid://bdfyudij10jra" path="res://shaders/diamond_transition.gdshader" id="7_oa1go"]
 [ext_resource type="Script" uid="uid://cj7low86qsmo2" path="res://scripts/title_screen/button_sfx.gd" id="8_tbmy8"]
 [ext_resource type="AudioStream" uid="uid://b3f14gkk6n7du" path="res://sounds/ui/cursor.wav" id="9_jk1qb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sbekf"]
+shader = ExtResource("5_jk1qb")
+shader_parameter/dimensions = Vector2(256, 192)
+shader_parameter/rows = 5.0
+shader_parameter/columns = 3.0
+shader_parameter/vertical_scroll = 0.09999997541280004
+shader_parameter/horizontal_scroll = 0.0499999765304
+shader_parameter/size_min = 0.20000000298024
+shader_parameter/size_max = 0.5000000074506
+shader_parameter/wave_min = 0.30000000447036
+shader_parameter/wave_max = 0.60000000894072
+shader_parameter/wave_speed = 0.5
+shader_parameter/wave_rotation = 1.0
+shader_parameter/far_color = Color(0.56759995, 0.7089266, 0.86, 0.3372549)
+shader_parameter/near_color = Color(1, 1, 1, 1)
+shader_parameter/particle_texture = ExtResource("6_5dd4i")
 
 [sub_resource type="Animation" id="Animation_5dd4i"]
 resource_name = "End"
@@ -71,6 +91,30 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Music:volume_db")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Title:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(128, 47), Vector2(128, -38)]
+}
 
 [sub_resource type="Animation" id="Animation_rtw2f"]
 resource_name = "MainMenu2Options"
@@ -122,6 +166,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Title:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(128, 47), Vector2(333, 47)]
+}
 
 [sub_resource type="Animation" id="Animation_tbmy8"]
 resource_name = "Options2MainMenu"
@@ -172,6 +228,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Title:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-74, 47), Vector2(128, 47), Vector2(128, 47)]
 }
 
 [sub_resource type="Animation" id="Animation_oa1go"]
@@ -248,6 +316,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Music:volume_db")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Title:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(130, 47)]
+}
 
 [sub_resource type="Animation" id="Animation_jk1qb"]
 resource_name = "Start"
@@ -312,6 +404,30 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Music:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Title:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(128, -41), Vector2(128, 47), Vector2(128, 47)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tbmy8"]
 _data = {
@@ -346,14 +462,28 @@ autoplay = true
 bus = &"Music"
 script = ExtResource("2_bqqt6")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=674975238]
+[node name="Particles" type="ColorRect" parent="." unique_id=831327641]
+material = SubResource("ShaderMaterial_sbekf")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.24705882, 0.36862746, 0.60784316, 1)
+color = Color(0.57254905, 0.70980394, 0.85882354, 1)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=674975238]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Sprite2D" parent="." unique_id=2094163664]
+position = Vector2(130, 47)
+texture = ExtResource("7_lgwnu")
 
 [node name="MainButtons" type="VBoxContainer" parent="." unique_id=1533668260]
 layout_mode = 1
@@ -365,9 +495,13 @@ anchor_bottom = 1.0
 offset_left = -28.0
 offset_top = -104.0
 offset_right = 39.0
-offset_bottom = 9.1552734e-05
+offset_bottom = 0.00021362305
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Control" type="Control" parent="MainButtons" unique_id=1007588616]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Play" type="Button" parent="MainButtons" unique_id=94013879]
 layout_mode = 2
@@ -380,6 +514,10 @@ text = "Options"
 [node name="Exit" type="Button" parent="MainButtons" unique_id=1140909440]
 layout_mode = 2
 text = "Exit"
+
+[node name="Control2" type="Control" parent="MainButtons" unique_id=1017127253]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Options" type="GridContainer" parent="." unique_id=1549700607]
 layout_mode = 1

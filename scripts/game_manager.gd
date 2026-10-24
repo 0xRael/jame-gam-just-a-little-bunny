@@ -23,7 +23,7 @@ var current_day := 1:
 		current_day = val
 		emit_signal("day_changed", current_day)
 var day_duration_seconds := 240.0 # ~4 minutes per day
-var day_timer := 230.0
+var day_timer := 0.0
 
 var player: Player
 var pet: Pet
@@ -47,6 +47,9 @@ func _ready() -> void:
 	
 	pantry_minigame.minigame_completed.connect(_on_pantry_minigame_completed)
 	sink_minigame.minigame_completed.connect(_on_sink_minigame_completed)
+	
+	await get_tree().create_timer(1.0).timeout
+	emit_signal("day_changed", current_day)
 
 func _process(delta: float) -> void:
 	if current_state == GameState.GAMEOVER:

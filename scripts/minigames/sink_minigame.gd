@@ -5,11 +5,11 @@ extends MinigameBase
 var target_rotation : float:
 	set(val):
 		target_rotation = val
-		$SubViewport/OuterWheel.rotation = target_rotation
+		$OuterWheel.rotation = target_rotation
 var current_rotation : float:
 	set(val):
 		current_rotation = fmod(fmod(val, PI * 2) + PI * 2, PI * 2)
-		$SubViewport/Wheel.rotation = current_rotation
+		$Wheel.rotation = current_rotation
 
 const ACCELERATION := 0.2
 const FRICTION := 0.05

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c1koywudw8rl5" path="res://images/ui/bars/empty-bar.png" id="3_4luo7"]
 [ext_resource type="Texture2D" uid="uid://2fh2sjpfhnfk" path="res://images/ui/bars/checkbox_empty.png" id="3_qe7yt"]
 [ext_resource type="Texture2D" uid="uid://wsrqxc8lp06x" path="res://images/ui/bars/scroll.png" id="4_ugfru"]
+[ext_resource type="Texture2D" uid="uid://b4ki5wymxyjm" path="res://images/ui/panel.png" id="6_1bwxx"]
 [ext_resource type="FontFile" uid="uid://7joj7akwtakh" path="res://fonts/Peaberry-Font-v2.0/Peaberry Font Family/Peaberry Base/Peaberry-Base.otf" id="6_qe7yt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
@@ -46,16 +47,14 @@ texture_margin_right = 8.0
 expand_margin_top = 10.0
 expand_margin_bottom = 10.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dd4i"]
-bg_color = Color(0.24705882, 0.36862746, 0.60784316, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.1764706, 0.15294118, 0.19607843, 1)
-shadow_offset = Vector2(5, 5)
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgwnu"]
+texture = ExtResource("6_1bwxx")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rohj4"]
 texture = ExtResource("3_4luo7")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_flqon"]
@@ -84,8 +83,11 @@ HSlider/icons/grabber_highlight = ExtResource("4_ugfru")
 HSlider/styles/grabber_area = SubResource("StyleBoxTexture_ugfru")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_qe7yt")
 HSlider/styles/slider = SubResource("StyleBoxTexture_1bwxx")
+Label/colors/font_color = Color(0.1764706, 0.15294118, 0.1882353, 1)
+Label/colors/font_outline_color = Color(0.57254905, 0.70980394, 0.85882354, 1)
+Label/constants/outline_size = 4
 Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("6_qe7yt")
-Panel/styles/panel = SubResource("StyleBoxFlat_5dd4i")
-ProgressBar/styles/background = SubResource("StyleBoxTexture_lgwnu")
+Panel/styles/panel = SubResource("StyleBoxTexture_lgwnu")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_rohj4")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_flqon")

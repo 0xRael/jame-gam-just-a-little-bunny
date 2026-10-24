@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c53j0ti3vx41o"
+path="res://.godot/imported/Cozy Days.wav-1679b71f0c41d853aee5d36cac97c6cc.sample"
+
+[deps]
+
+source_file="res://sounds/Cozy Days.wav"
+dest_files=["res://.godot/imported/Cozy Days.wav-1679b71f0c41d853aee5d36cac97c6cc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

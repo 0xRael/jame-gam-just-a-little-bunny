@@ -13,7 +13,9 @@ config_version=5
 config/name="jame gam"
 run/main_scene="uid://qav4ljgxuitw"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/show_image=false
+boot_splash/image="uid://b80c1dbrvk4k6"
+config/icon="uid://cup80tqq5sfal"
 
 [audio]
 
