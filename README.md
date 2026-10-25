@@ -31,4 +31,5 @@ Some SFX: Freesound Community
 Font: [Peaberry](https://emhuo.itch.io/peaberry-pixel-font) by Emily Huo  
 Menu Shaders: Zacksly & Brian Smith
 
-Special Thanks to Jame Gam and HackClub: for hosting the game jam!
+Special Thanks to Jame Gam and HackClub: for hosting the game jam!!
+
