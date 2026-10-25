@@ -51,6 +51,7 @@ var can_use_sink := true:
 		can_use_sink = val
 		emit_signal("sink_lock_changed", val)
 
+var lost := false
 
 func _ready() -> void:
 	player = Player.new()
@@ -98,9 +99,9 @@ func _process(delta: float) -> void:
 
 func check_game_over() -> void:
 	if player.sanity <= 0.0:
-		trigger_game_over("You've gone Insane! Don't look at the bunny too long")
+		trigger_game_over("sanity")
 	elif pet.patience <= 0.0:
-		trigger_game_over("The Bunny lost Patience and decided to kill you...")
+		trigger_game_over("patience")
 
 func trigger_game_over(reason: String) -> void:
 	current_state = GameState.GAMEOVER
@@ -209,4 +210,7 @@ func unpause() -> void:
 
 func _on_diamonds_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "End":
+		if lost:
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+			return
 		get_tree().change_scene_to_file("res://scenes/outro.tscn")

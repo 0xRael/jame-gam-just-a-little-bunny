@@ -43,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://dy80153msbscr" path="res://scenes/search_minigame.tscn" id="35_5he1u"]
 [ext_resource type="Texture2D" uid="uid://dg4djox2ak6tv" path="res://images/ui/bars/hunger-bar.png" id="35_pibwh"]
 [ext_resource type="AudioStream" uid="uid://c53j0ti3vx41o" path="res://sounds/Cozy Days.wav" id="40_2cjbq"]
+[ext_resource type="Texture2D" uid="uid://b3iog8fhwxaas" path="res://images/game-over-sanity.png" id="41_vchkt"]
 [ext_resource type="Shader" uid="uid://bdfyudij10jra" path="res://shaders/diamond_transition.gdshader" id="42_2cjbq"]
 
 [sub_resource type="Animation" id="Animation_chjal"]
@@ -2042,6 +2043,54 @@ hunger_bar = NodePath("../ViewContainer/LivingRoomView/HungerBar")
 alt_hunger_bar = NodePath("../ViewContainer/LivingRoomView/Bowl")
 thirst_bar = NodePath("../ViewContainer/LivingRoomView/ThirstBar")
 alt_thirst_bar = NodePath("../ViewContainer/LivingRoomView/WaterBowl")
+
+[node name="GameOver" type="Sprite2D" parent="." unique_id=2098773219]
+visible = false
+texture = ExtResource("41_vchkt")
+centered = false
+
+[node name="patience" type="RichTextLabel" parent="GameOver" unique_id=865598253]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_dgi5k")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "[center]
+
+[wave]Game Over![/wave]
+
+
+
+
+
+Better luck
+next time..."
+
+[node name="sanity" type="RichTextLabel" parent="GameOver" unique_id=1275266932]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_dgi5k")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "[right]
+
+[wave]Game
+Over![/wave]
+
+
+
+
+Try to not
+go crazy..."
 
 [node name="EmptyBar" type="Sprite2D" parent="." unique_id=886115779]
 visible = false

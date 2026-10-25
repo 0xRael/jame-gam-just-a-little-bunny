@@ -5,6 +5,12 @@ extends Control
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var minigames: Array[MinigameBase] = [$MinigameView]
 
+@onready var game_over_screen : CanvasItem = $"../GameOver"
+const GAME_OVER_SCREENS : Dictionary = {
+	"patience": preload("res://images/game-over.png"),
+	"sanity": preload("res://images/game-over-sanity.png")
+}
+
 var playback: AnimationNodeStateMachinePlayback
 
 func _ready() -> void:
@@ -42,8 +48,16 @@ func _on_sink_lock_changed(can_use_sink: bool) -> void:
 	$PantryView/SinkWater.visible = not can_use_sink
 
 func _on_game_over(reason: String):
-	$GameOver.visible = true
-	$GameOver/Reason.text = reason
+	game_over_screen.texture = GAME_OVER_SCREENS[reason]
+	game_over_screen.modulate = Color(0, 0, 0, 0)
+	game_over_screen.visible = true
+	game_over_screen.get_node(reason).visible = true
+	var new_tween = create_tween()
+	new_tween.tween_property(game_over_screen, "modulate", Color(1, 1, 1, 1), 1.0)
+	
+	await get_tree().create_timer(5.0).timeout
+	game_manager.lost = true
+	game_manager.animation_transition.play("End")
 
 func _minigame_attempt_failed() -> void:
 	if not Global.screenshake:

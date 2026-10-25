@@ -47,6 +47,9 @@ func _on_game_state_changed(state: int) -> void:
 		GameManager.GameState.SEARCH_MINIGAME:
 			pass
 		
+		GameManager.GameState.GAMEOVER:
+			_on_day_changed(100) # Trigger end transition
+		
 		_:
 			filter_tween.tween_property(lowpass, "cutoff_hz", DEFAULT_LOWPASS_CUTOFF, 0.5)
 			filter_tween.tween_property(highpass, "cutoff_hz", DEFAULT_HIGHPASS_CUTOFF, 0.5)
