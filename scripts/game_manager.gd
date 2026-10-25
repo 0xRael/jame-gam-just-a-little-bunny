@@ -40,6 +40,8 @@ var is_game_paused := false:
 @onready var sink_minigame : SinkMinigame = $ViewContainer/SinkMinigameView
 @onready var search_minigame : SearchMinigame = $ViewContainer/SearchMinigameView
 
+@onready var animation_transition : AnimationPlayer = $DiamondTransition/AnimationPlayer
+
 var can_use_pantry := true:
 	set(val):
 		can_use_pantry = val
@@ -152,6 +154,9 @@ func advance_day() -> void:
 	day_timer = 0.0
 	print("Advanced to day: ", current_day)
 	check_day_mechanics()
+	
+	if current_day > 3:
+		animation_transition.play("End")
 
 func check_day_mechanics() -> void:
 	if current_day >= 2:
@@ -196,3 +201,8 @@ func _on_search_minigame_completed(success: bool) -> void:
 
 func unpause() -> void:
 	is_game_paused = false
+
+
+func _on_diamonds_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "End":
+		get_tree().change_scene_to_file("res://scenes/outro.tscn")

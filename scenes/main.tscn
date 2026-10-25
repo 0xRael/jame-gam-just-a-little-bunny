@@ -1591,8 +1591,33 @@ shader_parameter/pixel_size = 0.08
 shader_parameter/height = 1.0
 shader_parameter/disable_pixel = false
 
-[sub_resource type="Animation" id="Animation_vc5cj"]
+[sub_resource type="Animation" id="Animation_2cjbq"]
 resource_name = "End"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/height")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_vchkt"]
 length = 0.001
@@ -1651,7 +1676,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vc5cj"]
 _data = {
-&"End": SubResource("Animation_vc5cj"),
+&"End": SubResource("Animation_2cjbq"),
 &"RESET": SubResource("Animation_vchkt"),
 &"Start": SubResource("Animation_txyw0")
 }
@@ -2022,3 +2047,4 @@ libraries/ = SubResource("AnimationLibrary_vc5cj")
 autoplay = &"Start"
 
 [connection signal="pressed" from="ViewContainer/GameOver/Exit" to="HUD" method="_on_exit_pressed"]
+[connection signal="animation_finished" from="DiamondTransition/AnimationPlayer" to="." method="_on_diamonds_animation_finished"]

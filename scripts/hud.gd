@@ -48,7 +48,7 @@ func _on_pet_hunger_changed(value: float) -> void:
 
 func _on_day_changed(new_day: int) -> void:
 	day_just_started = true
-	current_note = MAX_NOTES[new_day-1] +1
+	current_note = MAX_NOTES[min(new_day-1, 3)] +1
 	_on_read_notes_pressed()
 	if new_day >= 2:
 		thirst_bar.show()
@@ -83,7 +83,7 @@ func _on_read_notes_pressed() -> void:
 
 func _on_next_note_pressed() -> void:
 	$Notes.get_child(current_note).hide()
-	if current_note == MAX_NOTES[game_manager.current_day]:
+	if current_note == MAX_NOTES[min(game_manager.current_day, 3)]:
 		_exit_notes()
 		return
 	

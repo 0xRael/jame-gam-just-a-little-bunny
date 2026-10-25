@@ -62,6 +62,8 @@ func _on_day_changed(new_day: int):
 		trans_tween.kill()
 	
 	stop()
+	if new_day >= len(THEMES):
+		return
 	stream = THEMES[new_day-1]
 	volume_linear = 0.0
 	play(0.0)

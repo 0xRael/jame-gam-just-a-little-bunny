@@ -2,7 +2,7 @@ extends Control
 
 @onready var animation_player = $AnimationPlayer
 
-func _on_ready() -> void:
+func _ready() -> void:
 	await get_tree().create_timer(0.3).timeout
 	$MainButtons/Play.grab_focus()
 
