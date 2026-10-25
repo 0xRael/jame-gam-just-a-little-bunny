@@ -189,9 +189,9 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
+offset_left = 4.0
 offset_top = -23.0
-offset_right = -71.0
+offset_right = -75.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -205,6 +205,23 @@ offset_top = 2.0
 offset_right = 46.0
 offset_bottom = 42.0
 texture = SubResource("ViewportTexture_sbekf")
+
+[node name="EscapePercent" type="Label" parent="." unique_id=846033121]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -21.0
+offset_right = -2.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+text = "Esc: 20%"
 
 [node name="Background" type="ColorRect" parent="." unique_id=1544848654]
 visible = false

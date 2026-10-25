@@ -22,7 +22,8 @@ const COOLDOWN_TIME: float = 0.5 # seconds
 var current_day := 1:
 	set(val):
 		current_day = val
-		emit_signal("day_changed", current_day)
+		if val != Global.target_day:
+			emit_signal("day_changed", current_day)
 var day_duration_seconds := 240.0 # ~4 minutes per day
 var day_timer := 0.0
 

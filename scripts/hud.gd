@@ -33,6 +33,9 @@ func _set_up() -> void:
 		game_manager.day_changed.connect(_on_day_changed)
 		game_manager.game_paused.connect(_on_game_paused)
 
+func _process(_delta: float) -> void:
+	$EscapePercent.text = "Esc: "+str(int(game_manager.pet.escape_chance))+"%"
+
 func _on_player_sanity_changed(value: float) -> void:
 	sanity_bar.value = value
 
@@ -50,6 +53,8 @@ func _on_day_changed(new_day: int) -> void:
 	if new_day >= 2:
 		thirst_bar.show()
 		alt_thirst_bar.show()
+	if new_day >= 3:
+		$EscapePercent.show()
 
 func _on_pet_thirst_changed(value: float) -> void:
 	thirst_bar.value = value
