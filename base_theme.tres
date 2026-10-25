@@ -67,6 +67,20 @@ texture = ExtResource("2_11awm")
 texture_margin_left = 10.0
 texture_margin_right = 10.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgwnu"]
+bg_color = Color(0.8509804, 0.8352941, 0.8392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bwxx"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_flqon"]
+bg_color = Color(0.8627451, 0.6862745, 0.5686275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rohj4"]
+bg_color = Color(0.57254905, 0.70980394, 0.85882354, 1)
+border_width_left = 5
+border_color = Color(0.57254905, 0.70980394, 0.85882354, 1)
+
 [resource]
 Button/colors/font_color = Color(0.31764707, 0.3019608, 0.2901961, 1)
 Button/colors/font_focus_color = Color(0.61960787, 0.4117647, 0.41960785, 1)
@@ -107,3 +121,7 @@ RichTextLabel/constants/outline_size = 4
 RichTextLabel/font_sizes/normal_font_size = 16
 RichTextLabel/fonts/mono_font = ExtResource("8_1bwxx")
 RichTextLabel/fonts/normal_font = ExtResource("6_qe7yt")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_lgwnu")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_1bwxx")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_flqon")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_rohj4")

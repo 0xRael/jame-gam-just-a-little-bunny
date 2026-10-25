@@ -2,9 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://nmiqr8hipiy6" path="res://base_theme.tres" id="1_0b11s"]
 [ext_resource type="Script" uid="uid://4q8t88oufj6w" path="res://scripts/intro.gd" id="2_7nwcv"]
-[ext_resource type="Texture2D" uid="uid://bs40sj8nkc4id" path="res://images/intro/1.png" id="3_goj31"]
-[ext_resource type="Texture2D" uid="uid://d2tnhoo0dge3d" path="res://images/intro/2.png" id="4_27hq1"]
-[ext_resource type="AudioStream" uid="uid://1iy3prxlxiam" path="res://sounds/ambient/page.mp3" id="6_eq15a"]
+[ext_resource type="Texture2D" uid="uid://cudk60igdls4w" path="res://images/outro/0.png" id="3_611wi"]
+[ext_resource type="Texture2D" uid="uid://d3ya6udiwifmp" path="res://images/outro/1.png" id="4_0b11s"]
+[ext_resource type="AudioStream" uid="uid://v4s11drnn04a" path="res://sounds/ui/cursor.wav" id="6_611wi"]
 [ext_resource type="AudioStream" uid="uid://b5cfng3shp4x8" path="res://sounds/ambient/open-box.mp3" id="7_lsp6n"]
 [ext_resource type="Shader" uid="uid://bdfyudij10jra" path="res://shaders/diamond_transition.gdshader" id="8_ssjpb"]
 
@@ -41,6 +41,30 @@ tracks/2/path = NodePath("3:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -95,7 +119,7 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("6_eq15a")
+"stream": ExtResource("7_lsp6n")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -173,11 +197,251 @@ tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("7_lsp6n")
+"stream": ExtResource("6_611wi")
 }],
 "times": PackedFloat32Array(0)
 }
 tracks/5/use_blend = true
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_611wi"]
+resource_name = "4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("3:modulate")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SFX")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_611wi")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("4:modulate")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0b11s"]
+resource_name = "5"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.03333336),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("3:modulate")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SFX")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_611wi")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("4:modulate")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.03333336),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("5:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("5:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_gy60b"]
 resource_name = "End"
@@ -340,12 +604,62 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("4:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("4:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("5:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("5:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r2s4q"]
 _data = {
 &"1": SubResource("Animation_mkji7"),
 &"2": SubResource("Animation_capyo"),
 &"3": SubResource("Animation_r2s4q"),
+&"4": SubResource("Animation_611wi"),
+&"5": SubResource("Animation_0b11s"),
 &"End": SubResource("Animation_gy60b"),
 &"RESET": SubResource("Animation_b2a04")
 }
@@ -432,6 +746,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_0b11s")
 script = ExtResource("2_7nwcv")
+finish_step = 5
 go_to = "res://scenes/main_menu.tscn"
 
 [node name="1" type="TextureRect" parent="." unique_id=612327903]
@@ -441,13 +756,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_goj31")
-
-[node name="Label" type="Label" parent="1" unique_id=828361050]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 16.0
-text = "Placeholder Art for Outro"
+texture = ExtResource("3_611wi")
 
 [node name="2" type="TextureRect" parent="." unique_id=114161911]
 visible = false
@@ -458,13 +767,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_27hq1")
-
-[node name="Label" type="Label" parent="2" unique_id=1892979885]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 16.0
-text = "Placeholder Art for Outro"
+texture = ExtResource("4_0b11s")
 
 [node name="3" type="ColorRect" parent="." unique_id=863174684]
 visible = false
@@ -477,7 +780,35 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.57254905, 0.70980394, 0.85882354, 1)
 
-[node name="Credits" type="RichTextLabel" parent="3" unique_id=1298272225]
+[node name="Label" type="RichTextLabel" parent="3" unique_id=1360173565]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = -78.0
+offset_right = 125.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "[center][font_size=32][wave]
+
+THE END"
+
+[node name="4" type="ColorRect" parent="." unique_id=452007012]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.57254905, 0.70980394, 0.85882354, 1)
+
+[node name="Credits" type="RichTextLabel" parent="4" unique_id=91761652]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -487,7 +818,8 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[center][wave]CREDITS[/wave]
+text = "
+[center][wave]CREDITS[/wave]
 [font_size=12]Development & OST:
 [url=https://darthrael.carrd.co/]DarthRael[/url]
 Art & Game Design:
@@ -496,7 +828,35 @@ Art & Game Design:
 Additional Assets:
 Some SFX: [u]Freesound Community[/u]
 Font: [url=https://emhuo.itch.io/peaberry-pixel-font]Peaberry[/url] by Emily Huo
-Menu Shaders: Zacksly & Brian Smith
+Menu Shaders: Zacksly & Brian Smith"
+
+[node name="5" type="ColorRect" parent="." unique_id=1815858577]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.57254905, 0.70980394, 0.85882354, 1)
+
+[node name="Credits" type="RichTextLabel" parent="5" unique_id=1873974343]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 7.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "
+[center][wave]Special Thanks[/wave]
+[font_size=12]Lukaluhtoogan
+Ssjkids
+IonicCat538
+
+Barkya28
 
 Special Thanks to [u]Jame Gam and HackClub[/u]: for hosting the game jam!"
 

@@ -34,6 +34,8 @@
 [ext_resource type="Texture2D" uid="uid://ptdohl1owa61" path="res://images/tv/miku2.png" id="27_vchkt"]
 [ext_resource type="Script" uid="uid://cx1oqg3rlktln" path="res://scripts/clouds.gd" id="28_5he1u"]
 [ext_resource type="Texture2D" uid="uid://buekh7paj10fi" path="res://images/pauntry-room/sink-water2.png" id="28_c6pm6"]
+[ext_resource type="Texture2D" uid="uid://chughqlf4wc6p" path="res://images/tv/darth1.png" id="28_vc5cj"]
+[ext_resource type="Texture2D" uid="uid://bo7vxrv7yiryk" path="res://images/tv/darth2.png" id="29_nvyfr"]
 [ext_resource type="PackedScene" uid="uid://drm8psn42suv" path="res://scenes/sink_minigame_view.tscn" id="30_pibwh"]
 [ext_resource type="Texture2D" uid="uid://bsk7qa1m2vlu3" path="res://images/pauntry-room/cavinet-border.png" id="33_2cjbq"]
 [ext_resource type="Script" uid="uid://rd0cqjrj3h8y" path="res://scripts/audio_manager.gd" id="33_5q0nq"]
@@ -483,10 +485,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("19_fv21b")
+"texture": ExtResource("28_vc5cj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("20_tel4y")
+"texture": ExtResource("29_nvyfr")
 }],
 "loop": 1,
 "name": &"3",
