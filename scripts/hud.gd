@@ -63,6 +63,7 @@ func _on_pet_thirst_changed(value: float) -> void:
 func _on_game_paused() -> void:
 	$PauseMenu.show()
 	$Background.show()
+	$PauseMenu/VBoxContainer/Continue.grab_focus()
 
 func _on_continue_pressed() -> void:
 	game_manager.unpause()
@@ -95,6 +96,7 @@ func _exit_notes() -> void:
 	$NoteButtons.hide()
 	if not day_just_started:
 		$PauseMenu.show()
+		$PauseMenu/VBoxContainer/Continue.grab_focus()
 		return
 	day_just_started = false
 	$DayStart/Anim.play("default")
@@ -122,5 +124,5 @@ func _input(event: InputEvent) -> void:
 	
 	if $Notes.visible:
 		_exit_notes()
-	elif game_manager.is_game_paused:
+	elif $PauseMenu.visible:
 		_on_continue_pressed()

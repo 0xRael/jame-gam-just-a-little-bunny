@@ -26,7 +26,7 @@ var thirst := 100.0:
 # Drain Rates per second
 var hunger_drain_rate := 3.5
 var thirst_drain_rate := 1.5
-var normal_patience_drain := 0.5
+var normal_patience_drain := 1.0
 var tv_patience_drain := 1.5 # Watching TV drains patience faster
 var starving_patience_drain := 10.0 # Rapid drain when hunger hits 0
 var stare_patience_refill := 1.0
@@ -39,8 +39,8 @@ var enable_thirst := false
 var stare_timer := 0.0
 
 var enable_escape := false
-const BASE_ESCAPE_CHANCE := 20.0
-var escape_chance := 20.0
+const BASE_ESCAPE_CHANCE := 0.0
+var escape_chance := 0.0
 var escape_chance_growth := 0.5
 const ESCAPE_TIMER := 30.0
 var timer_to_check := 30.0

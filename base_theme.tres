@@ -17,7 +17,11 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_bottom = 2
 border_color = Color(0.8627451, 0.6862745, 0.5686275, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b1to"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 23
+border_color = Color(0.85882354, 0.5882353, 0.57254905, 1)
+expand_margin_left = 1.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ugfru"]
 texture = ExtResource("2_11awm")
@@ -41,7 +45,7 @@ expand_margin_bottom = 10.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ln24"]
 load_path = "res://.godot/imported/empty-bar.png-178eb9b642513cd5946a223ecb835894.ctex"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1bwxx"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bynpe"]
 texture = SubResource("CompressedTexture2D_8ln24")
 texture_margin_left = 10.0
 texture_margin_right = 8.0
@@ -67,7 +71,9 @@ texture_margin_right = 10.0
 Button/colors/font_color = Color(0.31764707, 0.3019608, 0.2901961, 1)
 Button/colors/font_focus_color = Color(0.61960787, 0.4117647, 0.41960785, 1)
 Button/colors/font_hover_color = Color(0.8627451, 0.6862745, 0.56078434, 1)
+Button/colors/font_hover_pressed_color = Color(0.57254905, 0.70980394, 0.85882354, 1)
 Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.57254905, 0.70980394, 0.85882354, 1)
 Button/constants/outline_size = 4
 Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("6_qe7yt")
@@ -78,13 +84,15 @@ Button/styles/normal = SubResource("StyleBoxFlat_wu84c")
 Button/styles/pressed = SubResource("StyleBoxFlat_wu84c")
 CheckBox/icons/checked = ExtResource("2_ugfru")
 CheckBox/icons/unchecked = ExtResource("3_qe7yt")
-CheckBox/styles/hover = SubResource("StyleBoxEmpty_tbmy8")
+CheckBox/styles/focus = SubResource("StyleBoxFlat_0b1to")
+CheckBox/styles/hover = SubResource("StyleBoxFlat_0b1to")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_0b1to")
 HSlider/constants/grabber_offset = -1
 HSlider/icons/grabber = ExtResource("4_ugfru")
 HSlider/icons/grabber_highlight = ExtResource("4_ugfru")
 HSlider/styles/grabber_area = SubResource("StyleBoxTexture_ugfru")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_qe7yt")
-HSlider/styles/slider = SubResource("StyleBoxTexture_1bwxx")
+HSlider/styles/slider = SubResource("StyleBoxTexture_bynpe")
 Label/colors/font_color = Color(0.31764707, 0.3019608, 0.2901961, 1)
 Label/colors/font_outline_color = Color(0.57254905, 0.70980394, 0.85882354, 1)
 Label/constants/outline_size = 4

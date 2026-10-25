@@ -14,7 +14,7 @@ var filter_tween: Tween
 const THEMES = [
 	preload("res://sounds/Cozy Days.wav"),
 	preload("res://sounds/Second Day.wav"),
-	preload("res://sounds/Main Theme.wav")
+	preload("res://sounds/Killer Bunny.wav")
 ]
 
 func _ready() -> void:	
@@ -62,7 +62,7 @@ func _on_day_changed(new_day: int):
 		trans_tween.kill()
 	
 	stop()
-	if new_day >= len(THEMES):
+	if new_day > len(THEMES):
 		return
 	stream = THEMES[new_day-1]
 	volume_linear = 0.0

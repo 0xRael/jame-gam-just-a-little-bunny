@@ -13,6 +13,7 @@ config_version=5
 config/name="It's Just a Small Bunny Right?"
 run/main_scene="uid://qav4ljgxuitw"
 config/features=PackedStringArray("4.7", "Mobile")
+boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/show_image=false
 boot_splash/image="uid://b80c1dbrvk4k6"
 config/icon="uid://cup80tqq5sfal"

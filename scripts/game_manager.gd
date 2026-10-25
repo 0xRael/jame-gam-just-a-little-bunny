@@ -159,6 +159,7 @@ func advance_day() -> void:
 		animation_transition.play("End")
 
 func check_day_mechanics() -> void:
+	pet.times_fed = (current_day-1)*4
 	if current_day >= 2:
 		# Enable thirst mechanics on day 2
 		pet.enable_thirst = true
@@ -170,7 +171,7 @@ func _on_pantry_minigame_completed(success: bool) -> void:
 	if success:
 		pet.feed()
 		can_use_pantry = false
-		await get_tree().create_timer(10.0).timeout 
+		await get_tree().create_timer(80.0/pet.hunger_drain_rate).timeout 
 		can_use_pantry = true
 
 func _on_sink_minigame_completed(success: bool) -> void:
@@ -178,7 +179,7 @@ func _on_sink_minigame_completed(success: bool) -> void:
 	if success:
 		pet.drink()
 		can_use_sink = false
-		await get_tree().create_timer(10.0).timeout
+		await get_tree().create_timer(80.0/pet.thirst_drain_rate).timeout
 		can_use_sink = true
 
 func _on_pet_escaped() -> void:
@@ -200,6 +201,9 @@ func _on_search_minigame_completed(success: bool) -> void:
 		player.sanity += 20.0
 
 func unpause() -> void:
+	# This timer fixes a bug where the menu hides and then shows
+	# in the same frame when presing ESC
+	await get_tree().create_timer(0.1).timeout
 	is_game_paused = false
 
 

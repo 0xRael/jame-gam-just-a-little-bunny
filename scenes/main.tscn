@@ -28,8 +28,10 @@
 [ext_resource type="Texture2D" uid="uid://c0pwp3r73ab6r" path="res://images/pet/water-bowl/full.png" id="22_2cjbq"]
 [ext_resource type="Texture2D" uid="uid://yw4dwex6h4tc" path="res://images/room.png" id="24_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://wppvo5cdrxfi" path="res://images/clouds.png" id="24_dgi5k"]
+[ext_resource type="Texture2D" uid="uid://d13hlcp5h3ki1" path="res://images/tv/miku1.png" id="26_cjqg0"]
 [ext_resource type="Texture2D" uid="uid://bd00wnm1vgghw" path="res://images/pauntry-room/open-pauntry.png" id="26_j8jky"]
 [ext_resource type="Texture2D" uid="uid://dopom6d0srvkv" path="res://images/pauntry-room/sink-water1.png" id="27_pibwh"]
+[ext_resource type="Texture2D" uid="uid://ptdohl1owa61" path="res://images/tv/miku2.png" id="27_vchkt"]
 [ext_resource type="Script" uid="uid://cx1oqg3rlktln" path="res://scripts/clouds.gd" id="28_5he1u"]
 [ext_resource type="Texture2D" uid="uid://buekh7paj10fi" path="res://images/pauntry-room/sink-water2.png" id="28_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://drm8psn42suv" path="res://scenes/sink_minigame_view.tscn" id="30_pibwh"]
@@ -464,7 +466,29 @@ animations = [{
 "texture": ExtResource("20_tel4y")
 }],
 "loop": 1,
-"name": &"day1",
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_cjqg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_vchkt")
+}],
+"loop": 1,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_fv21b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_tel4y")
+}],
+"loop": 1,
+"name": &"3",
 "speed": 5.0
 }]
 
@@ -1855,8 +1879,8 @@ bus = &"SFX"
 [node name="Content" type="AnimatedSprite2D" parent="ViewContainer/TVView" unique_id=1959102588]
 position = Vector2(39, 68)
 sprite_frames = SubResource("SpriteFrames_sbekf")
-animation = &"day1"
-autoplay = "day1"
+animation = &"3"
+autoplay = "1"
 centered = false
 
 [node name="Tv" type="Sprite2D" parent="ViewContainer/TVView" unique_id=622531219]

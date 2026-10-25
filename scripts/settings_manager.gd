@@ -25,16 +25,16 @@ func save_settings(master_vol: float, music_vol: float, sfx_vol: float, fullscre
 func load_settings() -> Dictionary:
 	var err := config.load(SAVE_PATH)
 	var settings := {
-		"master": 0.8,
-		"music": 0.8,
+		"master": 0.6,
+		"music": 0.7,
 		"sfx": 0.8,
 		"fullscreen": false,
 		"screenshake": true
 	}
 	
 	if err == OK:
-		settings["master"] = config.get_value("audio", "master", 0.8)
-		settings["music"] = config.get_value("audio", "music", 0.8)
+		settings["master"] = config.get_value("audio", "master", 0.6)
+		settings["music"] = config.get_value("audio", "music", 0.7)
 		settings["sfx"] = config.get_value("audio", "sfx", 0.8)
 		settings["fullscreen"] = config.get_value("video", "fullscreen", false)
 		settings["screenshake"] = config.get_value("video", "screenshake", true)

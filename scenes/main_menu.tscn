@@ -939,26 +939,29 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -167.0
-offset_bottom = -185.0
+offset_bottom = -179.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[center]CREDITS
+text = "[center][wave]CREDITS[/wave]
 [font_size=12]Development & OST:
 [url=https://darthrael.carrd.co/]DarthRael[/url]
 Art & Game Design:
 [url=https://carlosbv.straw.page/home]Carlos Bv[/url]
 
-Special Thanks:
-[u]Pixabay / Freesound Community[/u]: SFX
-[u]Jame Gam and HackClub[/u]: for hosting the game jam!"
+Additional Assets:
+Some SFX: [u]Freesound Community[/u]
+Font: [url=https://emhuo.itch.io/peaberry-pixel-font]Peaberry[/url] by Emily Huo
+Menu Shaders: Zacksly & Brian Smith
+
+Special Thanks to [u]Jame Gam and HackClub[/u]: for hosting the game jam!"
 
 [node name="CreditsBack" type="Button" parent="Credits" unique_id=1074604427]
 layout_mode = 0
 offset_left = 175.0
-offset_top = 156.0
+offset_top = 161.0
 offset_right = 253.0
-offset_bottom = 172.0
+offset_bottom = 177.0
 text = "Go Back >"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1251008609]
