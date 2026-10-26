@@ -1610,6 +1610,9 @@ _data = {
 &"TV2LivingRoom": SubResource("Animation_85g3d")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1aae0"]
+size = Vector2(30, 100)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_chjal"]
 shader = ExtResource("42_2cjbq")
 shader_parameter/AspectRatio = 1.5
@@ -2045,6 +2048,18 @@ hunger_bar = NodePath("../ViewContainer/LivingRoomView/HungerBar")
 alt_hunger_bar = NodePath("../ViewContainer/LivingRoomView/Bowl")
 thirst_bar = NodePath("../ViewContainer/LivingRoomView/ThirstBar")
 alt_thirst_bar = NodePath("../ViewContainer/LivingRoomView/WaterBowl")
+
+[node name="Left" type="TouchScreenButton" parent="HUD" unique_id=555748090]
+position = Vector2(15, 96)
+shape = SubResource("RectangleShape2D_1aae0")
+passby_press = true
+action = "ui_left"
+
+[node name="Right" type="TouchScreenButton" parent="HUD" unique_id=1414397681]
+position = Vector2(241, 98)
+shape = SubResource("RectangleShape2D_1aae0")
+passby_press = true
+action = "ui_right"
 
 [node name="GameOver" type="Sprite2D" parent="." unique_id=2098773219]
 visible = false

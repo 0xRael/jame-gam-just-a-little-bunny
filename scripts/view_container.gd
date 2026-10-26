@@ -62,6 +62,7 @@ func _on_game_over(reason: String):
 func _minigame_attempt_failed() -> void:
 	if not Global.screenshake:
 		return
+	Input.vibrate_handheld(300)
 	var shake_intensity: float = 4.0
 	var shake_duration: float = 0.2
 	var shake_steps: int = 6

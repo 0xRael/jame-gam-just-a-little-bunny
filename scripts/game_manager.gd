@@ -115,6 +115,8 @@ func handle_input() -> void:
 	var mouse_pos := get_viewport().get_mouse_position()
 	
 	var is_mouse_inside := Rect2(Vector2.ZERO, viewport_size).has_point(mouse_pos)
+	if OS.get_name() == "Android":
+		is_mouse_inside = false # disable mouse recognition
 	
 	# Detect left/right action from keyboard OR mouse edge
 	var triggered_left: bool = Input.is_action_pressed("ui_left") or (is_mouse_inside and mouse_pos.x <= mouse_move_threshold)
