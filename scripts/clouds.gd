@@ -5,7 +5,7 @@ extends Sprite2D
 
 func _process(delta: float) -> void:
 	var progress := 0.0
-	if game_manager and game_manager.day_duration_seconds > 0:
-		progress = game_manager.day_timer / game_manager.day_duration_seconds
+	if game_manager and game_manager.get_day_duration() > 0:
+		progress = game_manager.day_timer / game_manager.get_day_duration()
 	
 	self_modulate = sky_gradient.sample(progress)
