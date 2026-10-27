@@ -854,6 +854,10 @@ text = "From 2nd Day"
 layout_mode = 2
 text = "From 3rd Day"
 
+[node name="Endless" type="Button" parent="Play" unique_id=1592496775]
+layout_mode = 2
+text = "Endless Mode"
+
 [node name="PlayBack" type="Button" parent="Play" unique_id=123621698]
 layout_mode = 2
 text = "< Go Back"
@@ -1003,6 +1007,7 @@ bus = &"SFX"
 [connection signal="pressed" from="Play/NewGame" to="." method="_on_new_game_pressed" binds= [1]]
 [connection signal="pressed" from="Play/2nd" to="." method="_on_new_game_pressed" binds= [2]]
 [connection signal="pressed" from="Play/3rd" to="." method="_on_new_game_pressed" binds= [3]]
+[connection signal="pressed" from="Play/Endless" to="." method="_on_endless_pressed"]
 [connection signal="pressed" from="Play/PlayBack" to="." method="_on_play_back_pressed"]
 [connection signal="value_changed" from="Options/MasterVol" to="Options" method="_on_master_vol_value_changed"]
 [connection signal="value_changed" from="Options/MusicVol" to="Options" method="_on_music_vol_value_changed"]

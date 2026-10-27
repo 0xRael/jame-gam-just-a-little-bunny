@@ -24,7 +24,7 @@ var current_day := 1:
 		current_day = val
 		if val != Global.target_day:
 			emit_signal("day_changed", current_day)
-var day_duration_seconds := 240.0 # ~4 minutes per day
+const DAY_DURATIONS : Array[float] = [120.0, 180.0, 240.0]
 var day_timer := 0.0
 
 var player: Player
@@ -94,7 +94,7 @@ func _process(delta: float) -> void:
 	if input_cooldown <= 0.0:
 		handle_input()
 	
-	if day_timer >= day_duration_seconds:
+	if day_timer >= get_day_duration():
 		advance_day()
 
 func check_game_over() -> void:
@@ -158,15 +158,15 @@ func advance_day() -> void:
 	print("Advanced to day: ", current_day)
 	check_day_mechanics()
 	
-	if current_day > 3:
+	if current_day > 3 and not Global.endless:
 		animation_transition.play("End")
 
 func check_day_mechanics() -> void:
-	pet.times_fed = (current_day-1)*4
-	if current_day >= 2:
+	pet.times_fed = (max(current_day, 3)-1)*5
+	if current_day >= 2 or Global.endless:
 		# Enable thirst mechanics on day 2
 		pet.enable_thirst = true
-	if current_day >= 3:
+	if current_day >= 3 or Global.endless:
 		pet.enable_escape = true
 
 func _on_pantry_minigame_completed(success: bool) -> void:
@@ -174,7 +174,7 @@ func _on_pantry_minigame_completed(success: bool) -> void:
 	if success:
 		pet.feed()
 		can_use_pantry = false
-		await get_tree().create_timer(80.0/pet.hunger_drain_rate).timeout 
+		await get_tree().create_timer(70.0/pet.hunger_drain_rate).timeout 
 		can_use_pantry = true
 
 func _on_sink_minigame_completed(success: bool) -> void:
@@ -182,7 +182,7 @@ func _on_sink_minigame_completed(success: bool) -> void:
 	if success:
 		pet.drink()
 		can_use_sink = false
-		await get_tree().create_timer(80.0/pet.thirst_drain_rate).timeout
+		await get_tree().create_timer(70.0/pet.thirst_drain_rate).timeout
 		can_use_sink = true
 
 func _on_pet_escaped() -> void:
@@ -216,3 +216,6 @@ func _on_diamonds_animation_finished(anim_name: StringName) -> void:
 			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 			return
 		get_tree().change_scene_to_file("res://scenes/outro.tscn")
+
+func get_day_duration() -> float:
+	return DAY_DURATIONS[min(current_day, len(DAY_DURATIONS))-1]

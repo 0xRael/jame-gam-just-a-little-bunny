@@ -26,7 +26,7 @@ func _on_back_pressed() -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name != "End":
 		return
-	if Global.target_day == 1:
+	if Global.target_day == 1 and not Global.endless:
 		get_tree().change_scene_to_file("res://scenes/Intro.tscn")
 	else:
 		get_tree().change_scene_to_file("res://scenes/main.tscn")
@@ -57,3 +57,7 @@ func _input(event: InputEvent) -> void:
 			_on_credits_back_pressed()
 		elif $Play.visible:
 			_on_play_back_pressed()
+
+func _on_endless_pressed() -> void:
+	Global.endless = true
+	animation_player.play("End")

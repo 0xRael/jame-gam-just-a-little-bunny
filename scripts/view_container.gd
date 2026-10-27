@@ -91,7 +91,7 @@ func _process(_delta: float) -> void:
 		return
 	var mouse_pos := get_viewport().get_mouse_position()
 	$PantryView/CabinetBorder.visible =  game_manager.can_use_pantry and mouse_pos.distance_to(CABINET_POS) < DIST_THRESHOLD
-	$PantryView/SinkBorder.visible =  game_manager.current_day >= 2 and game_manager.can_use_sink and mouse_pos.distance_to(SINK_POS) < DIST_THRESHOLD
+	$PantryView/SinkBorder.visible =  (game_manager.current_day >= 2 or Global.endless) and game_manager.can_use_sink and mouse_pos.distance_to(SINK_POS) < DIST_THRESHOLD
 
 func _on_day_changed(new_day: int) -> void:
-	$TVView/Content.play(str(new_day))
+	$TVView/Content.play(str((new_day-1)%3+1))

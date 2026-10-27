@@ -32,6 +32,11 @@ func _set_up() -> void:
 		game_manager.pet.patience_changed.connect(_on_pet_patience_changed)
 		game_manager.day_changed.connect(_on_day_changed)
 		game_manager.game_paused.connect(_on_game_paused)
+	
+	if Global.endless:
+		thirst_bar.show()
+		alt_thirst_bar.show()
+		$EscapePercent.show()
 
 func _process(_delta: float) -> void:
 	$EscapePercent.text = "Esc: "+str(int(game_manager.pet.escape_chance))+"%"
@@ -47,6 +52,8 @@ func _on_pet_hunger_changed(value: float) -> void:
 	alt_hunger_bar.value = value
 
 func _on_day_changed(new_day: int) -> void:
+	if Global.endless:
+		return
 	day_just_started = true
 	current_note = MAX_NOTES[min(new_day-1, 3)] +1
 	_on_read_notes_pressed()
