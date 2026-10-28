@@ -42,6 +42,9 @@ var is_game_paused := false:
 
 @onready var animation_transition : AnimationPlayer = $DiamondTransition/AnimationPlayer
 
+@export var cabinet_load : Sprite2D
+@export var sink_load : Sprite2D
+
 var can_use_pantry := true:
 	set(val):
 		can_use_pantry = val
@@ -191,7 +194,9 @@ func _on_pantry_minigame_completed(success: bool) -> void:
 	if success:
 		pet.feed()
 		can_use_pantry = false
-		await get_tree().create_timer(70.0/pet.hunger_drain_rate).timeout 
+		var time = 70.0/pet.hunger_drain_rate
+		cabinet_load.get_node("S/Circle").start(time)
+		await get_tree().create_timer(time).timeout 
 		can_use_pantry = true
 
 func _on_sink_minigame_completed(success: bool) -> void:
@@ -199,7 +204,9 @@ func _on_sink_minigame_completed(success: bool) -> void:
 	if success:
 		pet.drink()
 		can_use_sink = false
-		await get_tree().create_timer(70.0/pet.thirst_drain_rate).timeout
+		var time = 70.0/pet.thirst_drain_rate
+		sink_load.get_node("S/Circle").start(time)
+		await get_tree().create_timer(time).timeout
 		can_use_sink = true
 
 func _on_pet_escaped() -> void:
