@@ -68,11 +68,14 @@ texture_margin_right = 10.0
 [sub_resource type="ViewportTexture" id="ViewportTexture_sbekf"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1aae0"]
+radius = 18.0
+
 [sub_resource type="Resource" id="Resource_sbekf"]
 script = ExtResource("17_3xg78")
 card_title = "On Diet"
 modifiers = Dictionary[String, float]({
-"pantry_digits_mult": 1.5,
+"pantry_digits_mult": 2.0,
 "patience_drain_mult": 0.8
 })
 metadata/_custom_type_script = "uid://cxovtyadu1ilv"
@@ -92,6 +95,61 @@ card_title = "Staring Contest"
 modifiers = Dictionary[String, float]({
 "sanity_drain_mult": 1.2,
 "stare_patience_refill_mult": 1.2
+})
+metadata/_custom_type_script = "uid://cxovtyadu1ilv"
+
+[sub_resource type="Resource" id="Resource_nvyfr"]
+script = ExtResource("17_3xg78")
+card_title = "Absolute Focus"
+modifiers = Dictionary[String, float]({
+"hunger_drain_mult": 0.8,
+"patience_drain_mult": 1.4,
+"thirst_drain_mult": 0.8
+})
+metadata/_custom_type_script = "uid://cxovtyadu1ilv"
+
+[sub_resource type="Resource" id="Resource_ty1g6"]
+script = ExtResource("17_3xg78")
+card_title = "Marathon"
+modifiers = Dictionary[String, float]({
+"patience_drain_mult": 0.8,
+"thirst_drain_mult": 1.5
+})
+metadata/_custom_type_script = "uid://cxovtyadu1ilv"
+
+[sub_resource type="Resource" id="Resource_j2jfr"]
+script = ExtResource("17_3xg78")
+card_title = "Relaxed"
+modifiers = Dictionary[String, float]({
+"sanity_drain_mult": 0.7,
+"sanity_refill_mult": 0.7
+})
+metadata/_custom_type_script = "uid://cxovtyadu1ilv"
+
+[sub_resource type="Resource" id="Resource_bjg73"]
+script = ExtResource("17_3xg78")
+card_title = "Bipolarity"
+modifiers = Dictionary[String, float]({
+"patience_drain_mult": 1.5,
+"stare_patience_refill_mult": 1.5
+})
+metadata/_custom_type_script = "uid://cxovtyadu1ilv"
+
+[sub_resource type="Resource" id="Resource_bu4jf"]
+script = ExtResource("17_3xg78")
+card_title = "Pro Hacker"
+modifiers = Dictionary[String, float]({
+"pantry_digits_mult": 0.5,
+"sanity_refill_mult": 0.8
+})
+metadata/_custom_type_script = "uid://cxovtyadu1ilv"
+
+[sub_resource type="Resource" id="Resource_3xg78"]
+script = ExtResource("17_3xg78")
+card_title = "Heavy Sleeper"
+modifiers = Dictionary[String, float]({
+"patience_drain_mult": 1.5,
+"sanity_drain_mult": 0.6
 })
 metadata/_custom_type_script = "uid://cxovtyadu1ilv"
 
@@ -702,6 +760,11 @@ offset_top = 2.0
 offset_right = 46.0
 offset_bottom = 42.0
 texture = SubResource("ViewportTexture_sbekf")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Clock" unique_id=379050769]
+position = Vector2(20, 20)
+shape = SubResource("CircleShape2D_1aae0")
+action = "ui_cancel"
 
 [node name="EscapePercent" type="Label" parent="." unique_id=846033121]
 visible = false
@@ -1516,7 +1579,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("16_qpprf")
-all_cards = Array[ExtResource("17_3xg78")]([SubResource("Resource_sbekf"), SubResource("Resource_1aae0"), SubResource("Resource_faxsp")])
+all_cards = Array[ExtResource("17_3xg78")]([SubResource("Resource_sbekf"), SubResource("Resource_1aae0"), SubResource("Resource_faxsp"), SubResource("Resource_nvyfr"), SubResource("Resource_ty1g6"), SubResource("Resource_j2jfr"), SubResource("Resource_bjg73"), SubResource("Resource_bu4jf"), SubResource("Resource_3xg78")])
 
 [node name="0" parent="CardSelection" unique_id=1880864240 instance=ExtResource("16_iypfu")]
 position = Vector2(45, 96)
