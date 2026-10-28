@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://d17x2v3w7wpmp"]
+
+[ext_resource type="Texture2D" uid="uid://bhq6l5q4ckf4c" path="res://images/endless/card.png" id="1_d81rb"]
+[ext_resource type="Script" uid="uid://xmrnmwyhdmu6" path="res://scripts/cardUI.gd" id="1_kg30u"]
+[ext_resource type="FontFile" uid="uid://7joj7akwtakh" path="res://fonts/Peaberry-Font-v2.0/Peaberry Font Family/Peaberry Base/Peaberry-Base.otf" id="2_6u4wf"]
+[ext_resource type="Theme" uid="uid://nmiqr8hipiy6" path="res://base_theme.tres" id="3_ktuci"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbekf"]
+size = Vector2(80, 120)
+
+[node name="Card" type="Node2D" unique_id=1880864240]
+script = ExtResource("1_kg30u")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=444744020]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_d81rb")
+
+[node name="Title" type="Label" parent="." unique_id=353084699]
+offset_left = -37.0
+offset_top = -50.0
+offset_right = 36.0
+offset_bottom = -27.0
+theme_override_colors/font_color = Color(0.31764707, 0.3019608, 0.2901961, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_6u4wf")
+theme_override_font_sizes/font_size = 12
+text = "Title"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Description" type="RichTextLabel" parent="." unique_id=607646650]
+offset_left = -33.0
+offset_top = -26.0
+offset_right = 32.0
+offset_bottom = 55.0
+theme = ExtResource("3_ktuci")
+theme_override_colors/font_outline_color = Color(0.8627451, 0.6862745, 0.5686275, 1)
+theme_override_constants/line_separation = -2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Thirst Drain x0.75
+
+Pantry Code x1.55"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Card" type="TouchScreenButton" parent="." unique_id=2123359649]
+shape = SubResource("RectangleShape2D_sbekf")
+
+[connection signal="pressed" from="Card" to="." method="_on_pressed"]

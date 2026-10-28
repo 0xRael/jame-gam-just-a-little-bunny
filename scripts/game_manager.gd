@@ -53,6 +53,23 @@ var can_use_sink := true:
 
 var lost := false
 
+var active_modifiers : Dictionary[String, float] = {
+	"thirst_drain_mult" = 1.0,
+	"hunger_drain_mult" = 1.0,
+	"patience_drain_mult" = 1.0,
+	"stare_patience_refill_mult" = 1.0,
+	"escape_chance_growth_mult" = 1.0,
+	"escape_timer_mult" = 1.0,
+	
+	"sanity_drain_mult" = 1.0,
+	"sanity_refill_mult" = 1.0,
+	
+	"pantry_digits_mult" = 1.0,
+	
+	"sink_speed_mult" = 1.0,
+	"sink_friction_mult" = 1.0,
+}
+
 func _ready() -> void:
 	player = Player.new()
 	pet = Pet.new()
@@ -219,3 +236,16 @@ func _on_diamonds_animation_finished(anim_name: StringName) -> void:
 
 func get_day_duration() -> float:
 	return DAY_DURATIONS[min(current_day, len(DAY_DURATIONS))-1]
+
+func apply_card_effect(card_data : CardData):
+	for key in card_data.modifiers:
+		print("Applying:", key)
+		if active_modifiers.has(key):
+			active_modifiers[key] *= card_data.modifiers[key]
+	apply_new_modifiers()
+
+func apply_new_modifiers() -> void:
+	pet.set_modifiers(active_modifiers)
+	player.set_modifiers(active_modifiers)
+	pantry_minigame.set_modifiers(active_modifiers)
+	sink_minigame.set_modifiers(active_modifiers)
