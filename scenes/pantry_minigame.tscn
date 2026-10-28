@@ -12,12 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://b52x0hsripnxv" path="res://images/minigames/pantry/left_unpressed.png" id="10_n4a4h"]
 [ext_resource type="Texture2D" uid="uid://cagpme34tvurg" path="res://images/minigames/pantry/left_pressed.png" id="11_ntf2b"]
 [ext_resource type="Script" uid="uid://ch7x8f2illab6" path="res://scripts/minigames/pantry/task_icon.gd" id="13_3q3y6"]
+[ext_resource type="Texture2D" uid="uid://dkecd2agsq5db" path="res://images/ui/close-button.png" id="16_wtft1"]
 [ext_resource type="AudioStream" uid="uid://djcdxsarjhjb5" path="res://sounds/ui/error.wav" id="17_d1sic"]
 [ext_resource type="AudioStream" uid="uid://v4s11drnn04a" path="res://sounds/ui/cursor.wav" id="18_0xsus"]
 [ext_resource type="AudioStream" uid="uid://wxaqkbwhx0oo" path="res://sounds/ambient/unlock.mp3" id="19_6t8gp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nt02b"]
 size = Vector2(16, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3laqm"]
 
 [node name="MinigameView" type="Control" unique_id=1579586085]
 layout_mode = 3
@@ -118,3 +121,9 @@ bus = &"SFX"
 [node name="Completed" type="AudioStreamPlayer" parent="." unique_id=1530847595]
 stream = ExtResource("19_6t8gp")
 bus = &"SFX"
+
+[node name="Exit" type="TouchScreenButton" parent="." unique_id=1985168921]
+position = Vector2(169, 48)
+texture_normal = ExtResource("16_wtft1")
+shape = SubResource("RectangleShape2D_3laqm")
+action = "exit"

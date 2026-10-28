@@ -44,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://dmi26artn4fbt" path="res://scenes/hud.tscn" id="34_pibwh"]
 [ext_resource type="PackedScene" uid="uid://dy80153msbscr" path="res://scenes/search_minigame.tscn" id="35_5he1u"]
 [ext_resource type="Texture2D" uid="uid://dg4djox2ak6tv" path="res://images/ui/bars/hunger-bar.png" id="35_pibwh"]
+[ext_resource type="PackedScene" uid="uid://j7y1e5amt6e2" path="res://scenes/loading_circle.tscn" id="39_nvyfr"]
 [ext_resource type="AudioStream" uid="uid://c53j0ti3vx41o" path="res://sounds/Cozy Days.wav" id="40_2cjbq"]
 [ext_resource type="Texture2D" uid="uid://b3iog8fhwxaas" path="res://images/game-over-sanity.png" id="41_vchkt"]
 [ext_resource type="Shader" uid="uid://bdfyudij10jra" path="res://shaders/diamond_transition.gdshader" id="42_2cjbq"]
@@ -515,6 +516,12 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbekf"]
 size = Vector2(60, 80)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nvyfr"]
+viewport_path = NodePath("S")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ty1g6"]
+viewport_path = NodePath("S")
 
 [sub_resource type="Animation" id="Animation_fuf3a"]
 length = 0.001
@@ -1711,7 +1718,7 @@ _data = {
 &"Start": SubResource("Animation_txyw0")
 }
 
-[node name="Main" type="Control" unique_id=2115642893]
+[node name="Main" type="Control" unique_id=2115642893 node_paths=PackedStringArray("cabinet_load", "sink_load")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1719,6 +1726,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o5qli")
+cabinet_load = NodePath("ViewContainer/PantryView/CabinetLoad")
+sink_load = NodePath("ViewContainer/PantryView/SinkLoad")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1782031937]
 layout_mode = 1
@@ -1958,7 +1967,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 text = "Sink (Water)"
 
 [node name="Pantry2" type="TouchScreenButton" parent="ViewContainer/PantryView" unique_id=764642078]
-position = Vector2(144, 71)
+position = Vector2(138, 71)
 shape = SubResource("RectangleShape2D_sbekf")
 action = "minigame1"
 
@@ -1966,6 +1975,14 @@ action = "minigame1"
 position = Vector2(219, 133)
 shape = SubResource("RectangleShape2D_sbekf")
 action = "minigame2"
+
+[node name="CabinetLoad" parent="ViewContainer/PantryView" unique_id=1814680891 instance=ExtResource("39_nvyfr")]
+position = Vector2(144, 71)
+texture = SubResource("ViewportTexture_nvyfr")
+
+[node name="SinkLoad" parent="ViewContainer/PantryView" unique_id=207199040 instance=ExtResource("39_nvyfr")]
+position = Vector2(220, 133)
+texture = SubResource("ViewportTexture_ty1g6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ViewContainer/PantryView" unique_id=1849898159]
 libraries/ = SubResource("AnimationLibrary_c6pm6")

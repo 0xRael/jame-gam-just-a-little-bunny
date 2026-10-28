@@ -10,11 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://bc782g26ppyfw" path="res://images/minigames/sink/down_pressed.png" id="8_3r3y7"]
 [ext_resource type="Texture2D" uid="uid://cphgu1jej3dsi" path="res://images/minigames/sink/outer_wheel.png" id="9_0iocu"]
 [ext_resource type="AudioStream" uid="uid://cnomem2ksqy5g" path="res://sounds/ambient/wheel.mp3" id="10_3r3y7"]
-[ext_resource type="AudioStream" uid="uid://b3f14gkk6n7du" path="res://sounds/ui/cursor.wav" id="11_ir0bc"]
+[ext_resource type="AudioStream" uid="uid://v4s11drnn04a" path="res://sounds/ui/cursor.wav" id="11_ir0bc"]
 [ext_resource type="AudioStream" uid="uid://brh4eyflmq2sh" path="res://sounds/ambient/sink.mp3" id="12_elw43"]
+[ext_resource type="Texture2D" uid="uid://dkecd2agsq5db" path="res://images/ui/close-button.png" id="13_1w08f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nt02b"]
 size = Vector2(36, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_it77n"]
 
 [node name="SinkMinigameView" type="Control" unique_id=1862096700]
 layout_mode = 3
@@ -63,3 +66,9 @@ bus = &"SFX"
 [node name="Completed" type="AudioStreamPlayer" parent="." unique_id=1177317459]
 stream = ExtResource("12_elw43")
 bus = &"SFX"
+
+[node name="Exit" type="TouchScreenButton" parent="." unique_id=359019710]
+position = Vector2(188, 57)
+texture_normal = ExtResource("13_1w08f")
+shape = SubResource("RectangleShape2D_it77n")
+action = "exit"

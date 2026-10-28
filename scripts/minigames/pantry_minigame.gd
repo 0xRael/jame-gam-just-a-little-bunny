@@ -45,7 +45,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_down"): input_dir = Dir.DOWN
 	elif event.is_action_pressed("ui_left"): input_dir = Dir.LEFT
 	elif event.is_action_pressed("ui_right"): input_dir = Dir.RIGHT
-	elif event.is_action_pressed("ui_cancel"):
+	elif event.is_action_pressed("exit"):
 		end_minigame(false) # Canceled out
 		return
 	

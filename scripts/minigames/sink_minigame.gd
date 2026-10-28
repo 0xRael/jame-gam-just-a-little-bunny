@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 	if not is_active:
 		return
 	
-	if Input.is_action_pressed("ui_cancel"):
+	if Input.is_action_pressed("exit"):
 		end_minigame(false) # Canceled out
 		return
 	
