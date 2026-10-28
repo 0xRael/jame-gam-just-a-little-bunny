@@ -11,13 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://o8drvbochfwl" path="res://images/minigames/pantry/right_pressed.png" id="9_ya5fy"]
 [ext_resource type="Texture2D" uid="uid://b52x0hsripnxv" path="res://images/minigames/pantry/left_unpressed.png" id="10_n4a4h"]
 [ext_resource type="Texture2D" uid="uid://cagpme34tvurg" path="res://images/minigames/pantry/left_pressed.png" id="11_ntf2b"]
-[ext_resource type="Texture2D" uid="uid://bahnhv1ggstdi" path="res://images/minigames/pantry/left_task.png" id="12_eq41k"]
 [ext_resource type="Script" uid="uid://ch7x8f2illab6" path="res://scripts/minigames/pantry/task_icon.gd" id="13_3q3y6"]
-[ext_resource type="Texture2D" uid="uid://dielnme44u47p" path="res://images/minigames/pantry/up_task.png" id="14_sd2hb"]
-[ext_resource type="Texture2D" uid="uid://wocx2d1qq8k3" path="res://images/minigames/pantry/down_task.png" id="15_xw6du"]
-[ext_resource type="Texture2D" uid="uid://bl32biexnaup8" path="res://images/minigames/pantry/right_task.png" id="16_18jvm"]
-[ext_resource type="AudioStream" uid="uid://ctvln0qjjh7an" path="res://sounds/ui/error.wav" id="17_d1sic"]
-[ext_resource type="AudioStream" uid="uid://b3f14gkk6n7du" path="res://sounds/ui/cursor.wav" id="18_0xsus"]
+[ext_resource type="AudioStream" uid="uid://djcdxsarjhjb5" path="res://sounds/ui/error.wav" id="17_d1sic"]
+[ext_resource type="AudioStream" uid="uid://v4s11drnn04a" path="res://sounds/ui/cursor.wav" id="18_0xsus"]
 [ext_resource type="AudioStream" uid="uid://wxaqkbwhx0oo" path="res://sounds/ambient/unlock.mp3" id="19_6t8gp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nt02b"]
@@ -72,44 +68,44 @@ shape = SubResource("RectangleShape2D_nt02b")
 unpressed_texture = ExtResource("10_n4a4h")
 pressed_texture = ExtResource("11_ntf2b")
 
-[node name="LeftTask" type="Sprite2D" parent="." unique_id=960085539]
-position = Vector2(106, 62)
-texture = ExtResource("12_eq41k")
-script = ExtResource("13_3q3y6")
-up_texture = ExtResource("14_sd2hb")
-down_texture = ExtResource("15_xw6du")
-left_texture = ExtResource("12_eq41k")
-right_texture = ExtResource("16_18jvm")
+[node name="Arrows" type="ScrollContainer" parent="." unique_id=1982494339]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 54.0
+offset_right = 161.0
+offset_bottom = 71.0
 
-[node name="LeftTask2" type="Sprite2D" parent="." unique_id=1799200171]
-position = Vector2(121, 62)
-texture = ExtResource("12_eq41k")
+[node name="Control" type="Control" parent="Arrows" unique_id=1835359335]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Arrows/Control" unique_id=1056468073]
+layout_mode = 0
+offset_bottom = 17.0
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="0" type="TextureRect" parent="Arrows/Control/HBoxContainer" unique_id=2073132912 node_paths=PackedStringArray("minigame")]
+layout_mode = 2
 script = ExtResource("13_3q3y6")
+minigame = NodePath("../../../..")
+
+[node name="1" type="TextureRect" parent="Arrows/Control/HBoxContainer" unique_id=1089461737 node_paths=PackedStringArray("minigame")]
+layout_mode = 2
+script = ExtResource("13_3q3y6")
+minigame = NodePath("../../../..")
 array_position = 1
-up_texture = ExtResource("14_sd2hb")
-down_texture = ExtResource("15_xw6du")
-left_texture = ExtResource("12_eq41k")
-right_texture = ExtResource("16_18jvm")
 
-[node name="LeftTask3" type="Sprite2D" parent="." unique_id=925031411]
-position = Vector2(136, 62)
-texture = ExtResource("12_eq41k")
+[node name="2" type="TextureRect" parent="Arrows/Control/HBoxContainer" unique_id=297847418 node_paths=PackedStringArray("minigame")]
+layout_mode = 2
 script = ExtResource("13_3q3y6")
+minigame = NodePath("../../../..")
 array_position = 2
-up_texture = ExtResource("14_sd2hb")
-down_texture = ExtResource("15_xw6du")
-left_texture = ExtResource("12_eq41k")
-right_texture = ExtResource("16_18jvm")
 
-[node name="LeftTask4" type="Sprite2D" parent="." unique_id=1709067497]
-position = Vector2(151, 62)
-texture = ExtResource("12_eq41k")
+[node name="3" type="TextureRect" parent="Arrows/Control/HBoxContainer" unique_id=1483604737 node_paths=PackedStringArray("minigame")]
+layout_mode = 2
 script = ExtResource("13_3q3y6")
+minigame = NodePath("../../../..")
 array_position = 3
-up_texture = ExtResource("14_sd2hb")
-down_texture = ExtResource("15_xw6du")
-left_texture = ExtResource("12_eq41k")
-right_texture = ExtResource("16_18jvm")
 
 [node name="Error" type="AudioStreamPlayer" parent="." unique_id=966917144]
 stream = ExtResource("17_d1sic")

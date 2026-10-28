@@ -21,6 +21,7 @@ func _ready() -> void:
 		clock.game_manager = game_manager
 		$Arrows/RightArrow.game_manager = game_manager
 		$Arrows/LeftArrow.game_manager = game_manager
+		$CardSelection.game_manager = game_manager
 		$Arrows/RightArrow._ready()
 		$Arrows/LeftArrow._ready()
 
@@ -53,6 +54,10 @@ func _on_pet_hunger_changed(value: float) -> void:
 
 func _on_day_changed(new_day: int) -> void:
 	if Global.endless:
+		$Background.show()
+		$PauseMenu.hide()
+		$CardSelection.open_selection()
+		$CardSelection.connect("selection_completed", _card_selected)
 		return
 	day_just_started = true
 	current_note = MAX_NOTES[min(new_day-1, 3)] +1
@@ -62,6 +67,10 @@ func _on_day_changed(new_day: int) -> void:
 		alt_thirst_bar.show()
 	if new_day >= 3:
 		$EscapePercent.show()
+
+func _card_selected() -> void:
+	$Background.hide()
+	game_manager.unpause()
 
 func _on_pet_thirst_changed(value: float) -> void:
 	thirst_bar.value = value

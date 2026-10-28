@@ -11,8 +11,10 @@ var current_rotation : float:
 		current_rotation = fmod(fmod(val, PI * 2) + PI * 2, PI * 2)
 		$Wheel.rotation = current_rotation
 
-const ACCELERATION := 0.2
-const FRICTION := 0.05
+const BASE_ACCELERATION := 0.2
+var acceleration := 0.2
+const BASE_FRICTION := 0.05
+var friction := 0.05
 const SPEED_THRESHOLD := 0.005
 const DIST_THRESHOLD := 0.15
 var speed := 0.0
@@ -22,6 +24,10 @@ const min_pitch := 0.3
 const min_volume_db := -10.0
 const max_pitch := 1.0
 const max_volume_db := 8.0
+
+func set_modifiers(modifiers: Dictionary[String, float]):
+	acceleration = BASE_ACCELERATION * modifiers["sink_speed_mult"]
+	friction = BASE_FRICTION / modifiers["sink_friction_mult"]
 
 func start_minigame() -> void:
 	super.start_minigame()
@@ -40,13 +46,13 @@ func _process(delta: float) -> void:
 		return
 	
 	if Input.is_action_pressed("ui_down"):
-		speed += ACCELERATION * delta
+		speed += acceleration * delta
 	elif Input.is_action_pressed("ui_up"):
-		speed -= ACCELERATION * delta
-	elif speed > FRICTION * delta:
-		speed -= FRICTION * delta
-	elif speed < FRICTION * -delta:
-		speed += FRICTION * delta
+		speed -= acceleration * delta
+	elif speed > friction * delta:
+		speed -= friction * delta
+	elif speed < friction * -delta:
+		speed += friction * delta
 	else:
 		$WheelSFX.stop()
 		speed = 0
